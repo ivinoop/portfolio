@@ -3,12 +3,12 @@ title: "Primitives vs Objects: Memory Allocation In JavaScript"
 date: 2023-09-23T21:48:19+05:30
 draft: false
 description: "What are Primitives and Objects (Reference Types)? How is memory allocated and managed for different data types in JavaScript?"
-tags: ["javascript"]
+tags: ["javascript", "javascript-series"]
 cover:
     image: "/blog/primitives-objects-memory-allocation/6.png"
 ---
 
-> This is the 6th post in [The Complete JavaScript Series](https://vinoo.hashnode.dev/series/the-complete-javascript).
+> This is the 6th post in [The Complete JavaScript Series](https://vinoo.in/tags/javascript-series/).
 
 ## Introduction
 

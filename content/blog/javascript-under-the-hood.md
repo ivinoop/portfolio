@@ -3,12 +3,12 @@ title: "Javascript Under the Hood"
 date: 2023-08-17T21:04:55+05:30
 draft: false
 description: "It is fun and interesting to learn about what makes up JavaScript's building blocks as a language."
-tags: ["javascript"]
+tags: ["javascript", "javascript-series"]
 cover:
     image: "/blog/javascript-under-the-hood/2.png"
 ---
 
-> This post is the 2nd in [The Complete JavaScript Series](https://vinoo.hashnode.dev/series/the-complete-javascript).
+> This is the 2nd post in [The Complete JavaScript Series](https://vinoo.in/tags/javascript-series/).
 
 Let's take a breather from the code editor today - in the next immediate post, we would be reading concepts along with code examples, but for this post, let's make some time to simply read through some interesting things about JavaScript as a language. Let's go 👇
 

@@ -3,12 +3,12 @@ title: "Scope in Javascript"
 date: 2023-09-16T21:42:59+05:30
 draft: false
 description: "Where do variables live in JavaScript? Let's learn about Scoping and the Scope Chain in this post."
-tags: ["javascript"]
+tags: ["javascript", "javascript-series"]
 cover:
     image: "/blog/scope-in-js/4.png"
 ---
 
-> This is the 4th post in [The Complete JavaScript Series](https://vinoo.hashnode.dev/series/the-complete-javascript).
+> This is the 4th post in [The Complete JavaScript Series](https://vinoo.in/tags/javascript-series/).
 
 # What is Scoping?
 

@@ -1,11 +1,11 @@
 ---
-title: "What is DOM in JavaScript?"
+title: 'What is DOM in JavaScript?'
 date: 2023-08-16T20:57:48+05:30
 draft: false
 description: "DOM forms the core of everything we see on the web page in a browser. Let's understand what it is and how it works."
-tags: ["javascript"]
+tags: ['javascript', 'javascript-series']
 cover:
-    image: "/blog/what-is-dom-in-js/1.png"
+  image: '/blog/what-is-dom-in-js/1.png'
 ---
 
 ## Intro
@@ -43,106 +43,83 @@ As mentioned before, the DOM comes with a collections of functions and propertie
 
 A few of the most common `document` methods are -
 
-* `querySelector` - enables us to query the DOM and select a particular element with its class name. It can either be a single element with a unique class name or multiple elements with the same class name. In case there are multiple elements with the same class name, then they are all queried with `querySelectorAll` and stored in something called a `Nodelist` - which is an array of all the items/elements we have queried.
-    
-    Suppose we have a `div` HTML element with the class name `main-content`, we query it like below -
-    
-    ```javascript
-    // Query the element and assign it to variable 
-    const mainContent = document.querySelector('.main-content')
-    
-    /** NOTE - we can see that there is a "." (dot) before the class name 
-    in the query method. This is mandatory to be applied to query 
-    all class names
-    */
-    ```
-    
-* `getElementById` - this is similar to `querySelector` but as the method name suggests, it is used to the query the element by its unique `id` name. `id` names are unique since no two elements can have the same `id`. If our `div` element above had an `id` of `#main-content`, then we query it by -
-    
-    ```javascript
-    const mainContentID = document.getElementById('main-content')
-    
-    /** NOTE - there is no need to have a "." or a "#" to specify
-    the id name since getElementById does the work for us 
-    */
-    ```
-    
-* `addEventListener` - all interactivity that we would need for our web application, is going to be defined in and handled by this method. Think of this as the one major method that we can use to keep track of various interactions - touch, single click, double click, triple click (we can even customise the number of clicks! 😁) mouse hover/movements, etc. There are a huge number of properties that this method has to offer and we will possible dive deeper into it in the future articles. Example -
-    
-    ```javascript
-    const btnElement = document.querySelector('.main-btn')
-    btn.addEventListener('click', function() {
-       // define interaction/function here
-    }
-    ```
-    
-    As can be seen here, we attach the `addEventListener` method to the element with which we want to interact and then define the action we want performed once the "event" (click, touch, etc) happens.
-    
+- `querySelector` - enables us to query the DOM and select a particular element with its class name. It can either be a single element with a unique class name or multiple elements with the same class name. In case there are multiple elements with the same class name, then they are all queried with `querySelectorAll` and stored in something called a `Nodelist` - which is an array of all the items/elements we have queried.
+  Suppose we have a `div` HTML element with the class name `main-content`, we query it like below -
+  ```javascript
+  // Query the element and assign it to variable
+  const mainContent = document.querySelector('.main-content')
+
+  /** NOTE - we can see that there is a "." (dot) before the class name 
+  in the query method. This is mandatory to be applied to query 
+  all class names
+  */
+  ```
+- `getElementById` - this is similar to `querySelector` but as the method name suggests, it is used to the query the element by its unique `id` name. `id` names are unique since no two elements can have the same `id`. If our `div` element above had an `id` of `#main-content`, then we query it by -
+  ```javascript
+  const mainContentID = document.getElementById('main-content')
+
+  /** NOTE - there is no need to have a "." or a "#" to specify
+  the id name since getElementById does the work for us 
+  */
+  ```
+- `addEventListener` - all interactivity that we would need for our web application, is going to be defined in and handled by this method. Think of this as the one major method that we can use to keep track of various interactions - touch, single click, double click, triple click (we can even customise the number of clicks! 😁) mouse hover/movements, etc. There are a huge number of properties that this method has to offer and we will possible dive deeper into it in the future articles. Example -
+  ```javascript
+  const btnElement = document.querySelector('.main-btn')
+  btn.addEventListener('click', function() {
+     // define interaction/function here
+  }
+  ```
+  As can be seen here, we attach the `addEventListener` method to the element with which we want to interact and then define the action we want performed once the "event" (click, touch, etc) happens.
 
 We can even add, remove, and toggle classes dynamically after an event/action happens. Few of the methods are -
 
-* `classList.add()` and `classList.remove()` - as the name suggests, `classList` is a property that returns the CSS classes for the element. We can then use methods like `add()` and `remove()` to manipulate the same. A very abstract random example -
-    
-    ```javascript
-    const mainDiv = document.querySelector('.main-div')
-    if(isLoggedIn) {
-        mainDiv.classList.add('login-bg')
-    } else {
-        mainDiv.classList.remove('header-bg')
-    }
-    ```
-    
-* `classList.toggle()` - this is an interesting one, and very useful too. This helps us check if the class we want for an element is already added, and if not, adds it - and vice-versa. Removes a class if it already exists. A simple example to switch players when a certain condition is met -
-    
-    ```javascript
-    const playerOne = document.querySelector('.player-one')
-    const playerTwo = document.querySelector('.player-two')
-    document.getElementById(`current--${activePlayer}`).textContent = 0
-    activePlayer = activePlayer === 0 ? 1 : 0
-    player0El.classList.toggle('player--active')
-    player1El.classList.toggle('player--active')
-    ```
-    
-* `createElement()` - we don't always have to have an HTML structure defined beforehand modifying it via DOM. The `createElement()` method helps us create new elements and then add them to the DOM by using other methods (discussed in the next point). Example -
-    
-    ```javascript
-    const paragraphSection = document
-        .createElement('section')
-        .classList.add('my-section')
-    const paragraphWrapper = document
-        .createElement('div')
-        .classList.add('my-div')
-    const paragraph = document
-        .createElement('p')
-        .classList.add('my-paragraph')
-    ```
-    
-* `appendChild()` - once we have created an element from the above method, we then add or "append" it to the DOM using the `appendChild()` method. This adds the new element as the last child of the parent element. If the element we are adding already exists, somewhere higher up in the tree, then using this method will remove it from its existing position and add it to the bottom. Continuing the previous example -
-    
-    ```javascript
-    mainEle.appendChild(paragraphSection)
-    paragraphSection.appendChild(paragraphWrapper)
-    paragraphWrapper.appendChild(paragraph)
-    ```
-    
-    This would create the below structure in the DOM - (notice in the earlier example that we added class names to each element using the `classList` property)
-    
-    ```xml
-    <main>
-      <section class='my-section'>
-        <div class='my-div'>
-          <p class='my-paragraph'></p>
-        </div>
-      </section>
-    </main>
-    ```
-    
-* `removeChild()` - as the name makes it clear, it simple removes the specified element from the DOM. More specifically, the parent HTML element calls this method with the child element's name specified, which then removes the child element from the tree.
-    
+- `classList.add()` and `classList.remove()` - as the name suggests, `classList` is a property that returns the CSS classes for the element. We can then use methods like `add()` and `remove()` to manipulate the same. A very abstract random example -
+  ```javascript
+  const mainDiv = document.querySelector('.main-div')
+  if (isLoggedIn) {
+    mainDiv.classList.add('login-bg')
+  } else {
+    mainDiv.classList.remove('header-bg')
+  }
+  ```
+- `classList.toggle()` - this is an interesting one, and very useful too. This helps us check if the class we want for an element is already added, and if not, adds it - and vice-versa. Removes a class if it already exists. A simple example to switch players when a certain condition is met -
+  ```javascript
+  const playerOne = document.querySelector('.player-one')
+  const playerTwo = document.querySelector('.player-two')
+  document.getElementById(`current--${activePlayer}`).textContent = 0
+  activePlayer = activePlayer === 0 ? 1 : 0
+  player0El.classList.toggle('player--active')
+  player1El.classList.toggle('player--active')
+  ```
+- `createElement()` - we don't always have to have an HTML structure defined beforehand modifying it via DOM. The `createElement()` method helps us create new elements and then add them to the DOM by using other methods (discussed in the next point). Example -
+  ```javascript
+  const paragraphSection = document
+    .createElement('section')
+    .classList.add('my-section')
+  const paragraphWrapper = document.createElement('div').classList.add('my-div')
+  const paragraph = document.createElement('p').classList.add('my-paragraph')
+  ```
+- `appendChild()` - once we have created an element from the above method, we then add or "append" it to the DOM using the `appendChild()` method. This adds the new element as the last child of the parent element. If the element we are adding already exists, somewhere higher up in the tree, then using this method will remove it from its existing position and add it to the bottom. Continuing the previous example -
+  ```javascript
+  mainEle.appendChild(paragraphSection)
+  paragraphSection.appendChild(paragraphWrapper)
+  paragraphWrapper.appendChild(paragraph)
+  ```
+  This would create the below structure in the DOM - (notice in the earlier example that we added class names to each element using the `classList` property)
+  ```xml
+  <main>
+    <section class='my-section'>
+      <div class='my-div'>
+        <p class='my-paragraph'></p>
+      </div>
+    </section>
+  </main>
+  ```
+- `removeChild()` - as the name makes it clear, it simple removes the specified element from the DOM. More specifically, the parent HTML element calls this method with the child element's name specified, which then removes the child element from the tree.
 
 There are a lot more properties and methods that the `document` object has to offer - a thorough explanation and references can be found at MDN documentation. This post has covered the basics of DOM and how to get started with making simple modifications in DOM tree to add any kind of interactivity we need for our application.
 
-> This post is the first in [The Complete JavaScript series](https://vinoo.hashnode.dev/series/the-complete-javascript). Stay tuned for more!
+> This is the first post in [The Complete JavaScript Series](https://vinoo.in/tags/javascript-series/). Stay tuned for more!
 
 In the upcoming posts, we will dive deeper into the workings of JavaScript and explore a few rarely encountered concepts.
 

@@ -3,12 +3,12 @@ title: "this In Javascript - Simplified"
 date: 2023-10-17T21:51:23+05:30
 draft: false
 description: "What is `this` keyword in JavaScript? How does it work in different scenarios?"
-tags: ["javascript"]
+tags: ["javascript", "javascript-series"]
 cover:
     image: "/blog/this-in-javascript/7.png"
 ---
 
-> This is the 7th post in [The Complete JavaScript Series.](https://vinoo.hashnode.dev/series/the-complete-javascript)
+> This is the 7th post in [The Complete JavaScript Series.](https://vinoo.in/tags/javascript-series/)
 
 ## Intro
 
