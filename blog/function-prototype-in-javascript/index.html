@@ -9,9 +9,9 @@
 <meta name="keywords" content="javascript">
 <meta name="description" content="What is Function Prototype in JavaScript? Learn how to create objects in an optimised way.">
 <meta name="author" content="">
-<link rel="canonical" href="https://ivinoop.github.io/portfolio/blog/function-prototype-in-javascript/">
-<link crossorigin="anonymous" href="/portfolio/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/portfolio/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
+<link rel="canonical" href="http://vinoo.in/blog/function-prototype-in-javascript/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
     onload="hljs.initHighlightingOnLoad();"></script>
 
 <noscript>
@@ -64,13 +64,13 @@
 <meta property="og:title" content="Function Prototype in Javascript" />
 <meta property="og:description" content="What is Function Prototype in JavaScript? Learn how to create objects in an optimised way." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ivinoop.github.io/portfolio/blog/function-prototype-in-javascript/" />
-<meta property="og:image" content="https://ivinoop.github.io/blog/function-prototype/function-prototype.png" /><meta property="article:section" content="blog" />
+<meta property="og:url" content="http://vinoo.in/blog/function-prototype-in-javascript/" />
+<meta property="og:image" content="http://vinoo.in/blog/function-prototype/function-prototype.png" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2021-11-13T20:42:13&#43;05:30" />
 <meta property="article:modified_time" content="2021-11-13T20:42:13&#43;05:30" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://ivinoop.github.io/blog/function-prototype/function-prototype.png" />
+<meta name="twitter:image" content="http://vinoo.in/blog/function-prototype/function-prototype.png" />
 <meta name="twitter:title" content="Function Prototype in Javascript"/>
 <meta name="twitter:description" content="What is Function Prototype in JavaScript? Learn how to create objects in an optimised way."/>
 
@@ -79,18 +79,18 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "Blogs",
-      "item": "https://ivinoop.github.io/portfolio/blog/"
+      "item": "http://vinoo.in/blog/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "Function Prototype in Javascript",
-      "item": "https://ivinoop.github.io/portfolio/blog/function-prototype-in-javascript/"
+      "item": "http://vinoo.in/blog/function-prototype-in-javascript/"
     }
   ]
 }
@@ -108,18 +108,18 @@
   "articleBody": "In the previous article , we saw how objects behave and what Dunder Proto means. In this post, let us discuss why Dunder Proto is used and how it can help us write better, optimised code.\nDunder Proto is mainly used for two cases -\nTo manage user methods for the objects that are created at runtime To increase usability through better memory management So how exactly does this efficiency happen? We know that __proto__ is a special property present in every object that we create in JavaScript. This property presents (and holds) different methods/key-value pairs for each object being created.\nAnd since every function is also an object, each function holds a set of methods as well that can be invoked right off the bat (like map(), filter(), etc).\nHere lies the advantage - you can (and should!) put all your methods in one place, in the Dunder Proto.\nWhy?\nBecause since it is already an existing property present in every object, there is no need to explicitly create a variable to manage those methods. Think about it - with each object you create, a whole list of methods get attached to it, leading to a bigger mess in terms of memory management. But by putting it all in the special bag that is the Dunder Proto, it is implicitly managed.\nExample -\nlet userMethods = { sayHello: function() { alert(`Welcome ${obj.name}!`); }, changeName: function(newName) { this.name = newName; return this.name; } }; function createUser(name, age) { let obj = Object.create(userMethods); obj.name = name; obj.age = age; return obj; } As can be seen, the methods sayHello() and changeName() are both put in a single object variable, which is then assigned to a variable using Object.create() method that accepts this object of methods as a parameter. These are now stored in __proto__ as shown below -\nNeat, right? 🥳\nThere is another property that exists to make your job even more easy, and the code more organised. Say hello to F.prototype.\nFunction.Prototype In the previous ways of creating and using object and methods, we used separate variables to store methods and object data. As our application becomes more complex, there are chances of code going out of hand. Using function prototypes can help us organise our code better.\nWhat is function prototype? Just like every object has a special property called Dunder Proto, every function in JavaScript also has a property called the Function Protoype. The use case for this property is that since it is a property of a function, it has its own Dunder Proto as well. Take a look below for clarity -\nHere, the function foo() has the prototype() property which in turn contains the __proto__ property.\nThis means that there is an even better bag to hold all our object data and methods in one place without the need for a separate function to create objects and a separate variable/object to hold methods. Using the function_name.protoype property, we can push all the data and methods to be stored in one single bag, for any number of objects that are created in future.\nExample -\nfunction Hobbit(name, age) { this.name = name; this.age = age; } Hobbit.prototype = { // Using the function.prototype property to put object's methods displayName: function() { alert(`Hobbit's name is ${this.name}`); } } Below, we can see that the methods as well as data are collected inside this F.prototype property.\nThe question here is - we used the F.prototype property to store the methods and data; but how did we instantiate the data to be stored along with the methods?\nThis is where the new keyword in JavaScript comes into picture.\nnew keyword is used to create an “instance” of an object. An instance here means that -\nA new object is created The methods are added to the prototype property of the function The this keyword automatically binds the newly created property to the object (and its prototype) The newly created object is then returned as well Like below -\nlet hobbitOne = new Hobbit('Samwell', 120); That’s it - a simple new keyword to make code (and life) easier 😁\nNotice that the code above looks almost the same as the previous method of object creation, except that the object is now returned implicitly with the usage of new keyword, as well as the data and methods are managed under a single property with the use of Function.prototype.\nConfused much? 😐 I would expect so; JavaScript is by no means easy. However, the way it offers such flexibility in writing code is what makes it interesting.\nIn the next article, I go into class, constructor and how our code can be even more organised than ever, binding all this knowledge neatly. Stay tuned to clear all your confusion 🙂\nUntil next time 🤠 Keep shipping 🚀\n",
   "wordCount" : "806",
   "inLanguage": "en",
-  "image":"https://ivinoop.github.io/blog/function-prototype/function-prototype.png","datePublished": "2021-11-13T20:42:13+05:30",
+  "image":"http://vinoo.in/blog/function-prototype/function-prototype.png","datePublished": "2021-11-13T20:42:13+05:30",
   "dateModified": "2021-11-13T20:42:13+05:30",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://ivinoop.github.io/portfolio/blog/function-prototype-in-javascript/"
+    "@id": "http://vinoo.in/blog/function-prototype-in-javascript/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Vinoo",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://ivinoop.github.io/portfolio/favicon.ico"
+      "url": "http://vinoo.in/favicon.ico"
     }
   }
 }
@@ -141,7 +141,7 @@
 <header class="header sticky-header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://ivinoop.github.io/portfolio" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -167,27 +167,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://ivinoop.github.io/portfolio/" title="Home">
+                <a href="http://vinoo.in/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/blog" title="Blog">
+                <a href="http://vinoo.in/blog" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/projects" title="Projects">
+                <a href="http://vinoo.in/projects" title="Projects">
                     <span>Projects</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/search" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/tags" title="Tags">
+                <a href="http://vinoo.in/tags" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
@@ -198,7 +198,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://ivinoop.github.io/portfolio">Home</a>&nbsp;»&nbsp;<a href="https://ivinoop.github.io/portfolio/blog/">Blogs</a></div>
+    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
     <h1 class="post-title">
       Function Prototype in Javascript
     </h1>
@@ -214,7 +214,7 @@
 
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="https://ivinoop.github.io/blog/function-prototype/function-prototype.png" alt="">
+<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/function-prototype/function-prototype.png" alt="">
         
 </figure><div class="toc">
     <details >
@@ -318,14 +318,14 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://ivinoop.github.io/portfolio/tags/javascript/">javascript</a></li>
+      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="https://ivinoop.github.io/portfolio">Vinoo</a></span>
+    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">

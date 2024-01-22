@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Projects on Vinoo</title>
-    <link>https://ivinoop.github.io/portfolio/projects/</link>
+    <link>http://vinoo.in/projects/</link>
     <description>Recent content in Projects on Vinoo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 May 2021 09:05:42 +0530</lastBuildDate><atom:link href="https://ivinoop.github.io/portfolio/projects/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 27 May 2021 09:05:42 +0530</lastBuildDate><atom:link href="http://vinoo.in/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Background Generator</title>
-      <link>https://ivinoop.github.io/portfolio/projects/bg-generator/</link>
+      <link>http://vinoo.in/projects/bg-generator/</link>
       <pubDate>Thu, 27 May 2021 09:05:42 +0530</pubDate>
       
-      <guid>https://ivinoop.github.io/portfolio/projects/bg-generator/</guid>
+      <guid>http://vinoo.in/projects/bg-generator/</guid>
       <description>built with - javascript, html, css</description>
     </item>
     

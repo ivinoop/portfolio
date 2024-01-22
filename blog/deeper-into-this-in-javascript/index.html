@@ -9,9 +9,9 @@
 <meta name="keywords" content="javascript">
 <meta name="description" content="Let&#39;s dive deeper into different bindings of this that we will encounter when dealing with it in functions.">
 <meta name="author" content="">
-<link rel="canonical" href="https://ivinoop.github.io/portfolio/blog/deeper-into-this-in-javascript/">
-<link crossorigin="anonymous" href="/portfolio/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/portfolio/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
+<link rel="canonical" href="http://vinoo.in/blog/deeper-into-this-in-javascript/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
     onload="hljs.initHighlightingOnLoad();"></script>
 
 <noscript>
@@ -64,13 +64,13 @@
 <meta property="og:title" content="Deeper Into This in Javascript" />
 <meta property="og:description" content="Let&#39;s dive deeper into different bindings of this that we will encounter when dealing with it in functions." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ivinoop.github.io/portfolio/blog/deeper-into-this-in-javascript/" />
-<meta property="og:image" content="https://ivinoop.github.io/blog/deeper-into-this-in-js/deeper-into-this.png" /><meta property="article:section" content="blog" />
+<meta property="og:url" content="http://vinoo.in/blog/deeper-into-this-in-javascript/" />
+<meta property="og:image" content="http://vinoo.in/blog/deeper-into-this-in-js/deeper-into-this.png" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2021-11-18T20:45:56&#43;05:30" />
 <meta property="article:modified_time" content="2021-11-18T20:45:56&#43;05:30" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://ivinoop.github.io/blog/deeper-into-this-in-js/deeper-into-this.png" />
+<meta name="twitter:image" content="http://vinoo.in/blog/deeper-into-this-in-js/deeper-into-this.png" />
 <meta name="twitter:title" content="Deeper Into This in Javascript"/>
 <meta name="twitter:description" content="Let&#39;s dive deeper into different bindings of this that we will encounter when dealing with it in functions."/>
 
@@ -79,18 +79,18 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "Blogs",
-      "item": "https://ivinoop.github.io/portfolio/blog/"
+      "item": "http://vinoo.in/blog/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "Deeper Into This in Javascript",
-      "item": "https://ivinoop.github.io/portfolio/blog/deeper-into-this-in-javascript/"
+      "item": "http://vinoo.in/blog/deeper-into-this-in-javascript/"
     }
   ]
 }
@@ -108,18 +108,18 @@
   "articleBody": " This article was originally published here.\nIn a previous article, we saw how to use this keyword with objects. In this post, we shall dive deeper into different bindings of this that we will encounter when dealing with it in functions. Bindings mean the different ways this behaves in different contexts in a function.\n1. Default Binding Consider the following example -\nfunction defaultThis() { console.log(this); alert(`Welcome ${this.username}`); } defaultThis(); Since there is no username variable declared or defined, this keyword gets the default binding - it references the global Window object here, as can be seen below -\n2. Implicit Binding This binding is created by the behaviour of the function. Let’s take an example to understand -\nlet hobbit = { name: 'Bilbo', welcome() { alert(`Hello ` + this.name); } } hobbit.welcome(); The output would be as exptected -\nHere, since there is an object that calls the function welcome(), this implicitly refers to the object inside the function.\n3. Explicit Binding Explicit binding means to explicitly bind the value of this to any specific object.\nThere are 3 methods to implement explicit binding -\ncall() Consider the code snippet we used above in Implicit Binding - the property name and method welcome are both defined inside the object hobbit. This makes the binding for this fairly..implicit 🌝. What if the object is separate from a method? Consider the snippet below -\nfunction welcome() { alert(`Welcome ${this.name}`); } let hobbit = { name: 'Frodo' } welcome(); // Welcome welcome.call(hobbit); // Welcome Frodo The first function call welcome() has no reference to an object, so it would not return anything in the alert statement after Welcome.\nThe second function call is where we have accessed the object with the call method. This means that we are specifying to the browser to assign the object hobbit being passed as parameter to this using call method.\nAnother use case for call is that we can pass parameters to signify the value for this along with arguments for the function. Example -\nfunction foo(spellOne, spellTwo) { alert(`${this.name} cast the spells ${spellOne} and ${spellTwo}`); } let wizard = { name: 'Ron Weasley' }; foo.call(wizard, 'Expelliarmus', 'Slugulus Eructo'); Here, the function foo is called with the call method and the object wizard is passed as the first argument which automatically gets assigned to this in the function, along with the rest of the arguments. Note that the first argument always gets assigned to this.\nThe output is as below -\nBut there is a drawback for this use case. What if there are tens of arguments to be passed for multiple objects? Very cumbersome 😕 We have the next binding method to improve usability a little better.\napply() Take a look at this snippet -\nfunction foo(spellOne, spellTwo) { alert(`${this.name} cast the spells ${spellOne} and ${spellTwo}`); } let wizard = { name: 'Ron Weasley' }; foo.apply(wizard, ['Expelliarmus', 'Slugulus Eructo']); The format is the same, except that instead of call, we use the method apply, and instead of passing the arguments one after the other, we just wrap them in an array. The output remains the same.\nbind() The bind() method creates a new function which when invoked, assigns the provided values to this.\nTake a look at the snippet below -\nfunction foo(spellOne, spellTwo) { alert(`${this.name} cast the spells ${spellOne} and ${spellTwo}`); } let wizard = { name: 'Ron Weasley' }; let castSpell = foo.bind(wizard, 'Expelliarmus', 'Slugulus Eructo'); castSpell(); Here, we are using bind() to be referenced by the variable castSpell, which can then be invoked as a normal function call.\nThe advantages of using bind() are that -\nWe are explicitly binding the foo() method to the instance castSpell such that this of foo() is now bound to castSpell Even though the wizard object does not have castSpell as its property, because we are using bind(), wizard now recognises castSpell as its method bind() returns a new function reference that we can call anytime we want in future.\n4. new Binding new binding is used specifically for constructor functions. Take a look below -\nfunction Wizard(name, spell) { this.name = name; this.spell = spell; this.intro = function() { if(this.name === 'Hermione') { alert(`The witch ${this.name} cast the spell ${this.spell}`); } else { alert(`The wizard ${this.name} cast the spell ${this.spell}`); } } } let hermione = new Wizard('Hermione', 'Occulus Reparo'); let ronald = new Wizard('Ronald', 'Slugulus Erecto'); Constructor functions are special functions that are used to create new objects. The use of new keyword means that we are creating a new object (or instance) of the (constructor) function.\nWhenever new is used before any constructor function (name with the Capitalized convention followed), the JS engine undertands that this inside the function will always point to the empty object created by new.\n5. HTML Element Event Binding this can be used to bind the values of specific events or elements in HTML.\nTake a look at this example -\n\u003cbutton class =\"this-one\" onclick=\"console.log(this)\"\u003e this One \u003c/button\u003e In this case, this will always bind itself to the element where the event happened; in this case, the this-one class button.\nThe output will be as below -\nNow take a look at this snippet -\n\u003cbutton class =\"this-two\" onclick=\"this.style.backgroundColor='orange'\"\u003e this Two \u003c/button\u003e Here, this is again bound to the button with the class this-two, and the onclick event happens only on that specific button.\nOutput -\nHow about when we call a function within the element?\n\u003cbutton class =\"this-three\" onclick=\"changeColor()\"\u003e this Three \u003c/button\u003e \u003cscript\u003e function changeColor() { console.log(this); } \u003c/script\u003e Note that we are calling the console.log() function along with this.\nSo, the value of this is as below -\nHere, this points to the global Window object. We can see that Default Binding occurs here since the function changeColor() is called without a prefix.\nthis is definitely strange. However, the use cases provide us with flexibility to use objects effectively.\n",
   "wordCount" : "984",
   "inLanguage": "en",
-  "image":"https://ivinoop.github.io/blog/deeper-into-this-in-js/deeper-into-this.png","datePublished": "2021-11-18T20:45:56+05:30",
+  "image":"http://vinoo.in/blog/deeper-into-this-in-js/deeper-into-this.png","datePublished": "2021-11-18T20:45:56+05:30",
   "dateModified": "2021-11-18T20:45:56+05:30",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://ivinoop.github.io/portfolio/blog/deeper-into-this-in-javascript/"
+    "@id": "http://vinoo.in/blog/deeper-into-this-in-javascript/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Vinoo",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://ivinoop.github.io/portfolio/favicon.ico"
+      "url": "http://vinoo.in/favicon.ico"
     }
   }
 }
@@ -141,7 +141,7 @@
 <header class="header sticky-header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://ivinoop.github.io/portfolio" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -167,27 +167,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://ivinoop.github.io/portfolio/" title="Home">
+                <a href="http://vinoo.in/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/blog" title="Blog">
+                <a href="http://vinoo.in/blog" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/projects" title="Projects">
+                <a href="http://vinoo.in/projects" title="Projects">
                     <span>Projects</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/search" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/tags" title="Tags">
+                <a href="http://vinoo.in/tags" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
@@ -198,7 +198,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://ivinoop.github.io/portfolio">Home</a>&nbsp;»&nbsp;<a href="https://ivinoop.github.io/portfolio/blog/">Blogs</a></div>
+    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
     <h1 class="post-title">
       Deeper Into This in Javascript
     </h1>
@@ -214,7 +214,7 @@
 
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="https://ivinoop.github.io/blog/deeper-into-this-in-js/deeper-into-this.png" alt="">
+<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/deeper-into-this-in-js/deeper-into-this.png" alt="">
         
 </figure><div class="toc">
     <details >
@@ -404,14 +404,14 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://ivinoop.github.io/portfolio/tags/javascript/">javascript</a></li>
+      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="https://ivinoop.github.io/portfolio">Vinoo</a></span>
+    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">

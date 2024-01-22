@@ -9,9 +9,9 @@
 <meta name="keywords" content="javascript">
 <meta name="description" content="DOM forms the core of everything we see on the web page in a browser. Let&#39;s understand what it is and how it works.">
 <meta name="author" content="">
-<link rel="canonical" href="https://ivinoop.github.io/portfolio/blog/what-is-dom-in-javascript/">
-<link crossorigin="anonymous" href="/portfolio/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/portfolio/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
+<link rel="canonical" href="http://vinoo.in/blog/what-is-dom-in-javascript/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
     onload="hljs.initHighlightingOnLoad();"></script>
 
 <noscript>
@@ -64,13 +64,13 @@
 <meta property="og:title" content="What is DOM in JavaScript?" />
 <meta property="og:description" content="DOM forms the core of everything we see on the web page in a browser. Let&#39;s understand what it is and how it works." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ivinoop.github.io/portfolio/blog/what-is-dom-in-javascript/" />
-<meta property="og:image" content="https://ivinoop.github.io/blog/what-is-dom-in-js/1.png" /><meta property="article:section" content="blog" />
+<meta property="og:url" content="http://vinoo.in/blog/what-is-dom-in-javascript/" />
+<meta property="og:image" content="http://vinoo.in/blog/what-is-dom-in-js/1.png" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2023-08-16T20:57:48&#43;05:30" />
 <meta property="article:modified_time" content="2023-08-16T20:57:48&#43;05:30" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://ivinoop.github.io/blog/what-is-dom-in-js/1.png" />
+<meta name="twitter:image" content="http://vinoo.in/blog/what-is-dom-in-js/1.png" />
 <meta name="twitter:title" content="What is DOM in JavaScript?"/>
 <meta name="twitter:description" content="DOM forms the core of everything we see on the web page in a browser. Let&#39;s understand what it is and how it works."/>
 
@@ -79,18 +79,18 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "Blogs",
-      "item": "https://ivinoop.github.io/portfolio/blog/"
+      "item": "http://vinoo.in/blog/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "What is DOM in JavaScript?",
-      "item": "https://ivinoop.github.io/portfolio/blog/what-is-dom-in-javascript/"
+      "item": "http://vinoo.in/blog/what-is-dom-in-javascript/"
     }
   ]
 }
@@ -108,18 +108,18 @@
   "articleBody": "Intro DOM - stands for Document Object Model. Think of it as a tree that with multiple branches that fan out to indicate and serve different elements on the web page. Now, each branch can be referred to by its own “name”.\nHow do we give the name? This is done through the HTML document of the web page we just talked about. So essentially, the DOM is a structured representation of these documents, and by using JavaScript and its various built-in methods, we can access these documents to manipulate them.\nNow, that’s a strong word. What exactly do we “manipulate” here? Simply put, we can access, modify, and control the behaviour, look, and feel of all the elements on a web page represented by the DOM tree. This includes changing text, HTML attributes, CSS styles, and more. Yay!\nWhere is DOM located? But where does the DOM come from? The DOM is automatically created by the browser as soon as our web loads, and is then stored in a tree structure somewhat visually imagined as below -\nThe “document” - essentially the entire web page once it is loaded by the browser - is an object that we can access, in JavaScript. Think of it as the entry point into the DOM. There are various methods (functions) available in the document object, querySelector being the most common one. Hierarchically, the html element is the first “child” element of the document object. It serves as the root element for all other elements on the page.\nFrom there, it’s a complete tree of elements with all the sibling and child elements nested according to their semantic value.\n💡 Note that the document object and its inherent functions are NOT equivalent to the language JavaScript itself. JavaScript is a \"dialect\" of the larger ECMAScript ecosystem. The DOM and its functions \u0026 properties actually come from Web APIs which are libraries available through the browser, and which can be accessed by JavaScript. There is an official DOM specification that browsers implement which is why DOM manipulation works the same across all browsers.\nHow to perform DOM operations? Now that we a basic understanding what the DOM is, let us see how we can work with the DOM and apply various methods to make our web page interactive.\nAs mentioned before, the DOM comes with a collections of functions and properties which we can invoke in any ECMAScript dialect. Which means, JavaScript as a language, is able to call these functions just like any other method.\nDOM Properties and Methods A few of the most common document methods are -\nquerySelector - enables us to query the DOM and select a particular element with its class name. It can either be a single element with a unique class name or multiple elements with the same class name. In case there are multiple elements with the same class name, then they are all queried with querySelectorAll and stored in something called a Nodelist - which is an array of all the items/elements we have queried.\nSuppose we have a div HTML element with the class name main-content, we query it like below -\n// Query the element and assign it to variable const mainContent = document.querySelector('.main-content') /** NOTE - we can see that there is a \".\" (dot) before the class name in the query method. This is mandatory to be applied to query all class names */ getElementById - this is similar to querySelector but as the method name suggests, it is used to the query the element by its unique id name. id names are unique since no two elements can have the same id. If our div element above had an id of #main-content, then we query it by -\nconst mainContentID = document.getElementById('main-content') /** NOTE - there is no need to have a \".\" or a \"#\" to specify the id name since getElementById does the work for us */ addEventListener - all interactivity that we would need for our web application, is going to be defined in and handled by this method. Think of this as the one major method that we can use to keep track of various interactions - touch, single click, double click, triple click (we can even customise the number of clicks! 😁) mouse hover/movements, etc. There are a huge number of properties that this method has to offer and we will possible dive deeper into it in the future articles. Example -\nconst btnElement = document.querySelector('.main-btn') btn.addEventListener('click', function() { // define interaction/function here } As can be seen here, we attach the addEventListener method to the element with which we want to interact and then define the action we want performed once the “event” (click, touch, etc) happens.\nWe can even add, remove, and toggle classes dynamically after an event/action happens. Few of the methods are -\nclassList.add() and classList.remove() - as the name suggests, classList is a property that returns the CSS classes for the element. We can then use methods like add() and remove() to manipulate the same. A very abstract random example -\nconst mainDiv = document.querySelector('.main-div') if(isLoggedIn) { mainDiv.classList.add('login-bg') } else { mainDiv.classList.remove('header-bg') } classList.toggle() - this is an interesting one, and very useful too. This helps us check if the class we want for an element is already added, and if not, adds it - and vice-versa. Removes a class if it already exists. A simple example to switch players when a certain condition is met -\nconst playerOne = document.querySelector('.player-one') const playerTwo = document.querySelector('.player-two') document.getElementById(`current--${activePlayer}`).textContent = 0 activePlayer = activePlayer === 0 ? 1 : 0 player0El.classList.toggle('player--active') player1El.classList.toggle('player--active') createElement() - we don’t always have to have an HTML structure defined beforehand modifying it via DOM. The createElement() method helps us create new elements and then add them to the DOM by using other methods (discussed in the next point). Example -\nconst paragraphSection = document .createElement('section') .classList.add('my-section') const paragraphWrapper = document .createElement('div') .classList.add('my-div') const paragraph = document .createElement('p') .classList.add('my-paragraph') appendChild() - once we have created an element from the above method, we then add or “append” it to the DOM using the appendChild() method. This adds the new element as the last child of the parent element. If the element we are adding already exists, somewhere higher up in the tree, then using this method will remove it from its existing position and add it to the bottom. Continuing the previous example -\nmainEle.appendChild(paragraphSection) paragraphSection.appendChild(paragraphWrapper) paragraphWrapper.appendChild(paragraph) This would create the below structure in the DOM - (notice in the earlier example that we added class names to each element using the classList property)\n",
   "wordCount" : "1250",
   "inLanguage": "en",
-  "image":"https://ivinoop.github.io/blog/what-is-dom-in-js/1.png","datePublished": "2023-08-16T20:57:48+05:30",
+  "image":"http://vinoo.in/blog/what-is-dom-in-js/1.png","datePublished": "2023-08-16T20:57:48+05:30",
   "dateModified": "2023-08-16T20:57:48+05:30",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://ivinoop.github.io/portfolio/blog/what-is-dom-in-javascript/"
+    "@id": "http://vinoo.in/blog/what-is-dom-in-javascript/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Vinoo",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://ivinoop.github.io/portfolio/favicon.ico"
+      "url": "http://vinoo.in/favicon.ico"
     }
   }
 }
@@ -141,7 +141,7 @@
 <header class="header sticky-header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://ivinoop.github.io/portfolio" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -167,27 +167,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://ivinoop.github.io/portfolio/" title="Home">
+                <a href="http://vinoo.in/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/blog" title="Blog">
+                <a href="http://vinoo.in/blog" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/projects" title="Projects">
+                <a href="http://vinoo.in/projects" title="Projects">
                     <span>Projects</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/search" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/tags" title="Tags">
+                <a href="http://vinoo.in/tags" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
@@ -198,7 +198,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://ivinoop.github.io/portfolio">Home</a>&nbsp;»&nbsp;<a href="https://ivinoop.github.io/portfolio/blog/">Blogs</a></div>
+    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
     <h1 class="post-title">
       What is DOM in JavaScript?
     </h1>
@@ -214,7 +214,7 @@
 
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="https://ivinoop.github.io/blog/what-is-dom-in-js/1.png" alt="">
+<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/what-is-dom-in-js/1.png" alt="">
         
 </figure><div class="toc">
     <details >
@@ -351,14 +351,14 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://ivinoop.github.io/portfolio/tags/javascript/">javascript</a></li>
+      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="https://ivinoop.github.io/portfolio">Vinoo</a></span>
+    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
