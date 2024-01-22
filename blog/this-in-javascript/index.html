@@ -9,9 +9,9 @@
 <meta name="keywords" content="javascript">
 <meta name="description" content="What is `this` keyword in JavaScript? How does it work in different scenarios?">
 <meta name="author" content="">
-<link rel="canonical" href="http://vinoo.in/blog/this-in-javascript/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
+<link rel="canonical" href="https://ivinoop.github.io/portfolio/blog/this-in-javascript/">
+<link crossorigin="anonymous" href="/portfolio/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/portfolio/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
     onload="hljs.initHighlightingOnLoad();"></script>
 
 <noscript>
@@ -64,13 +64,13 @@
 <meta property="og:title" content="this In Javascript - Simplified" />
 <meta property="og:description" content="What is `this` keyword in JavaScript? How does it work in different scenarios?" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://vinoo.in/blog/this-in-javascript/" />
-<meta property="og:image" content="http://vinoo.in/blog/this-in-javascript/7.png" /><meta property="article:section" content="blog" />
+<meta property="og:url" content="https://ivinoop.github.io/portfolio/blog/this-in-javascript/" />
+<meta property="og:image" content="https://ivinoop.github.io/blog/this-in-javascript/7.png" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2023-10-17T21:51:23&#43;05:30" />
 <meta property="article:modified_time" content="2023-10-17T21:51:23&#43;05:30" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="http://vinoo.in/blog/this-in-javascript/7.png" />
+<meta name="twitter:image" content="https://ivinoop.github.io/blog/this-in-javascript/7.png" />
 <meta name="twitter:title" content="this In Javascript - Simplified"/>
 <meta name="twitter:description" content="What is `this` keyword in JavaScript? How does it work in different scenarios?"/>
 
@@ -84,13 +84,13 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": "Blogs",
-      "item": "http://vinoo.in/blog/"
+      "item": "https://ivinoop.github.io/portfolio/blog/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "this In Javascript - Simplified",
-      "item": "http://vinoo.in/blog/this-in-javascript/"
+      "item": "https://ivinoop.github.io/portfolio/blog/this-in-javascript/"
     }
   ]
 }
@@ -108,18 +108,18 @@
   "articleBody": " This is the 7th post in The Complete JavaScript Series.\nIntro Simply put, this is a special variable that is created for every Execution Context.\nOnce this has been created for the Execution Context (EC), it becomes a “keyword”. Then, it points to (or takes the value of) the parent of whatever function has used this. The interesting thing about this is that it behaves differently with respect to how it is used and called in different use cases. Let us see them one by one.\nDifferent scenarios of ’this’ - #1: Default Binding A simple program that has nothing but this statement - console.log(this) - will show that this will point to the global window object, like so -\n#2: Implicit Binding ’this’ in a method A method is any function that is defined inside an object.\nIn the example below, this will point to the parent object of the method that calls this. Since getCurrentYear is the method that calls this, the value of this will now point to the parent object - details. Hence, this.futureYear is equal to typing details.futureYear.\nconst details = { name: 'Vinoo', futureYear: 2049, getCurrentYear: function () { console.log(2199 - this.futureYear) console.log(this) } } details.getCurrentYear() // 150 As we can see, we get the result 150 when the function is called. The value for futureYear was accessed through the this variable. The value of this itself is the details object -\n’this’ in a function call In a regular function call with strict mode enabled, this will return undefined 👇\nOtherwise, this will point to the global window object 👇\n’this’ in Arrow Functions In arrow functions, this simply points to the this of its surrounding function - which means this points to the lexical scope/parent scope. This goes to say that arrow functions do not get their own this.\nExample -\n#3: Explicit Binding As the name suggests, explicit binding is a way to explicitly bind the value of this to a specific object. There are 3 ways to do this -\ncall() - Let’s say that our function is outside the object, and we still want this in the function to point to the object. We can do that as follows -\nHere, we are “binding” the object details to the function displayName() so that the this variable in that function can point to the desired object. If we DO NOT use the “call” binding, then as usual, this will simply point to the global window object.\nNow, what if we have multiple arguments to be passed? Look at the example below -\ncall() successfully binds the details we have passed to the person object and then the elements of the hobbies array, individually. But this is not the most efficient to bind things, is it? This is where the apply() method helps us.\napply() - this method works exactly like call() except that we can pass the array variable itself as a parameter instead of the array elements individually. Everything else stays the same -\nbind() - this method too, is almost no different from the call() or apply() methods but there is an important advantage to using it. First, let’s look at an example -\nNotice how we assigned the bind() method to a variable foo and then called it as a function? This is because bind() returns a new function that we can then invoke anywhere we wish. Now for the advantage bit - foo does not even get instantiated anywhere, does not have a reference, nothing. Even though the person object does not have a property named foo, we can still explicitly bind foo to person much later in the program such that person will now recognise foo as its own method.\n#4: ’new’ Binding new is yet another special keyword that is exclusively used in the case of constructor functions. These are used to create new objects. Let’s look at this example -\nlet Wizard = function(name, spell) { this.name = name this.spell = spell this.castMagic = function() { console.log(this.name + ' has cast this spell - ' + this.spell) } } let hermione = new Wizard('Hermione', 'Occulus Reparo') let ron = new Wizard('Ron', 'Sunshine Daisies') new is used to denote that we are creating a new object (instantiating) for the Wizard function. Note that Wizard is capitalised when we use new - a simple convention to differentiate, and also specify that this variable will always point to the empty object created by new. This is how we can get new instances easily for the same function with different arguments. Just simple Object Oriented Programming in action 😎\nWe will study more about constructors and classes in depth in a later post.\n#5: HTML Event Element Binding - ’this’ in Event Listeners In case of event listeners, this points to the DOM element that the handler is attached to. Example -\nsendBtn.addEventListener('click', function () { console.log(2 + 3) console.log('Value of this - ', this) }) Here, on clicking the button ‘Send’, the value of this will indeed be the DOM element button that the function/handler is attached to.\nNOTE - if this function/handler is an arrow function, then the value of this again defaults to the global window object, like so -\nsendBtn.addEventListener('click', () =\u003e { console.log(2 + 3) console.log('Value of this - ', this) }) Closing Notes That was it for this!\nWe will study more about how this is important for classes, constructors, and object oriented programming in the later posts.\nUntil the next one!\nKeep shipping 🚀\n",
   "wordCount" : "924",
   "inLanguage": "en",
-  "image":"http://vinoo.in/blog/this-in-javascript/7.png","datePublished": "2023-10-17T21:51:23+05:30",
+  "image":"https://ivinoop.github.io/blog/this-in-javascript/7.png","datePublished": "2023-10-17T21:51:23+05:30",
   "dateModified": "2023-10-17T21:51:23+05:30",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://vinoo.in/blog/this-in-javascript/"
+    "@id": "https://ivinoop.github.io/portfolio/blog/this-in-javascript/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Vinoo",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://vinoo.in/favicon.ico"
+      "url": "https://ivinoop.github.io/portfolio/favicon.ico"
     }
   }
 }
@@ -141,7 +141,7 @@
 <header class="header sticky-header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <a href="https://ivinoop.github.io/portfolio/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -167,27 +167,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://vinoo.in/" title="Home">
+                <a href="https://ivinoop.github.io/portfolio/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://vinoo.in/blog" title="Blog">
+                <a href="https://ivinoop.github.io/portfolio/blog" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="http://vinoo.in/projects" title="Projects">
+                <a href="https://ivinoop.github.io/portfolio/projects" title="Projects">
                     <span>Projects</span>
                 </a>
             </li>
             <li>
-                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://ivinoop.github.io/portfolio/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="http://vinoo.in/tags" title="Tags">
+                <a href="https://ivinoop.github.io/portfolio/tags" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
@@ -198,7 +198,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
+    <div class="breadcrumbs"><a href="https://ivinoop.github.io/portfolio/">Home</a>&nbsp;»&nbsp;<a href="https://ivinoop.github.io/portfolio/blog/">Blogs</a></div>
     <h1 class="post-title">
       this In Javascript - Simplified
     </h1>
@@ -214,7 +214,7 @@
 
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/this-in-javascript/7.png" alt="">
+<figure class="entry-cover"><img loading="lazy" src="https://ivinoop.github.io/blog/this-in-javascript/7.png" alt="">
         
 </figure><div class="toc">
     <details >
@@ -364,14 +364,14 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
+      <li><a href="https://ivinoop.github.io/portfolio/tags/javascript/">javascript</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
+    <span>&copy; 2024 <a href="https://ivinoop.github.io/portfolio/">Vinoo</a></span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
