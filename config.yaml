@@ -53,9 +53,9 @@ params:
     enabled: true
     title: 'Vinoo'
     subtitle: Hello there 👋 I'm Vinoo, a full-stack developer and engineer.
-    imageUrl: 'home/vinoo.jpeg'
-    imageWidth: 320
-    imageHeight: 320
+    imageUrl: 'home/me.jpeg'
+    imageWidth: 220
+    imageHeight: 220
     # buttons:
     #   - name: Resume
     #     url: ""
