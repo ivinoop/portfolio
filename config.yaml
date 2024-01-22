@@ -56,9 +56,11 @@ params:
     imageUrl: 'home/me.jpeg'
     imageWidth: 220
     imageHeight: 220
-    # buttons:
-    #   - name: Resume
-    #     url: ""
+    buttons:
+      - name: Projects
+        url: "https://vinoo.in/projects/"
+      - name: Blog
+        url: "https://vinoo.in/blog/"
 
   # List View
   hideDescriptionInList: false
