@@ -9,9 +9,9 @@
 <meta name="keywords" content="javascript">
 <meta name="description" content="It is fun and interesting to learn about what makes up JavaScript&#39;s building blocks as a language.">
 <meta name="author" content="">
-<link rel="canonical" href="https://ivinoop.github.io/portfolio/blog/javascript-under-the-hood/">
-<link crossorigin="anonymous" href="/portfolio/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/portfolio/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
+<link rel="canonical" href="http://vinoo.in/blog/javascript-under-the-hood/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
     onload="hljs.initHighlightingOnLoad();"></script>
 
 <noscript>
@@ -64,13 +64,13 @@
 <meta property="og:title" content="Javascript Under the Hood" />
 <meta property="og:description" content="It is fun and interesting to learn about what makes up JavaScript&#39;s building blocks as a language." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ivinoop.github.io/portfolio/blog/javascript-under-the-hood/" />
-<meta property="og:image" content="https://ivinoop.github.io/blog/javascript-under-the-hood/2.png" /><meta property="article:section" content="blog" />
+<meta property="og:url" content="http://vinoo.in/blog/javascript-under-the-hood/" />
+<meta property="og:image" content="http://vinoo.in/blog/javascript-under-the-hood/2.png" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2023-08-17T21:04:55&#43;05:30" />
 <meta property="article:modified_time" content="2023-08-17T21:04:55&#43;05:30" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://ivinoop.github.io/blog/javascript-under-the-hood/2.png" />
+<meta name="twitter:image" content="http://vinoo.in/blog/javascript-under-the-hood/2.png" />
 <meta name="twitter:title" content="Javascript Under the Hood"/>
 <meta name="twitter:description" content="It is fun and interesting to learn about what makes up JavaScript&#39;s building blocks as a language."/>
 
@@ -84,13 +84,13 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": "Blogs",
-      "item": "https://ivinoop.github.io/portfolio/blog/"
+      "item": "http://vinoo.in/blog/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "Javascript Under the Hood",
-      "item": "https://ivinoop.github.io/portfolio/blog/javascript-under-the-hood/"
+      "item": "http://vinoo.in/blog/javascript-under-the-hood/"
     }
   ]
 }
@@ -108,18 +108,18 @@
   "articleBody": " This post is the 2nd in The Complete JavaScript Series.\nLet’s take a breather from the code editor today - in the next immediate post, we would be reading concepts along with code examples, but for this post, let’s make some time to simply read through some interesting things about JavaScript as a language. Let’s go 👇\nWhat Actually IS JavaScript? High Up There JavaScript is one of the “high level” languages in the programming ecosystem. The reason is that it abstracts away a lot of system level configuration that we would need to do in C language - creating and storing variables, hardware resource allocation, memory management etc.\nLanguages like Python and JS are designed in such a way that we do not need to manage any of these. While this is the upside, the downside is that we compromise on performance, efficiency, and speed.\nOne of these abstractions is “Garbage Collection” that is present in the JS engine. It automatically removes old, unused objects from the memory.\nInterpreting It Right Computers only understand binary and in order for us to write machine code that is both understandable to the computer and readable by humans, programming languages are designed to accommodate this. And JavaScript, is no different. Its abstraction layers in the JS engine convert our readable code into machine code.\nThis makes JS an “interpreted” language.\nOOP(s?) How do arrays get all their methods (push, shift, splice, etc) ready to use as soon as we define them? We never defined the “properties” of an array, let alone instruct what functions/methods that can be called upon it.\nWell - to highly abstract it to the point of intellectual danger, here is an explanation - this is possible due to ALMOST everything being an object in JS (stress on the word “almost”!).\nExcept for primitive values like numbers and strings, entities like arrays are treated as objects too. Arrays are created from the “prototype” in JS - a blueprint/template that contains all the methods defined in it. The arrays that we create then “inherit” these methods.\nWe will cover a lot more in detail about objects and their workings in a later post where this abstraction - and confusion - will be replaced with the actual insight into how objects and methods work.\nFunctional First In addition, functions in JS are known as “first-class functions” - a term used when functions are treated as variables. This is what gives a programming language like JS the ability to pass functions into other functions (callbacks, references, etc), return functions from functions, etc. More commonly, this is known as functional programming.\nType Free? One other important feature (or a bug?) is that JavaScript is a dynamically typed language. Now, not to spark debates - but there are pros and cons to it, and with JS having a strong hold over all kinds of applications (seriously - JS is almost everywhere in every major app now 🥲), the need for “strongly” typed languages is very much the case.\nWe do not explicitly assign data types to variables. We just declare variables with the necessary scope, but the type is assigned when the JS engine executes our code.\nQuirky fact - a let x = 23 can look like it’s a number, but when we use typeof to console x while playing around with the DOM - surprise, it’s a string.\nWe can reassign the type of variables when we reassign values to those variables. This is what a dynamically typed language looks and works like.\nThis is a major reason why scalability takes a hit when apps use pure JS. And also why TypeScript is fast gaining popularity and in fact, becoming a de facto choice for apps across the developer ecosystem.\nStill - not to worry - we will still be studying everything about JS, building secure, fully functioning apps with JavaScript like everyone has been for the last 2 decades 📈, and JS will still continue to be awesome for many years to come.\nVery soon, I will be creating a complete TypeScript series as well, so watch out for it 🤓\nThread-ing Lightly In Operating System terminology, a thread is like a set of instructions that is executed in the CPU. The thread is where our code is executed in a machine’s processor.\nNow, JavaScript is a single threaded language. This means at any given time, only one single task (or one set of tasks) can be executed. This is obviously a huge pitfall - what if there is a thread that fetches data from an API and the response takes a very long time? This would block the processor from running any other tasks.\nThis is where the concurrency model comes into play. A concurrency model defines how multiple tasks should be handled by a programming language. In the case of JS, we need a non-blocking behaviour which can be achieved by using an “event loop”.\nThe event loop takes complex/long running tasks, executes them in the background, and then puts them back in the main thread once they are done.\nAgain, this is simply an oversimplification and we will definitely dive deeper in the next post.\nWell, that was fun (I hope!). Studying a programming language’s core fundamentals is very essential since it helps us “think” in that language in the long run. The next post will be up soon and it will cover concepts like the JS Engine, Runtime, Execution Context, the Call Stack, Scoping, Hoisting, and much more.\nKeep shipping 🚀\n",
   "wordCount" : "924",
   "inLanguage": "en",
-  "image":"https://ivinoop.github.io/blog/javascript-under-the-hood/2.png","datePublished": "2023-08-17T21:04:55+05:30",
+  "image":"http://vinoo.in/blog/javascript-under-the-hood/2.png","datePublished": "2023-08-17T21:04:55+05:30",
   "dateModified": "2023-08-17T21:04:55+05:30",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://ivinoop.github.io/portfolio/blog/javascript-under-the-hood/"
+    "@id": "http://vinoo.in/blog/javascript-under-the-hood/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Vinoo",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://ivinoop.github.io/portfolio/favicon.ico"
+      "url": "http://vinoo.in/favicon.ico"
     }
   }
 }
@@ -141,7 +141,7 @@
 <header class="header sticky-header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://ivinoop.github.io/portfolio/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -167,27 +167,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://ivinoop.github.io/portfolio/" title="Home">
+                <a href="http://vinoo.in/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/blog" title="Blog">
+                <a href="http://vinoo.in/blog" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/projects" title="Projects">
+                <a href="http://vinoo.in/projects" title="Projects">
                     <span>Projects</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/search" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://ivinoop.github.io/portfolio/tags" title="Tags">
+                <a href="http://vinoo.in/tags" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
@@ -198,7 +198,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://ivinoop.github.io/portfolio/">Home</a>&nbsp;»&nbsp;<a href="https://ivinoop.github.io/portfolio/blog/">Blogs</a></div>
+    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
     <h1 class="post-title">
       Javascript Under the Hood
     </h1>
@@ -214,7 +214,7 @@
 
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="https://ivinoop.github.io/blog/javascript-under-the-hood/2.png" alt="">
+<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/javascript-under-the-hood/2.png" alt="">
         
 </figure><div class="toc">
     <details >
@@ -294,14 +294,14 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://ivinoop.github.io/portfolio/tags/javascript/">javascript</a></li>
+      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="https://ivinoop.github.io/portfolio/">Vinoo</a></span>
+    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
