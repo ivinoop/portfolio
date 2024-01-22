@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Destructuring in JavaScript: Part 1 - Arrays | Vinoo</title>
-<meta name="keywords" content="javascript, arrays">
+<meta name="keywords" content="javascript, arrays, javascript-series">
 <meta name="description" content="What is destructuring in JavaScript? How do we extract values from arrays and objects?">
 <meta name="author" content="">
 <link rel="canonical" href="http://vinoo.in/blog/destructuring-in-js-arrays/">
@@ -103,7 +103,7 @@
   "name": "Destructuring in JavaScript: Part 1 - Arrays",
   "description": "What is destructuring in JavaScript? How do we extract values from arrays and objects?",
   "keywords": [
-    "javascript", "arrays"
+    "javascript", "arrays", "javascript-series"
   ],
   "articleBody": " This is the 8th post in The Complete JavaScript Series\nIn simple terms, Destructuring is an ES6 feature that helps us unpack values from an array or object into separate variables.\nWe use destructuring to break a complex data structure down into a smaller data structure like a single dimensional array or a variable.\nWhat is Array Destructuring? Array destructuring is a process of extracting values from complex array data structures. Destructuring does not mutate the original array and helps us perform multiple such destructuring operators\nFor arrays, we use destructuring to retrieve elements from the array and store them into variables.\nWhy do we need array destructuring? Let us look at a practical example -\nconst arr = [2, 3, 4] const a = arr[0] const b = arr[1] const c = arr[2] Notice how we had to individually create a single variable and assign each array value to this variable. Cumbersome right?\nWith destructuring, the process becomes VERY simple -\nconst [a, b, c] = [2, 3, 4] console.log(a, b, c) // 2, 3, 4 Note that the original array is not changed in any way.\nOne more thing to observe in the above example is that since the array values are in a sequential order, destructuring them into variables is quite straightforward. As in, a will be automatically assigned 2, b = 3, and c = 4 without having to explicitly state it.\nBut what if there are values somewhere further ahead in the array and we need to skip a few values to access it and assign it to a variable?\nThere is a quirky yet helpful way to do this.\nTake this example where we want to assign a fruit to an individual. Richard should be assigned banana but the desired fruit for Bighetti - kiwi - is further ahead in the array.\nconst fruits = ['banana', 'apple', 'orange', 'kiwi'] This is how we do it -\nconst [Richard, , , Bighetti] = fruits console.log(Richard, Bighetti) We simply put “gaps” during destructuring after the single comma operator , - which signifies that we intend to skip the values for that particular value. So, apple and orange are skipped and the variable Bighetti is assigned the value of kiwi.\nHow to swap values using destructuring? Swapping values is really easy with array destructuring. No more temp variables to be used! Although, if we want to perform more operations on the swapped values later on, we may need to assign them to a variable.\nSwapping is as simple as -\n[Richard, Bighetti] = [Bighetti, Richard] There we go. Previously assigned values of banana and kiwi to Richard and Bighetti are now swapped.\nHow to destructure nested arrays? The examples we saw above were for linear arrays or “shallow” arrays. What about destructuring a nested array? Arrays within arrays are a common data structure in real-life codebases. Consider the example -\nconst nested = [1, [2, 3, 4]] const [i, j] = nested console.log(i, j) The console statement would this -\nAs you can see, the value for i is 1 whereas the value for j is an array of values - 2, 3, 4. What if we want to return this array of values for j as a “flattened” array - as in, the values would be destructured again? Here is how we do that -\nconst nested = [1, [2, 3, 4]] const [i, [j, k, l]] = nested console.log(i, j, k, l) And this will return the values as expected -\nDestructuring with default values Many times, we may not know the exact size/length of the array we are dealing with, and while destructuring, we might try to assign non-existent values to variables. Consider this example -\nconst [p, q, r] = [8, 9] console.log(p, q, r) While the values for p and q would be displayed as 8 and 9, the value for r is returned to be undefined. As evident, a value for r does not exist in the array we are trying to destructure since it only contains two elements, so naturally it returns undefined, which is not something we want to deal with while working with large applications since returning undefined might break the flow of execution.\nIn such cases, simply specifying a default value to fall back into, can resolve the situation -\nconst [p, q, r = 1] = [8, 9] console.log(p, q, r) We can even set default values for all the variables if the array we are working with is dynamic and we are not sure of its values being generated properly.\nThere are multiple other ways to deal with this situation, especially with libraries like React where we perform a conditional render based on a value’s existence or similar conditional check.\nDestructuring is great on many levels due to its simplicity with the use of assignment operator = to extract values and immediately assign them to variables.\nAs mentioned, destructuring in no way changes the original array; instead it simply helps us assign its elements as values to other variables.\nIn the next post, we will look at destructuring for Objects, the most used data structure in JavaScript.\nKeep shipping 🚀\n",
   "wordCount" : "865",
@@ -240,7 +240,7 @@
 </div>
 
   <div class="post-content"><blockquote>
-<p><em><strong>This is the 8th post in</strong></em> <a href="https://vinoo.hashnode.dev/series/the-complete-javascript"><em><strong>The Complete JavaScript Series</strong></em></a></p>
+<p><em><strong>This is the 8th post in</strong></em> <a href="https://vinoo.in/tags/javascript-series/"><em><strong>The Complete JavaScript Series</strong></em></a></p>
 </blockquote>
 <p>In simple terms, Destructuring is an ES6 feature that helps us unpack values from an array or object into separate variables.</p>
 <p>We use destructuring to break a complex data structure down into a smaller data structure like a single dimensional array or a variable.</p>
@@ -320,6 +320,7 @@
     <ul class="post-tags">
       <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
       <li><a href="http://vinoo.in/tags/arrays/">arrays</a></li>
+      <li><a href="http://vinoo.in/tags/javascript-series/">javascript-series</a></li>
     </ul>
   </footer>
 </article>
