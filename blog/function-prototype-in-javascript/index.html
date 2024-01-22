@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Function Prototype in Javascript | Vinoo</title>
+<meta name="keywords" content="javascript">
+<meta name="description" content="What is Function Prototype in JavaScript? Learn how to create objects in an optimised way.">
+<meta name="author" content="">
+<link rel="canonical" href="https://ivinoop.github.io/portfolio/blog/function-prototype-in-javascript/">
+<link crossorigin="anonymous" href="/portfolio/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/portfolio/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
+    onload="hljs.initHighlightingOnLoad();"></script>
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.1/styles/atom-one-dark.min.css"
+  integrity="sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+
+<meta property="og:title" content="Function Prototype in Javascript" />
+<meta property="og:description" content="What is Function Prototype in JavaScript? Learn how to create objects in an optimised way." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ivinoop.github.io/portfolio/blog/function-prototype-in-javascript/" />
+<meta property="og:image" content="https://ivinoop.github.io/blog/function-prototype/function-prototype.png" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-11-13T20:42:13&#43;05:30" />
+<meta property="article:modified_time" content="2021-11-13T20:42:13&#43;05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://ivinoop.github.io/blog/function-prototype/function-prototype.png" />
+<meta name="twitter:title" content="Function Prototype in Javascript"/>
+<meta name="twitter:description" content="What is Function Prototype in JavaScript? Learn how to create objects in an optimised way."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Blogs",
+      "item": "https://ivinoop.github.io/portfolio/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Function Prototype in Javascript",
+      "item": "https://ivinoop.github.io/portfolio/blog/function-prototype-in-javascript/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Function Prototype in Javascript",
+  "name": "Function Prototype in Javascript",
+  "description": "What is Function Prototype in JavaScript? Learn how to create objects in an optimised way.",
+  "keywords": [
+    "javascript"
+  ],
+  "articleBody": "In the previous article , we saw how objects behave and what Dunder Proto means. In this post, let us discuss why Dunder Proto is used and how it can help us write better, optimised code.\nDunder Proto is mainly used for two cases -\nTo manage user methods for the objects that are created at runtime To increase usability through better memory management So how exactly does this efficiency happen? We know that __proto__ is a special property present in every object that we create in JavaScript. This property presents (and holds) different methods/key-value pairs for each object being created.\nAnd since every function is also an object, each function holds a set of methods as well that can be invoked right off the bat (like map(), filter(), etc).\nHere lies the advantage - you can (and should!) put all your methods in one place, in the Dunder Proto.\nWhy?\nBecause since it is already an existing property present in every object, there is no need to explicitly create a variable to manage those methods. Think about it - with each object you create, a whole list of methods get attached to it, leading to a bigger mess in terms of memory management. But by putting it all in the special bag that is the Dunder Proto, it is implicitly managed.\nExample -\nlet userMethods = { sayHello: function() { alert(`Welcome ${obj.name}!`); }, changeName: function(newName) { this.name = newName; return this.name; } }; function createUser(name, age) { let obj = Object.create(userMethods); obj.name = name; obj.age = age; return obj; } As can be seen, the methods sayHello() and changeName() are both put in a single object variable, which is then assigned to a variable using Object.create() method that accepts this object of methods as a parameter. These are now stored in __proto__ as shown below -\nNeat, right? 🥳\nThere is another property that exists to make your job even more easy, and the code more organised. Say hello to F.prototype.\nFunction.Prototype In the previous ways of creating and using object and methods, we used separate variables to store methods and object data. As our application becomes more complex, there are chances of code going out of hand. Using function prototypes can help us organise our code better.\nWhat is function prototype? Just like every object has a special property called Dunder Proto, every function in JavaScript also has a property called the Function Protoype. The use case for this property is that since it is a property of a function, it has its own Dunder Proto as well. Take a look below for clarity -\nHere, the function foo() has the prototype() property which in turn contains the __proto__ property.\nThis means that there is an even better bag to hold all our object data and methods in one place without the need for a separate function to create objects and a separate variable/object to hold methods. Using the function_name.protoype property, we can push all the data and methods to be stored in one single bag, for any number of objects that are created in future.\nExample -\nfunction Hobbit(name, age) { this.name = name; this.age = age; } Hobbit.prototype = { // Using the function.prototype property to put object's methods displayName: function() { alert(`Hobbit's name is ${this.name}`); } } Below, we can see that the methods as well as data are collected inside this F.prototype property.\nThe question here is - we used the F.prototype property to store the methods and data; but how did we instantiate the data to be stored along with the methods?\nThis is where the new keyword in JavaScript comes into picture.\nnew keyword is used to create an “instance” of an object. An instance here means that -\nA new object is created The methods are added to the prototype property of the function The this keyword automatically binds the newly created property to the object (and its prototype) The newly created object is then returned as well Like below -\nlet hobbitOne = new Hobbit('Samwell', 120); That’s it - a simple new keyword to make code (and life) easier 😁\nNotice that the code above looks almost the same as the previous method of object creation, except that the object is now returned implicitly with the usage of new keyword, as well as the data and methods are managed under a single property with the use of Function.prototype.\nConfused much? 😐 I would expect so; JavaScript is by no means easy. However, the way it offers such flexibility in writing code is what makes it interesting.\nIn the next article, I go into class, constructor and how our code can be even more organised than ever, binding all this knowledge neatly. Stay tuned to clear all your confusion 🙂\nUntil next time 🤠 Keep shipping 🚀\n",
+  "wordCount" : "806",
+  "inLanguage": "en",
+  "image":"https://ivinoop.github.io/blog/function-prototype/function-prototype.png","datePublished": "2021-11-13T20:42:13+05:30",
+  "dateModified": "2021-11-13T20:42:13+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ivinoop.github.io/portfolio/blog/function-prototype-in-javascript/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vinoo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ivinoop.github.io/portfolio/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://ivinoop.github.io/portfolio" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://ivinoop.github.io/portfolio">Home</a>&nbsp;»&nbsp;<a href="https://ivinoop.github.io/portfolio/blog/">Blogs</a></div>
+    <h1 class="post-title">
+      Function Prototype in Javascript
+    </h1>
+    <time style="font-size: 12px;">
+      Nov 13, 2021
+    </time>
+    <div class="post-description">
+      What is Function Prototype in JavaScript? Learn how to create objects in an optimised way.
+    </div>
+    <div class="post-meta">
+
+
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://ivinoop.github.io/blog/function-prototype/function-prototype.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul><ul>
+                <li>
+                    <a href="#so-how-exactly-does-this-efficiency-happen" aria-label="So how exactly does this efficiency happen?">So how exactly does this efficiency happen?</a></li></ul>
+                    
+                <li>
+                    <a href="#functionprototype" aria-label="Function.Prototype">Function.Prototype</a><ul>
+                        
+                <li>
+                    <a href="#what-is-function-prototype" aria-label="What is function prototype?">What is function prototype?</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>In the <a href="https://vinoo.hashnode.dev/oops-in-javascript-what-is-dunder-proto">previous article</a> , we saw how objects behave and what Dunder Proto means. In this post, let us discuss why Dunder Proto is used and how it can help us write better, optimised code.</p>
+<p>Dunder Proto is mainly used for two cases -</p>
+<ul>
+<li>To manage user methods for the objects that are created at runtime</li>
+<li>To increase usability through better memory management</li>
+</ul>
+<h3 id="so-how-exactly-does-this-efficiency-happen">So how exactly does this efficiency happen?<a hidden class="anchor" aria-hidden="true" href="#so-how-exactly-does-this-efficiency-happen">#</a></h3>
+<p>We know that <code>__proto__</code> is a special property present in every object that we create in JavaScript. This property presents (and holds) different methods/key-value pairs for each object being created.</p>
+<p>And since every function is also an object, each function holds a set of methods as well that can be invoked right off the bat (like <code>map()</code>, <code>filter()</code>, etc).</p>
+<p>Here lies the advantage - you can (and should!) put all your methods in one place, in the Dunder Proto.</p>
+<p>Why?</p>
+<p>Because since it is already an existing property present in every object, there is no need to explicitly create a variable to manage those methods. Think about it - with each object you create, a whole list of methods get attached to it, leading to a bigger mess in terms of memory management. But by putting it all in the special bag that is the Dunder Proto, it is implicitly managed.</p>
+<p>Example -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">userMethods</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sayHello</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">`Welcome </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">!`</span>);
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">changeName</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">newName</span>) {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newName</span>;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createUser</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">age</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">userMethods</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">obj</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>As can be seen, the methods <code>sayHello()</code> and <code>changeName()</code> are both put in a single object variable, which is then assigned to a variable using <code>Object.create()</code> method that accepts this object of methods as a parameter. These are now stored in <code>__proto__</code> as shown below -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1636803878263/d0olmMees.png" alt="dunder-1.png"  />
+</p>
+<p>Neat, right? 🥳</p>
+<p>There is another property that exists to make your job even more easy, and the code more organised. Say hello to <code>F.prototype</code>.</p>
+<h2 id="functionprototype">Function.Prototype<a hidden class="anchor" aria-hidden="true" href="#functionprototype">#</a></h2>
+<p>In the previous ways of creating and using object and methods, we used separate variables to store methods and object data. As our application becomes more complex, there are chances of code going out of hand. Using function prototypes can help us organise our code better.</p>
+<h3 id="what-is-function-prototype">What is function prototype?<a hidden class="anchor" aria-hidden="true" href="#what-is-function-prototype">#</a></h3>
+<p>Just like every object has a special property called Dunder Proto, every function in JavaScript also has a property called the Function Protoype. The use case for this property is that since it is a property of a function, it has its own Dunder Proto as well. Take a look below for clarity -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1636817109034/9V9eh9TIg.png" alt="dunder-2.png"  />
+</p>
+<p>Here, the function <code>foo()</code> has the <code>prototype()</code> property which in turn contains the <code>__proto__</code> property.</p>
+<p>This means that there is an even better bag to hold all our object data and methods in one place without the need for a separate function to create objects and a separate variable/object to hold methods. Using the <code>function_name.protoype</code> property, we can push all the data and methods to be stored in one single bag, for any number of objects that are created in future.</p>
+<p>Example -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Hobbit</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">age</span>) {
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Hobbit</span>.<span style="color:#a6e22e">prototype</span> <span style="color:#f92672">=</span> {                  <span style="color:#75715e">// Using the function.prototype property to put object&#39;s methods
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">displayName</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">`Hobbit&#39;s name is </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Below, we can see that the methods as well as data are collected inside this <code>F.prototype</code> property.</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1636818162937/8go6iszeM.png" alt="dunder-3.png"  />
+</p>
+<p>The question here is - we used the <code>F.prototype</code> property to store the methods and data; but how did we instantiate the data to be stored along with the methods?</p>
+<p>This is where the <code>new</code> keyword in JavaScript comes into picture.</p>
+<p><code>new</code> keyword is used to create an &ldquo;instance&rdquo; of an object. An instance here means that -</p>
+<ul>
+<li>A new object is created</li>
+<li>The methods are added to the <code>prototype</code> property of the function</li>
+<li>The <code>this</code> keyword automatically binds the newly created property to the object (and its prototype)</li>
+<li>The newly created object is then returned as well</li>
+</ul>
+<p>Like below -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">hobbitOne</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Hobbit</span>(<span style="color:#e6db74">&#39;Samwell&#39;</span>, <span style="color:#ae81ff">120</span>);
+</span></span></code></pre></div><p>That&rsquo;s it - a simple <code>new</code> keyword to make code (and life) easier 😁</p>
+<p>Notice that the code above looks almost the same as the previous method of object creation, except that the object is now returned implicitly with the usage of <code>new</code> keyword, as well as the data and methods are managed under a single property with the use of <code>Function.prototype</code>.</p>
+<hr>
+<p>Confused much? 😐 I would expect so; JavaScript is by no means easy. However, the way it offers such flexibility in writing code is what makes it interesting.</p>
+<p>In the next article, I go into <code>class</code>, <code>constructor</code> and how our code can be even more organised than ever, binding all this knowledge neatly. Stay tuned to clear all your confusion 🙂</p>
+<p>Until next time 🤠 Keep shipping 🚀</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://ivinoop.github.io/portfolio/tags/javascript/">javascript</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://ivinoop.github.io/portfolio">Vinoo</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>this In Javascript - Simplified | Vinoo</title>
+<meta name="keywords" content="javascript">
+<meta name="description" content="What is `this` keyword in JavaScript? How does it work in different scenarios?">
+<meta name="author" content="">
+<link rel="canonical" href="https://ivinoop.github.io/portfolio/blog/this-in-javascript/">
+<link crossorigin="anonymous" href="/portfolio/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/portfolio/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
+    onload="hljs.initHighlightingOnLoad();"></script>
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.1/styles/atom-one-dark.min.css"
+  integrity="sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+
+<meta property="og:title" content="this In Javascript - Simplified" />
+<meta property="og:description" content="What is `this` keyword in JavaScript? How does it work in different scenarios?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ivinoop.github.io/portfolio/blog/this-in-javascript/" />
+<meta property="og:image" content="https://ivinoop.github.io/blog/this-in-javascript/7.png" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-10-17T21:51:23&#43;05:30" />
+<meta property="article:modified_time" content="2023-10-17T21:51:23&#43;05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://ivinoop.github.io/blog/this-in-javascript/7.png" />
+<meta name="twitter:title" content="this In Javascript - Simplified"/>
+<meta name="twitter:description" content="What is `this` keyword in JavaScript? How does it work in different scenarios?"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Blogs",
+      "item": "https://ivinoop.github.io/portfolio/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "this In Javascript - Simplified",
+      "item": "https://ivinoop.github.io/portfolio/blog/this-in-javascript/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "this In Javascript - Simplified",
+  "name": "this In Javascript - Simplified",
+  "description": "What is `this` keyword in JavaScript? How does it work in different scenarios?",
+  "keywords": [
+    "javascript"
+  ],
+  "articleBody": " This is the 7th post in The Complete JavaScript Series.\nIntro Simply put, this is a special variable that is created for every Execution Context.\nOnce this has been created for the Execution Context (EC), it becomes a “keyword”. Then, it points to (or takes the value of) the parent of whatever function has used this. The interesting thing about this is that it behaves differently with respect to how it is used and called in different use cases. Let us see them one by one.\nDifferent scenarios of ’this’ - #1: Default Binding A simple program that has nothing but this statement - console.log(this) - will show that this will point to the global window object, like so -\n#2: Implicit Binding ’this’ in a method A method is any function that is defined inside an object.\nIn the example below, this will point to the parent object of the method that calls this. Since getCurrentYear is the method that calls this, the value of this will now point to the parent object - details. Hence, this.futureYear is equal to typing details.futureYear.\nconst details = { name: 'Vinoo', futureYear: 2049, getCurrentYear: function () { console.log(2199 - this.futureYear) console.log(this) } } details.getCurrentYear() // 150 As we can see, we get the result 150 when the function is called. The value for futureYear was accessed through the this variable. The value of this itself is the details object -\n’this’ in a function call In a regular function call with strict mode enabled, this will return undefined 👇\nOtherwise, this will point to the global window object 👇\n’this’ in Arrow Functions In arrow functions, this simply points to the this of its surrounding function - which means this points to the lexical scope/parent scope. This goes to say that arrow functions do not get their own this.\nExample -\n#3: Explicit Binding As the name suggests, explicit binding is a way to explicitly bind the value of this to a specific object. There are 3 ways to do this -\ncall() - Let’s say that our function is outside the object, and we still want this in the function to point to the object. We can do that as follows -\nHere, we are “binding” the object details to the function displayName() so that the this variable in that function can point to the desired object. If we DO NOT use the “call” binding, then as usual, this will simply point to the global window object.\nNow, what if we have multiple arguments to be passed? Look at the example below -\ncall() successfully binds the details we have passed to the person object and then the elements of the hobbies array, individually. But this is not the most efficient to bind things, is it? This is where the apply() method helps us.\napply() - this method works exactly like call() except that we can pass the array variable itself as a parameter instead of the array elements individually. Everything else stays the same -\nbind() - this method too, is almost no different from the call() or apply() methods but there is an important advantage to using it. First, let’s look at an example -\nNotice how we assigned the bind() method to a variable foo and then called it as a function? This is because bind() returns a new function that we can then invoke anywhere we wish. Now for the advantage bit - foo does not even get instantiated anywhere, does not have a reference, nothing. Even though the person object does not have a property named foo, we can still explicitly bind foo to person much later in the program such that person will now recognise foo as its own method.\n#4: ’new’ Binding new is yet another special keyword that is exclusively used in the case of constructor functions. These are used to create new objects. Let’s look at this example -\nlet Wizard = function(name, spell) { this.name = name this.spell = spell this.castMagic = function() { console.log(this.name + ' has cast this spell - ' + this.spell) } } let hermione = new Wizard('Hermione', 'Occulus Reparo') let ron = new Wizard('Ron', 'Sunshine Daisies') new is used to denote that we are creating a new object (instantiating) for the Wizard function. Note that Wizard is capitalised when we use new - a simple convention to differentiate, and also specify that this variable will always point to the empty object created by new. This is how we can get new instances easily for the same function with different arguments. Just simple Object Oriented Programming in action 😎\nWe will study more about constructors and classes in depth in a later post.\n#5: HTML Event Element Binding - ’this’ in Event Listeners In case of event listeners, this points to the DOM element that the handler is attached to. Example -\nsendBtn.addEventListener('click', function () { console.log(2 + 3) console.log('Value of this - ', this) }) Here, on clicking the button ‘Send’, the value of this will indeed be the DOM element button that the function/handler is attached to.\nNOTE - if this function/handler is an arrow function, then the value of this again defaults to the global window object, like so -\nsendBtn.addEventListener('click', () =\u003e { console.log(2 + 3) console.log('Value of this - ', this) }) Closing Notes That was it for this!\nWe will study more about how this is important for classes, constructors, and object oriented programming in the later posts.\nUntil the next one!\nKeep shipping 🚀\n",
+  "wordCount" : "924",
+  "inLanguage": "en",
+  "image":"https://ivinoop.github.io/blog/this-in-javascript/7.png","datePublished": "2023-10-17T21:51:23+05:30",
+  "dateModified": "2023-10-17T21:51:23+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ivinoop.github.io/portfolio/blog/this-in-javascript/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vinoo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ivinoop.github.io/portfolio/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://ivinoop.github.io/portfolio" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://ivinoop.github.io/portfolio">Home</a>&nbsp;»&nbsp;<a href="https://ivinoop.github.io/portfolio/blog/">Blogs</a></div>
+    <h1 class="post-title">
+      this In Javascript - Simplified
+    </h1>
+    <time style="font-size: 12px;">
+      Oct 17, 2023
+    </time>
+    <div class="post-description">
+      What is `this` keyword in JavaScript? How does it work in different scenarios?
+    </div>
+    <div class="post-meta">
+
+
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://ivinoop.github.io/blog/this-in-javascript/7.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#intro" aria-label="Intro">Intro</a></li>
+                <li>
+                    <a href="#different-scenarios-of-this--" aria-label="Different scenarios of &amp;rsquo;this&amp;rsquo; -">Different scenarios of &rsquo;this&rsquo; -</a><ul>
+                        
+                <li>
+                    <a href="#1-default-binding" aria-label="#1: Default Binding">#1: Default Binding</a></li>
+                <li>
+                    <a href="#2-implicit-binding" aria-label="#2: Implicit Binding">#2: Implicit Binding</a></li>
+                <li>
+                    <a href="#this-in-a-method" aria-label="&amp;rsquo;this&amp;rsquo; in a method">&rsquo;this&rsquo; in a method</a></li>
+                <li>
+                    <a href="#this-in-a-function-call" aria-label="&amp;rsquo;this&amp;rsquo; in a function call">&rsquo;this&rsquo; in a function call</a></li>
+                <li>
+                    <a href="#this-in-arrow-functions" aria-label="&amp;rsquo;this&amp;rsquo; in Arrow Functions">&rsquo;this&rsquo; in Arrow Functions</a></li>
+                <li>
+                    <a href="#3-explicit-binding" aria-label="#3: Explicit Binding">#3: Explicit Binding</a></li>
+                <li>
+                    <a href="#4-new-binding" aria-label="#4: &amp;rsquo;new&amp;rsquo; Binding">#4: &rsquo;new&rsquo; Binding</a></li>
+                <li>
+                    <a href="#5-html-event-element-binding---this-in-event-listeners" aria-label="#5: HTML Event Element Binding - &amp;rsquo;this&amp;rsquo; in Event Listeners">#5: HTML Event Element Binding - &rsquo;this&rsquo; in Event Listeners</a></li></ul>
+                </li>
+                <li>
+                    <a href="#closing-notes" aria-label="Closing Notes">Closing Notes</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><blockquote>
+<p>This is the 7th post in <a href="https://vinoo.hashnode.dev/series/the-complete-javascript">The Complete JavaScript Series.</a></p>
+</blockquote>
+<h2 id="intro">Intro<a hidden class="anchor" aria-hidden="true" href="#intro">#</a></h2>
+<p>Simply put, <code>this</code> is a special variable that is created for every Execution Context.</p>
+<p>Once <code>this</code> has been created for the Execution Context (EC), it becomes a &ldquo;keyword&rdquo;. Then, it points to (or takes the value of) the parent of whatever function has used <code>this</code>. The interesting thing about <code>this</code> is that it behaves differently with respect to how it is used and called in different use cases. Let us see them one by one.</p>
+<h2 id="different-scenarios-of-this--">Different scenarios of &rsquo;this&rsquo; -<a hidden class="anchor" aria-hidden="true" href="#different-scenarios-of-this--">#</a></h2>
+<h3 id="1-default-binding">#1: Default Binding<a hidden class="anchor" aria-hidden="true" href="#1-default-binding">#</a></h3>
+<p>A simple program that has nothing but this statement - <code>console.log(this)</code> - will show that <code>this</code> will point to the global window object, like so -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697549151962/767ea147-5108-4d21-9d5f-3a793a253edd.png" alt=""  />
+</p>
+<h3 id="2-implicit-binding">#2: Implicit Binding<a hidden class="anchor" aria-hidden="true" href="#2-implicit-binding">#</a></h3>
+<h3 id="this-in-a-method">&rsquo;this&rsquo; in a method<a hidden class="anchor" aria-hidden="true" href="#this-in-a-method">#</a></h3>
+<blockquote>
+<p>A method is any function that is defined inside an object.</p>
+</blockquote>
+<p>In the example below, <code>this</code> will point to the parent object of the method that calls <code>this</code>. Since <code>getCurrentYear</code> is the method that calls <code>this</code>, the value of <code>this</code> will now point to the parent object - <code>details</code>. Hence, <code>this.futureYear</code> is equal to typing <code>details.futureYear</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">details</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Vinoo&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">futureYear</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2049</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getCurrentYear</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">2199</span> <span style="color:#f92672">-</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">futureYear</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">details</span>.<span style="color:#a6e22e">getCurrentYear</span>() <span style="color:#75715e">// 150
+</span></span></span></code></pre></div><p>As we can see, we get the result <code>150</code> when the function is called. The value for <code>futureYear</code> was accessed through the <code>this</code> variable. The value of <code>this</code> itself is the <code>details</code> object -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697547846530/dd976ad0-ab06-4961-9d5e-c9bd2474cea3.png" alt=""  />
+</p>
+<h3 id="this-in-a-function-call">&rsquo;this&rsquo; in a function call<a hidden class="anchor" aria-hidden="true" href="#this-in-a-function-call">#</a></h3>
+<p>In a regular function call with strict mode enabled, <code>this</code> will return <code>undefined</code> 👇</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697537702385/142583e6-7618-4e5e-a500-bc94751e1bf2.png" alt=""  />
+</p>
+<p>Otherwise, <code>this</code> will point to the global <code>window</code> object 👇</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697537628068/5566f6fb-3141-4902-b7ee-698c2ec8188d.png" alt=""  />
+</p>
+<h3 id="this-in-arrow-functions">&rsquo;this&rsquo; in Arrow Functions<a hidden class="anchor" aria-hidden="true" href="#this-in-arrow-functions">#</a></h3>
+<p>In arrow functions, <code>this</code> simply points to the <code>this</code> of its surrounding function - which means <code>this</code> points to the lexical scope/parent scope. This goes to say that arrow functions do not get their own <code>this</code>.</p>
+<p>Example -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697538773579/5b6de135-c469-47ba-9cf1-3f4fac027b94.png" alt=""  />
+</p>
+<h3 id="3-explicit-binding">#3: Explicit Binding<a hidden class="anchor" aria-hidden="true" href="#3-explicit-binding">#</a></h3>
+<p>As the name suggests, explicit binding is a way to explicitly bind the value of <code>this</code> to a specific object. There are 3 ways to do this -</p>
+<ol>
+<li>
+<p><code>call()</code> - Let&rsquo;s say that our function is outside the object, and we still want <code>this</code> in the function to point to the object. We can do that as follows -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697557277373/081f19e2-47b9-40f0-a043-308a6b92840e.png" alt=""  />
+</p>
+<p>Here, we are &ldquo;binding&rdquo; the object <code>details</code> to the function <code>displayName()</code> so that the <code>this</code> variable in that function can point to the desired object. If we DO NOT use the &ldquo;call&rdquo; binding, then as usual, <code>this</code> will simply point to the global window object.</p>
+<p>Now, what if we have multiple arguments to be passed? Look at the example below -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697557761310/1217fe8c-d088-44bc-8bb4-64d66e62c92a.png" alt=""  />
+</p>
+<p><code>call()</code> successfully binds the details we have passed to the <code>person</code> object and then the elements of the <code>hobbies</code> array, individually. But this is not the most efficient to bind things, is it? This is where the <code>apply()</code> method helps us.</p>
+</li>
+<li>
+<p><code>apply()</code> - this method works exactly like <code>call()</code> except that we can pass the array variable itself as a parameter instead of the array elements individually. Everything else stays the same -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697558002910/1e754642-26a0-4ed8-b4b9-2eb7c0b6d6c5.png" alt=""  />
+</p>
+</li>
+<li>
+<p><code>bind()</code> - this method too, is almost no different from the <code>call()</code> or <code>apply()</code> methods but there is an important advantage to using it. First, let&rsquo;s look at an example -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697558864224/4f1f70a4-9af3-45ca-8d6f-320f14b9b9d5.png" alt=""  />
+</p>
+<p>Notice how we assigned the <code>bind()</code> method to a variable <code>foo</code> and then called it as a function? This is because <code>bind()</code> returns a new function that we can then invoke anywhere we wish. Now for the advantage bit - <code>foo</code> does not even get instantiated anywhere, does not have a reference, nothing. Even though the <code>person</code> object does not have a property named <code>foo</code>, we can still explicitly bind <code>foo</code> to <code>person</code> much later in the program such that <code>person</code> will now recognise <code>foo</code> as its own method.</p>
+</li>
+</ol>
+<h3 id="4-new-binding">#4: &rsquo;new&rsquo; Binding<a hidden class="anchor" aria-hidden="true" href="#4-new-binding">#</a></h3>
+<p><code>new</code> is yet another special keyword that is exclusively used in the case of constructor functions. These are used to create new objects. Let&rsquo;s look at this example -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">Wizard</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">spell</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">spell</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">spell</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">castMagic</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; has cast this spell - &#39;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">spell</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">hermione</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Wizard</span>(<span style="color:#e6db74">&#39;Hermione&#39;</span>, <span style="color:#e6db74">&#39;Occulus Reparo&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">ron</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Wizard</span>(<span style="color:#e6db74">&#39;Ron&#39;</span>, <span style="color:#e6db74">&#39;Sunshine Daisies&#39;</span>)
+</span></span></code></pre></div><p><code>new</code> is used to denote that we are creating a new object (instantiating) for the <code>Wizard</code> function. Note that <code>Wizard</code> is capitalised when we use <code>new</code> - a simple convention to differentiate, and also specify that <code>this</code> variable will always point to the empty object created by <code>new</code>. This is how we can get new instances easily for the same function with different arguments. Just simple Object Oriented Programming in action 😎</p>
+<p>We will study more about constructors and classes in depth in a later post.</p>
+<h3 id="5-html-event-element-binding---this-in-event-listeners">#5: HTML Event Element Binding - &rsquo;this&rsquo; in Event Listeners<a hidden class="anchor" aria-hidden="true" href="#5-html-event-element-binding---this-in-event-listeners">#</a></h3>
+<p>In case of event listeners, <code>this</code> points to the DOM element that the handler is attached to. Example -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">sendBtn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Value of this - &#39;</span>, <span style="color:#66d9ef">this</span>)
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697545354354/10117b9a-1276-407c-8a11-12dea72fae6c.png" alt=""  />
+</p>
+<p>Here, on clicking the button &lsquo;Send&rsquo;, the value of <code>this</code> will indeed be the DOM element <code>button</code> that the function/handler is attached to.</p>
+<p><strong>NOTE -</strong> if this function/handler is an arrow function, then the value of <code>this</code> again defaults to the global window object, like so -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">sendBtn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Value of this - &#39;</span>, <span style="color:#66d9ef">this</span>)
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697546026030/2941d979-6b35-42e3-af49-15d22dae82ad.png" alt=""  />
+</p>
+<hr>
+<h2 id="closing-notes">Closing Notes<a hidden class="anchor" aria-hidden="true" href="#closing-notes">#</a></h2>
+<p>That was it for <code>this</code>!</p>
+<p><img loading="lazy" src="https://media0.giphy.com/media/RfAuCCsCMVJLgPX88v/giphy.gif?cid=ecf05e477ncktpkmi43dgptfl96fba12nh6sqt3uscy7k3nd&amp;ep=v1_gifs_search&amp;rid=giphy.gif&amp;ct=g" alt="Season 2 Joey GIF by Friends"  />
+</p>
+<p>We will study more about how <code>this</code> is important for classes, constructors, and object oriented programming in the later posts.</p>
+<p>Until the next one!</p>
+<p>Keep shipping 🚀</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://ivinoop.github.io/portfolio/tags/javascript/">javascript</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://ivinoop.github.io/portfolio">Vinoo</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

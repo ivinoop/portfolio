@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>OOPs in JavaScript - Creating Objects And &#39;this&#39; Keyword | Vinoo</title>
+<meta name="keywords" content="javascript">
+<meta name="description" content="JavaScript is a flexible, object oriented language. This means that it allows developers to create different kinds of objects for different purposes.">
+<meta name="author" content="">
+<link rel="canonical" href="https://ivinoop.github.io/portfolio/blog/oops-in-javascript/">
+<link crossorigin="anonymous" href="/portfolio/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/portfolio/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
+    onload="hljs.initHighlightingOnLoad();"></script>
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.1/styles/atom-one-dark.min.css"
+  integrity="sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+
+<meta property="og:title" content="OOPs in JavaScript - Creating Objects And &#39;this&#39; Keyword" />
+<meta property="og:description" content="JavaScript is a flexible, object oriented language. This means that it allows developers to create different kinds of objects for different purposes." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ivinoop.github.io/portfolio/blog/oops-in-javascript/" />
+<meta property="og:image" content="https://ivinoop.github.io/blog/oops-in-javascript/oops-in-js.png" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-10-24T20:32:29&#43;05:30" />
+<meta property="article:modified_time" content="2021-10-24T20:32:29&#43;05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://ivinoop.github.io/blog/oops-in-javascript/oops-in-js.png" />
+<meta name="twitter:title" content="OOPs in JavaScript - Creating Objects And &#39;this&#39; Keyword"/>
+<meta name="twitter:description" content="JavaScript is a flexible, object oriented language. This means that it allows developers to create different kinds of objects for different purposes."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Blogs",
+      "item": "https://ivinoop.github.io/portfolio/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "OOPs in JavaScript - Creating Objects And 'this' Keyword",
+      "item": "https://ivinoop.github.io/portfolio/blog/oops-in-javascript/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "OOPs in JavaScript - Creating Objects And 'this' Keyword",
+  "name": "OOPs in JavaScript - Creating Objects And \u0027this\u0027 Keyword",
+  "description": "JavaScript is a flexible, object oriented language. This means that it allows developers to create different kinds of objects for different purposes.",
+  "keywords": [
+    "javascript"
+  ],
+  "articleBody": "JavaScript is a flexible, object oriented language. This means that it allows developers to create different kinds of objects for different purposes. Almost everything in JavaScript (except Primitive types) is an object (Booleans, Strings, Numbers, Dates, Arrays, Functions, Objects, etc).\nCreating Objects Let us look at the different ways to create an object in JS.\n1. Object Literal This is the most popular and easiest way of creating objects. Object literal consists of the type of variable/object name (let, var, or const), object name, and the collection of properties inside it. Here’s an example to understand it better -\nlet obj = {}; // Object Literal A more detailed object literal -\nlet userDetails = { firstName: 'Arya', lastName: 'Stark', occupation: 'Girl With No Name', }; 2. Object Constructor Constructors are special functions that are called when an object is created with the new keyword. Take a look at the example below -\nlet person = new Object({ name: 'Jon', family: 'Targaryen', occupation: 'Dragon Rider', }); Here, the keyword new is used along with the case-sensitive keyword Object, indicating that it is a special keyword used in creating objects through Object Constructor method.\nThe result is the same as creating object through Object Literals.\n3. Object.create This is another method to create new objects, which gives us more control over handling them. Object.create accepts a parameter, which can be either null or an object (key-value pairs).\nlet user = Object.create({ name: 'Vinoo', designation: 'Developer', }); If we pass null as the parameter, it still creates an empty object.\nThe this keyword In simple words, this is a special predefined variable that is present in every function declaration. The value of this variable changes according to the way we call the function in which it is defined.\nthis is used in both global and function contexts. It always points to an object. More specifically, this references the object that is currently calling the function.\nExample -\nconst add5 = { a: 10; addition: function() { return this.a = this.a + 5; } }; add5.addition(); Here, addition() is a function which is a property of the add5 object (a function inside a property becomes a method). Hence, inside the addition() method, this references the add5 object.\nWhenever we call a function through an object ( e.g -add5.addition()), this will always point to that object.\nIn Global context, this refers to the global object, which is the window object in a web browser.\nIf we run the following snippet, it can be seen thatthis points to the window global object -\nconsole.log(this === window); //true Essentially, if a property is assigned to this, then that property is added to the global object, and can be accessed by the window object.\nExample -\nthis.value = 21; console.log(window.value); The output will be 21.\nthis keyword has more use cases in the Function context, which we shall see in an upcoming post.\nStay tuned! 🚀\n",
+  "wordCount" : "489",
+  "inLanguage": "en",
+  "image":"https://ivinoop.github.io/blog/oops-in-javascript/oops-in-js.png","datePublished": "2021-10-24T20:32:29+05:30",
+  "dateModified": "2021-10-24T20:32:29+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ivinoop.github.io/portfolio/blog/oops-in-javascript/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vinoo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ivinoop.github.io/portfolio/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://ivinoop.github.io/portfolio" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ivinoop.github.io/portfolio/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://ivinoop.github.io/portfolio">Home</a>&nbsp;»&nbsp;<a href="https://ivinoop.github.io/portfolio/blog/">Blogs</a></div>
+    <h1 class="post-title">
+      OOPs in JavaScript - Creating Objects And &#39;this&#39; Keyword
+    </h1>
+    <time style="font-size: 12px;">
+      Oct 24, 2021
+    </time>
+    <div class="post-description">
+      JavaScript is a flexible, object oriented language. This means that it allows developers to create different kinds of objects for different purposes.
+    </div>
+    <div class="post-meta">
+
+
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://ivinoop.github.io/blog/oops-in-javascript/oops-in-js.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#creating-objects" aria-label="Creating Objects">Creating Objects</a><ul>
+                        
+                <li>
+                    <a href="#1-object-literal" aria-label="1. Object Literal">1. Object Literal</a></li>
+                <li>
+                    <a href="#2-object-constructor" aria-label="2. Object Constructor">2. Object Constructor</a></li>
+                <li>
+                    <a href="#3-objectcreate" aria-label="3. Object.create">3. Object.create</a></li></ul>
+                </li>
+                <li>
+                    <a href="#the-this-keyword" aria-label="The this keyword">The <code>this</code> keyword</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>JavaScript is a flexible, object oriented language. This means that it allows developers to create different  kinds of objects for different purposes. Almost everything in JavaScript (except Primitive types) is an object (Booleans, Strings, Numbers, Dates, Arrays, Functions, Objects, etc).</p>
+<h2 id="creating-objects">Creating Objects<a hidden class="anchor" aria-hidden="true" href="#creating-objects">#</a></h2>
+<p>Let us look at the different ways to create an object in JS.</p>
+<h3 id="1-object-literal">1. Object Literal<a hidden class="anchor" aria-hidden="true" href="#1-object-literal">#</a></h3>
+<p>This is the most popular and easiest way of creating objects. Object literal consists of the type of variable/object name (let, var, or const), object name, and the collection of properties inside it. Here&rsquo;s an example to understand it better -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">=</span> {}; <span style="color:#75715e">// Object Literal
+</span></span></span></code></pre></div><p>A more detailed object literal -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">userDetails</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Arya&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Stark&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">occupation</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Girl With No Name&#39;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="2-object-constructor">2. Object Constructor<a hidden class="anchor" aria-hidden="true" href="#2-object-constructor">#</a></h3>
+<p>Constructors are special functions that are called when an object is created with the <code>new</code> keyword. Take a look at the example below -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">person</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object({ 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Jon&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">family</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Targaryen&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">occupation</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Dragon Rider&#39;</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Here, the keyword <code>new</code> is used along with the case-sensitive keyword <code>Object</code>, indicating that it is a special keyword used in creating objects through Object Constructor method.</p>
+<p>The result is the same as creating object through Object Literals.</p>
+<h3 id="3-objectcreate">3. Object.create<a hidden class="anchor" aria-hidden="true" href="#3-objectcreate">#</a></h3>
+<p>This is another method to create new objects, which gives us more control over handling them. <code>Object.create</code> accepts a parameter, which can be either <code>null</code> or an object (key-value pairs).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">create</span>({
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Vinoo&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">designation</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Developer&#39;</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>If we pass <code>null</code> as the parameter, it still creates an empty object.</p>
+<h2 id="the-this-keyword">The <code>this</code> keyword<a hidden class="anchor" aria-hidden="true" href="#the-this-keyword">#</a></h2>
+<p>In simple words, <code>this</code> is a special predefined variable that is present in every function declaration. The value of <code>this</code> variable changes according to the way we call the function in which it is defined.</p>
+<p><code>this</code> is used in both global and function contexts. It always points to an object. More specifically, <code>this</code> references the object that is currently calling the function.</p>
+<p>Example -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">add5</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">addition</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">add5</span>.<span style="color:#a6e22e">addition</span>();
+</span></span></code></pre></div><p>Here, <code>addition()</code> is a function which is a property of the <code>add5</code> object (a function inside a property becomes a method). Hence, inside the <code>addition()</code> <strong>method</strong>, <code>this</code> references the <code>add5</code> object.</p>
+<p>Whenever we call a function through an object ( e.g -<code>add5.addition()</code>), <code>this</code> will always point to that object.</p>
+<p>In Global context, <code>this</code> refers to the <strong>global object</strong>, which is the <code>window</code> object in a web browser.</p>
+<p>If we run the following snippet, it can be seen that<code>this</code> points to the <code>window</code> global object -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span> <span style="color:#f92672">===</span> window); <span style="color:#75715e">//true
+</span></span></span></code></pre></div><p>Essentially, if a property is assigned to <code>this</code>, then that property is added to the global object, and can be accessed by the <code>window</code> object.</p>
+<p>Example -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(window.<span style="color:#a6e22e">value</span>);
+</span></span></code></pre></div><p>The output will be <code>21</code>.</p>
+<hr>
+<p><code>this</code> keyword has more use cases in the Function context, which we shall see in an upcoming post.</p>
+<p>Stay tuned! 🚀</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://ivinoop.github.io/portfolio/tags/javascript/">javascript</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://ivinoop.github.io/portfolio">Vinoo</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
