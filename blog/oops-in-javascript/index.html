@@ -9,7 +9,7 @@
 <meta name="keywords" content="javascript">
 <meta name="description" content="JavaScript is a flexible, object oriented language. This means that it allows developers to create different kinds of objects for different purposes.">
 <meta name="author" content="">
-<link rel="canonical" href="/blog/oops-in-javascript/">
+<link rel="canonical" href="http://vinoo.in/blog/oops-in-javascript/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -64,13 +64,13 @@
 <meta property="og:title" content="OOPs in JavaScript - Creating Objects And &#39;this&#39; Keyword" />
 <meta property="og:description" content="JavaScript is a flexible, object oriented language. This means that it allows developers to create different kinds of objects for different purposes." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/blog/oops-in-javascript/" />
-<meta property="og:image" content="/blog/oops-in-javascript/oops-in-js.png" /><meta property="article:section" content="blog" />
+<meta property="og:url" content="http://vinoo.in/blog/oops-in-javascript/" />
+<meta property="og:image" content="http://vinoo.in/blog/oops-in-javascript/oops-in-js.png" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2021-10-24T20:32:29&#43;05:30" />
 <meta property="article:modified_time" content="2021-10-24T20:32:29&#43;05:30" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="/blog/oops-in-javascript/oops-in-js.png" />
+<meta name="twitter:image" content="http://vinoo.in/blog/oops-in-javascript/oops-in-js.png" />
 <meta name="twitter:title" content="OOPs in JavaScript - Creating Objects And &#39;this&#39; Keyword"/>
 <meta name="twitter:description" content="JavaScript is a flexible, object oriented language. This means that it allows developers to create different kinds of objects for different purposes."/>
 
@@ -79,18 +79,18 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "Blogs",
-      "item": "/blog/"
+      "item": "http://vinoo.in/blog/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "OOPs in JavaScript - Creating Objects And 'this' Keyword",
-      "item": "/blog/oops-in-javascript/"
+      "item": "http://vinoo.in/blog/oops-in-javascript/"
     }
   ]
 }
@@ -108,18 +108,18 @@
   "articleBody": "JavaScript is a flexible, object oriented language. This means that it allows developers to create different kinds of objects for different purposes. Almost everything in JavaScript (except Primitive types) is an object (Booleans, Strings, Numbers, Dates, Arrays, Functions, Objects, etc).\nCreating Objects Let us look at the different ways to create an object in JS.\n1. Object Literal This is the most popular and easiest way of creating objects. Object literal consists of the type of variable/object name (let, var, or const), object name, and the collection of properties inside it. Here’s an example to understand it better -\nlet obj = {}; // Object Literal A more detailed object literal -\nlet userDetails = { firstName: 'Arya', lastName: 'Stark', occupation: 'Girl With No Name', }; 2. Object Constructor Constructors are special functions that are called when an object is created with the new keyword. Take a look at the example below -\nlet person = new Object({ name: 'Jon', family: 'Targaryen', occupation: 'Dragon Rider', }); Here, the keyword new is used along with the case-sensitive keyword Object, indicating that it is a special keyword used in creating objects through Object Constructor method.\nThe result is the same as creating object through Object Literals.\n3. Object.create This is another method to create new objects, which gives us more control over handling them. Object.create accepts a parameter, which can be either null or an object (key-value pairs).\nlet user = Object.create({ name: 'Vinoo', designation: 'Developer', }); If we pass null as the parameter, it still creates an empty object.\nThe this keyword In simple words, this is a special predefined variable that is present in every function declaration. The value of this variable changes according to the way we call the function in which it is defined.\nthis is used in both global and function contexts. It always points to an object. More specifically, this references the object that is currently calling the function.\nExample -\nconst add5 = { a: 10; addition: function() { return this.a = this.a + 5; } }; add5.addition(); Here, addition() is a function which is a property of the add5 object (a function inside a property becomes a method). Hence, inside the addition() method, this references the add5 object.\nWhenever we call a function through an object ( e.g -add5.addition()), this will always point to that object.\nIn Global context, this refers to the global object, which is the window object in a web browser.\nIf we run the following snippet, it can be seen thatthis points to the window global object -\nconsole.log(this === window); //true Essentially, if a property is assigned to this, then that property is added to the global object, and can be accessed by the window object.\nExample -\nthis.value = 21; console.log(window.value); The output will be 21.\nthis keyword has more use cases in the Function context, which we shall see in an upcoming post.\nStay tuned! 🚀\n",
   "wordCount" : "489",
   "inLanguage": "en",
-  "image":"/blog/oops-in-javascript/oops-in-js.png","datePublished": "2021-10-24T20:32:29+05:30",
+  "image":"http://vinoo.in/blog/oops-in-javascript/oops-in-js.png","datePublished": "2021-10-24T20:32:29+05:30",
   "dateModified": "2021-10-24T20:32:29+05:30",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "/blog/oops-in-javascript/"
+    "@id": "http://vinoo.in/blog/oops-in-javascript/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Vinoo",
     "logo": {
       "@type": "ImageObject",
-      "url": "favicon.ico"
+      "url": "http://vinoo.in/favicon.ico"
     }
   }
 }
@@ -141,7 +141,7 @@
 <header class="header sticky-header">
     <nav class="nav">
         <div class="logo">
-            <a href="" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -167,27 +167,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="/" title="Home">
+                <a href="http://vinoo.in/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="/blog" title="Blog">
+                <a href="http://vinoo.in/blog" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="/projects" title="Projects">
+                <a href="http://vinoo.in/projects" title="Projects">
                     <span>Projects</span>
                 </a>
             </li>
             <li>
-                <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="/tags" title="Tags">
+                <a href="http://vinoo.in/tags" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
@@ -198,7 +198,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="">Home</a>&nbsp;»&nbsp;<a href="/blog/">Blogs</a></div>
+    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
     <h1 class="post-title">
       OOPs in JavaScript - Creating Objects And &#39;this&#39; Keyword
     </h1>
@@ -214,7 +214,7 @@
 
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="/blog/oops-in-javascript/oops-in-js.png" alt="">
+<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/oops-in-javascript/oops-in-js.png" alt="">
         
 </figure><div class="toc">
     <details >
@@ -300,14 +300,14 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="/tags/javascript/">javascript</a></li>
+      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="">Vinoo</a></span>
+    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">

@@ -2,134 +2,134 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>javascript on Vinoo</title>
-    <link>/tags/javascript/</link>
+    <link>http://vinoo.in/tags/javascript/</link>
     <description>Recent content in javascript on Vinoo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jan 2024 21:54:05 +0530</lastBuildDate><atom:link href="/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Jan 2024 21:54:05 +0530</lastBuildDate><atom:link href="http://vinoo.in/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Destructuring in JavaScript: Part 1 - Arrays</title>
-      <link>/blog/destructuring-in-js-arrays/</link>
+      <link>http://vinoo.in/blog/destructuring-in-js-arrays/</link>
       <pubDate>Mon, 15 Jan 2024 21:54:05 +0530</pubDate>
       
-      <guid>/blog/destructuring-in-js-arrays/</guid>
+      <guid>http://vinoo.in/blog/destructuring-in-js-arrays/</guid>
       <description>What is destructuring in JavaScript? How do we extract values from arrays and objects?</description>
     </item>
     
     <item>
       <title>this In Javascript - Simplified</title>
-      <link>/blog/this-in-javascript/</link>
+      <link>http://vinoo.in/blog/this-in-javascript/</link>
       <pubDate>Tue, 17 Oct 2023 21:51:23 +0530</pubDate>
       
-      <guid>/blog/this-in-javascript/</guid>
+      <guid>http://vinoo.in/blog/this-in-javascript/</guid>
       <description>What is `this` keyword in JavaScript? How does it work in different scenarios?</description>
     </item>
     
     <item>
       <title>Primitives vs Objects: Memory Allocation In JavaScript</title>
-      <link>/blog/primitives-objects-memory-allocation/</link>
+      <link>http://vinoo.in/blog/primitives-objects-memory-allocation/</link>
       <pubDate>Sat, 23 Sep 2023 21:48:19 +0530</pubDate>
       
-      <guid>/blog/primitives-objects-memory-allocation/</guid>
+      <guid>http://vinoo.in/blog/primitives-objects-memory-allocation/</guid>
       <description>What are Primitives and Objects (Reference Types)? How is memory allocated and managed for different data types in JavaScript?</description>
     </item>
     
     <item>
       <title>Hoisting and Temporal Dead Zone In JavaScript</title>
-      <link>/blog/hoisting-temporal-dead-zone/</link>
+      <link>http://vinoo.in/blog/hoisting-temporal-dead-zone/</link>
       <pubDate>Sun, 17 Sep 2023 21:45:31 +0530</pubDate>
       
-      <guid>/blog/hoisting-temporal-dead-zone/</guid>
+      <guid>http://vinoo.in/blog/hoisting-temporal-dead-zone/</guid>
       <description>What is Hoisting? How are we able to invoke certain variables an functions before they are even declared? Where do other variables go?</description>
     </item>
     
     <item>
       <title>Scope in Javascript</title>
-      <link>/blog/scope-in-javascript/</link>
+      <link>http://vinoo.in/blog/scope-in-javascript/</link>
       <pubDate>Sat, 16 Sep 2023 21:42:59 +0530</pubDate>
       
-      <guid>/blog/scope-in-javascript/</guid>
+      <guid>http://vinoo.in/blog/scope-in-javascript/</guid>
       <description>Where do variables live in JavaScript? Let&amp;#39;s learn about Scoping and the Scope Chain in this post.</description>
     </item>
     
     <item>
       <title>Javascript Engine and Execution Context</title>
-      <link>/blog/javascript-engine-execution-context/</link>
+      <link>http://vinoo.in/blog/javascript-engine-execution-context/</link>
       <pubDate>Fri, 15 Sep 2023 21:36:56 +0530</pubDate>
       
-      <guid>/blog/javascript-engine-execution-context/</guid>
+      <guid>http://vinoo.in/blog/javascript-engine-execution-context/</guid>
       <description>Let&amp;#39;s study about the JS Engine and Execution Context in this article. Warning - we take a pretty deep dive into the concepts 🔍</description>
     </item>
     
     <item>
       <title>Javascript Under the Hood</title>
-      <link>/blog/javascript-under-the-hood/</link>
+      <link>http://vinoo.in/blog/javascript-under-the-hood/</link>
       <pubDate>Thu, 17 Aug 2023 21:04:55 +0530</pubDate>
       
-      <guid>/blog/javascript-under-the-hood/</guid>
+      <guid>http://vinoo.in/blog/javascript-under-the-hood/</guid>
       <description>It is fun and interesting to learn about what makes up JavaScript&amp;#39;s building blocks as a language.</description>
     </item>
     
     <item>
       <title>What is DOM in JavaScript?</title>
-      <link>/blog/what-is-dom-in-javascript/</link>
+      <link>http://vinoo.in/blog/what-is-dom-in-javascript/</link>
       <pubDate>Wed, 16 Aug 2023 20:57:48 +0530</pubDate>
       
-      <guid>/blog/what-is-dom-in-javascript/</guid>
+      <guid>http://vinoo.in/blog/what-is-dom-in-javascript/</guid>
       <description>DOM forms the core of everything we see on the web page in a browser. Let&amp;#39;s understand what it is and how it works.</description>
     </item>
     
     <item>
       <title>Deeper Into This in Javascript</title>
-      <link>/blog/deeper-into-this-in-javascript/</link>
+      <link>http://vinoo.in/blog/deeper-into-this-in-javascript/</link>
       <pubDate>Thu, 18 Nov 2021 20:45:56 +0530</pubDate>
       
-      <guid>/blog/deeper-into-this-in-javascript/</guid>
+      <guid>http://vinoo.in/blog/deeper-into-this-in-javascript/</guid>
       <description>Let&amp;#39;s dive deeper into different bindings of this that we will encounter when dealing with it in functions.</description>
     </item>
     
     <item>
       <title>Function Prototype in Javascript</title>
-      <link>/blog/function-prototype-in-javascript/</link>
+      <link>http://vinoo.in/blog/function-prototype-in-javascript/</link>
       <pubDate>Sat, 13 Nov 2021 20:42:13 +0530</pubDate>
       
-      <guid>/blog/function-prototype-in-javascript/</guid>
+      <guid>http://vinoo.in/blog/function-prototype-in-javascript/</guid>
       <description>What is Function Prototype in JavaScript? Learn how to create objects in an optimised way.</description>
     </item>
     
     <item>
       <title>Dunder Proto &amp;  Nature of Objects</title>
-      <link>/blog/dunder-proto/</link>
+      <link>http://vinoo.in/blog/dunder-proto/</link>
       <pubDate>Wed, 27 Oct 2021 20:38:18 +0530</pubDate>
       
-      <guid>/blog/dunder-proto/</guid>
+      <guid>http://vinoo.in/blog/dunder-proto/</guid>
       <description>What is Dunder Proto in JavaScript?</description>
     </item>
     
     <item>
       <title>OOPs in JavaScript - Creating Objects And &#39;this&#39; Keyword</title>
-      <link>/blog/oops-in-javascript/</link>
+      <link>http://vinoo.in/blog/oops-in-javascript/</link>
       <pubDate>Sun, 24 Oct 2021 20:32:29 +0530</pubDate>
       
-      <guid>/blog/oops-in-javascript/</guid>
+      <guid>http://vinoo.in/blog/oops-in-javascript/</guid>
       <description>JavaScript is a flexible, object oriented language. This means that it allows developers to create different kinds of objects for different purposes.</description>
     </item>
     
     <item>
       <title>Background Generator</title>
-      <link>/projects/bg-generator/</link>
+      <link>http://vinoo.in/projects/bg-generator/</link>
       <pubDate>Thu, 27 May 2021 09:05:42 +0530</pubDate>
       
-      <guid>/projects/bg-generator/</guid>
+      <guid>http://vinoo.in/projects/bg-generator/</guid>
       <description>built with - javascript, html, css</description>
     </item>
     
     <item>
       <title>Javascript in Snippets: Intro and Fundamentals</title>
-      <link>/blog/javascript-in-snippets-intro-fundamentals/</link>
+      <link>http://vinoo.in/blog/javascript-in-snippets-intro-fundamentals/</link>
       <pubDate>Fri, 05 Mar 2021 19:59:22 +0530</pubDate>
       
-      <guid>/blog/javascript-in-snippets-intro-fundamentals/</guid>
+      <guid>http://vinoo.in/blog/javascript-in-snippets-intro-fundamentals/</guid>
       <description>There are cults. There are followers. And then, there is an entire world embroiled in JavaScript.</description>
     </item>
     
