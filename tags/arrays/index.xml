@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>arrays on Vinoo</title>
-    <link>http://vinoo.in/tags/arrays/</link>
+    <link>/tags/arrays/</link>
     <description>Recent content in arrays on Vinoo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jan 2024 21:54:05 +0530</lastBuildDate><atom:link href="http://vinoo.in/tags/arrays/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Jan 2024 21:54:05 +0530</lastBuildDate><atom:link href="/tags/arrays/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Destructuring in JavaScript: Part 1 - Arrays</title>
-      <link>http://vinoo.in/blog/destructuring-in-js-arrays/</link>
+      <link>/blog/destructuring-in-js-arrays/</link>
       <pubDate>Mon, 15 Jan 2024 21:54:05 +0530</pubDate>
       
-      <guid>http://vinoo.in/blog/destructuring-in-js-arrays/</guid>
+      <guid>/blog/destructuring-in-js-arrays/</guid>
       <description>What is destructuring in JavaScript? How do we extract values from arrays and objects?</description>
     </item>
     

@@ -9,7 +9,7 @@
 <meta name="keywords" content="javascript, javascript-series">
 <meta name="description" content="Where do variables live in JavaScript? Let&#39;s learn about Scoping and the Scope Chain in this post.">
 <meta name="author" content="">
-<link rel="canonical" href="http://vinoo.in/blog/scope-in-javascript/">
+<link rel="canonical" href="/blog/scope-in-javascript/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -64,13 +64,13 @@
 <meta property="og:title" content="Scope in Javascript" />
 <meta property="og:description" content="Where do variables live in JavaScript? Let&#39;s learn about Scoping and the Scope Chain in this post." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://vinoo.in/blog/scope-in-javascript/" />
-<meta property="og:image" content="http://vinoo.in/blog/scope-in-js/4.png" /><meta property="article:section" content="blog" />
+<meta property="og:url" content="/blog/scope-in-javascript/" />
+<meta property="og:image" content="/blog/scope-in-js/4.png" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2023-09-16T21:42:59&#43;05:30" />
 <meta property="article:modified_time" content="2023-09-16T21:42:59&#43;05:30" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="http://vinoo.in/blog/scope-in-js/4.png" />
+<meta name="twitter:image" content="/blog/scope-in-js/4.png" />
 <meta name="twitter:title" content="Scope in Javascript"/>
 <meta name="twitter:description" content="Where do variables live in JavaScript? Let&#39;s learn about Scoping and the Scope Chain in this post."/>
 
@@ -79,18 +79,18 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Blogs",
-      "item": "http://vinoo.in/blog/"
-    }, 
+  "itemListElement": [, 
     {
       "@type": "ListItem",
       "position":  2 ,
+      "name": "Blogs",
+      "item": "/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
       "name": "Scope in Javascript",
-      "item": "http://vinoo.in/blog/scope-in-javascript/"
+      "item": "/blog/scope-in-javascript/"
     }
   ]
 }
@@ -108,18 +108,18 @@
   "articleBody": " This is the 4th post in The Complete JavaScript Series.\nWhat is Scoping? Scoping is a way to organise and access variables. In JavaScript, there is a concept called Lexical Scoping - which is a way of controlling Scope of variables by the placement of functions and blocks in the code.\nWhat is Scope? Scope is simply the space or environment in which it is declared.\nScope of a variable is a region of the code where the variable can be accessed.\nIn the case of functions, Scope is the variable environment which is stored in the function’s execution context.\nThere are 3 types of scope -\nGlobal Scope - for all top level code\nThe variables are declared outside of any function or block.\nThese variables that are declared in global scope are accessible everywhere in the code.\nFunction Scope - this type of scope is created each time a function is declared.\nVariables declared in this function are only accessible within this function, and not outside of it.\nThis is also called local scope\nfunction funcScope() { const a = 123 const b = 321 const diff = b - a return diff } console.log(b) // ReferenceError As can be seen above, trying to access the variable b gives a ReferenceError since we are trying to access it outside its scope.\nIt also does not matter what type of function we are using - function declarations, function expressions, arrow functions - all create their own scope.\nBlock Scope (ES6) - beginning from ES6, blocks can also create scopes. Blocks are created by curly braces in JavaScript, and any variable within these braces is said to be scoped to that particular block.\nBlocks are created by if statements, for loops, etc.\nNOTE: Block scope is only applicable to variables declared with let and const.\nvar variables declared within a block are still accessible outside of it too.\nFrom ES6 onwards, all functions are also block scoped - only in strict mode.\nif(login) { const greet = 'Welcome' } console.log(greet) // ReferenceError Here, the if condition has created a block so scope of the variable greet is restricted to this block. Trying to access it outside of the block results in a ReferenceError.\nScope Chain Let us walk through the below code snippet and examine the scope chain implemented for global and function scopes -\nconst myName = 'Vinoo' // Global variable // The below function \"first()\" is also technically a global variable // since all functions and function expressions are considered // variables; but for this code snippet we will consider only variable // declarations for global scope const myName = 'Vinoo' function first() { const experience = 4 if (experience \u003e= 4) { var seniorDev = true } function second() { const job = 'Developer' console.log(`${myName} is a ${experience} years experienced ${job}`) } second() } first() As we can see, myName has global scope and functions first() and second() have function scopes set for the respective variables declared in them. However, notice that the variables myName and age are being referenced within the function second - but their scope is supposed to be limited to the function block of second() right?\nThis is where the scope chain comes into play - when one scope needs to use variables from another scope, it will “look up” in the scope chain and see if it can be used. This is called the “variable lookup” in the scope chain. In other words, a scope has access to variables declared in the outer scopes. In this case, the function second() looks outside of its scope to access the variable values from outer scopes - from first() and the global scope for myName.\nThis is also known as Lexical Scope - the ability of an inner function scope to access variables from the parent scope.\nNOTE: Scopes simply look up for the variable’s value in the scope chain and never actually copy the variables itself to use in their own scopes.\nAlso, the scope chain only works upward - meaning, only an inner scope can look up the scope chain for variables and not the other way around; an outer scope will never have access to the inner scope variables.\nWe are now clear with the scope chain implemented for function scopes. However, in the above snippet, line numbers 6 to 8 contain an if block. Remember, only starting from ES6 implementation, we have block scopes functionality with let and const variable declarations. But, we can see in the snippet, we have a variable declared within the if block with var.\nThis means that var has no block scope - but it is still limited to the function that it is declared within; it has function scope.\nlet and const are block scoped.\nvar is function scoped.\nTherefore, in our code snippet - the variable seniorDev is not scoped to the if condition within which it is declared; instead, it is scoped to the function first(). Incidentally, the function second() can access this since it is declared within the function first().\nIn essence, the below illustration captures the Scope Chain for the above code.\nThat was it for Scope and Scope Chain in JavaScript! We have given enough lunges for the brain with this topic.\nTo really get basics right, you should alter the above code snippet and experiment with it by declaring variables in different scopes and tinkering with the flow.\nIn the next post, we will dive into Hoisting and the this keyword - thereby working towards cementing our foundational knowledge of how JavaScript works.\nSee you in the next one 👋\nKeep shipping 🚀\n",
   "wordCount" : "944",
   "inLanguage": "en",
-  "image":"http://vinoo.in/blog/scope-in-js/4.png","datePublished": "2023-09-16T21:42:59+05:30",
+  "image":"/blog/scope-in-js/4.png","datePublished": "2023-09-16T21:42:59+05:30",
   "dateModified": "2023-09-16T21:42:59+05:30",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://vinoo.in/blog/scope-in-javascript/"
+    "@id": "/blog/scope-in-javascript/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Vinoo",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://vinoo.in/favicon.ico"
+      "url": "favicon.ico"
     }
   }
 }
@@ -141,7 +141,7 @@
 <header class="header sticky-header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <a href="" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -167,27 +167,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://vinoo.in/" title="Home">
+                <a href="/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://vinoo.in/blog" title="Blog">
+                <a href="/blog" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="http://vinoo.in/projects" title="Projects">
+                <a href="/projects" title="Projects">
                     <span>Projects</span>
                 </a>
             </li>
             <li>
-                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="http://vinoo.in/tags" title="Tags">
+                <a href="/tags" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
@@ -198,7 +198,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
+    <div class="breadcrumbs"><a href="">Home</a>&nbsp;»&nbsp;<a href="/blog/">Blogs</a></div>
     <h1 class="post-title">
       Scope in Javascript
     </h1>
@@ -214,7 +214,7 @@
 
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/scope-in-js/4.png" alt="">
+<figure class="entry-cover"><img loading="lazy" src="/blog/scope-in-js/4.png" alt="">
         
 </figure><div class="toc">
     <details >
@@ -368,15 +368,15 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
-      <li><a href="http://vinoo.in/tags/javascript-series/">javascript-series</a></li>
+      <li><a href="/tags/javascript/">javascript</a></li>
+      <li><a href="/tags/javascript-series/">javascript-series</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
+    <span>&copy; 2024 <a href="">Vinoo</a></span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">

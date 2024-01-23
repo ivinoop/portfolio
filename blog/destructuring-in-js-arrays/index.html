@@ -9,7 +9,7 @@
 <meta name="keywords" content="javascript, arrays, javascript-series">
 <meta name="description" content="What is destructuring in JavaScript? How do we extract values from arrays and objects?">
 <meta name="author" content="">
-<link rel="canonical" href="http://vinoo.in/blog/destructuring-in-js-arrays/">
+<link rel="canonical" href="/blog/destructuring-in-js-arrays/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js" integrity="sha256-uVus3DnjejMqn4g7Hni&#43;Srwf3KK8HyZB9V4809q9TWE="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -64,13 +64,13 @@
 <meta property="og:title" content="Destructuring in JavaScript: Part 1 - Arrays" />
 <meta property="og:description" content="What is destructuring in JavaScript? How do we extract values from arrays and objects?" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://vinoo.in/blog/destructuring-in-js-arrays/" />
-<meta property="og:image" content="http://vinoo.in/blog/destructuring-in-js-arrays/8.png" /><meta property="article:section" content="blog" />
+<meta property="og:url" content="/blog/destructuring-in-js-arrays/" />
+<meta property="og:image" content="/blog/destructuring-in-js-arrays/8.png" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-01-15T21:54:05&#43;05:30" />
 <meta property="article:modified_time" content="2024-01-15T21:54:05&#43;05:30" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="http://vinoo.in/blog/destructuring-in-js-arrays/8.png" />
+<meta name="twitter:image" content="/blog/destructuring-in-js-arrays/8.png" />
 <meta name="twitter:title" content="Destructuring in JavaScript: Part 1 - Arrays"/>
 <meta name="twitter:description" content="What is destructuring in JavaScript? How do we extract values from arrays and objects?"/>
 
@@ -79,18 +79,18 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Blogs",
-      "item": "http://vinoo.in/blog/"
-    }, 
+  "itemListElement": [, 
     {
       "@type": "ListItem",
       "position":  2 ,
+      "name": "Blogs",
+      "item": "/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
       "name": "Destructuring in JavaScript: Part 1 - Arrays",
-      "item": "http://vinoo.in/blog/destructuring-in-js-arrays/"
+      "item": "/blog/destructuring-in-js-arrays/"
     }
   ]
 }
@@ -108,18 +108,18 @@
   "articleBody": " This is the 8th post in The Complete JavaScript Series\nIn simple terms, Destructuring is an ES6 feature that helps us unpack values from an array or object into separate variables.\nWe use destructuring to break a complex data structure down into a smaller data structure like a single dimensional array or a variable.\nWhat is Array Destructuring? Array destructuring is a process of extracting values from complex array data structures. Destructuring does not mutate the original array and helps us perform multiple such destructuring operators\nFor arrays, we use destructuring to retrieve elements from the array and store them into variables.\nWhy do we need array destructuring? Let us look at a practical example -\nconst arr = [2, 3, 4] const a = arr[0] const b = arr[1] const c = arr[2] Notice how we had to individually create a single variable and assign each array value to this variable. Cumbersome right?\nWith destructuring, the process becomes VERY simple -\nconst [a, b, c] = [2, 3, 4] console.log(a, b, c) // 2, 3, 4 Note that the original array is not changed in any way.\nOne more thing to observe in the above example is that since the array values are in a sequential order, destructuring them into variables is quite straightforward. As in, a will be automatically assigned 2, b = 3, and c = 4 without having to explicitly state it.\nBut what if there are values somewhere further ahead in the array and we need to skip a few values to access it and assign it to a variable?\nThere is a quirky yet helpful way to do this.\nTake this example where we want to assign a fruit to an individual. Richard should be assigned banana but the desired fruit for Bighetti - kiwi - is further ahead in the array.\nconst fruits = ['banana', 'apple', 'orange', 'kiwi'] This is how we do it -\nconst [Richard, , , Bighetti] = fruits console.log(Richard, Bighetti) We simply put “gaps” during destructuring after the single comma operator , - which signifies that we intend to skip the values for that particular value. So, apple and orange are skipped and the variable Bighetti is assigned the value of kiwi.\nHow to swap values using destructuring? Swapping values is really easy with array destructuring. No more temp variables to be used! Although, if we want to perform more operations on the swapped values later on, we may need to assign them to a variable.\nSwapping is as simple as -\n[Richard, Bighetti] = [Bighetti, Richard] There we go. Previously assigned values of banana and kiwi to Richard and Bighetti are now swapped.\nHow to destructure nested arrays? The examples we saw above were for linear arrays or “shallow” arrays. What about destructuring a nested array? Arrays within arrays are a common data structure in real-life codebases. Consider the example -\nconst nested = [1, [2, 3, 4]] const [i, j] = nested console.log(i, j) The console statement would this -\nAs you can see, the value for i is 1 whereas the value for j is an array of values - 2, 3, 4. What if we want to return this array of values for j as a “flattened” array - as in, the values would be destructured again? Here is how we do that -\nconst nested = [1, [2, 3, 4]] const [i, [j, k, l]] = nested console.log(i, j, k, l) And this will return the values as expected -\nDestructuring with default values Many times, we may not know the exact size/length of the array we are dealing with, and while destructuring, we might try to assign non-existent values to variables. Consider this example -\nconst [p, q, r] = [8, 9] console.log(p, q, r) While the values for p and q would be displayed as 8 and 9, the value for r is returned to be undefined. As evident, a value for r does not exist in the array we are trying to destructure since it only contains two elements, so naturally it returns undefined, which is not something we want to deal with while working with large applications since returning undefined might break the flow of execution.\nIn such cases, simply specifying a default value to fall back into, can resolve the situation -\nconst [p, q, r = 1] = [8, 9] console.log(p, q, r) We can even set default values for all the variables if the array we are working with is dynamic and we are not sure of its values being generated properly.\nThere are multiple other ways to deal with this situation, especially with libraries like React where we perform a conditional render based on a value’s existence or similar conditional check.\nDestructuring is great on many levels due to its simplicity with the use of assignment operator = to extract values and immediately assign them to variables.\nAs mentioned, destructuring in no way changes the original array; instead it simply helps us assign its elements as values to other variables.\nIn the next post, we will look at destructuring for Objects, the most used data structure in JavaScript.\nKeep shipping 🚀\n",
   "wordCount" : "865",
   "inLanguage": "en",
-  "image":"http://vinoo.in/blog/destructuring-in-js-arrays/8.png","datePublished": "2024-01-15T21:54:05+05:30",
+  "image":"/blog/destructuring-in-js-arrays/8.png","datePublished": "2024-01-15T21:54:05+05:30",
   "dateModified": "2024-01-15T21:54:05+05:30",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://vinoo.in/blog/destructuring-in-js-arrays/"
+    "@id": "/blog/destructuring-in-js-arrays/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Vinoo",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://vinoo.in/favicon.ico"
+      "url": "favicon.ico"
     }
   }
 }
@@ -141,7 +141,7 @@
 <header class="header sticky-header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <a href="" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -167,27 +167,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://vinoo.in/" title="Home">
+                <a href="/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://vinoo.in/blog" title="Blog">
+                <a href="/blog" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="http://vinoo.in/projects" title="Projects">
+                <a href="/projects" title="Projects">
                     <span>Projects</span>
                 </a>
             </li>
             <li>
-                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="http://vinoo.in/tags" title="Tags">
+                <a href="/tags" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
@@ -198,7 +198,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
+    <div class="breadcrumbs"><a href="">Home</a>&nbsp;»&nbsp;<a href="/blog/">Blogs</a></div>
     <h1 class="post-title">
       Destructuring in JavaScript: Part 1 - Arrays
     </h1>
@@ -214,7 +214,7 @@
 
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/destructuring-in-js-arrays/8.png" alt="">
+<figure class="entry-cover"><img loading="lazy" src="/blog/destructuring-in-js-arrays/8.png" alt="">
         
 </figure><div class="toc">
     <details >
@@ -318,16 +318,16 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
-      <li><a href="http://vinoo.in/tags/arrays/">arrays</a></li>
-      <li><a href="http://vinoo.in/tags/javascript-series/">javascript-series</a></li>
+      <li><a href="/tags/javascript/">javascript</a></li>
+      <li><a href="/tags/arrays/">arrays</a></li>
+      <li><a href="/tags/javascript-series/">javascript-series</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
+    <span>&copy; 2024 <a href="">Vinoo</a></span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
