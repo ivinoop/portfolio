@@ -58,9 +58,9 @@ params:
     imageHeight: 220
     buttons:
       - name: Projects
-        url: "https://vinoo.in/projects/"
+        url: "/projects/"
       - name: Blog
-        url: "https://vinoo.in/blog/"
+        url: "/blog/"
 
   # List View
   hideDescriptionInList: false
