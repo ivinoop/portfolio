@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ssh on Vinoo</title>
+    <link>http://vinoo.in/tags/ssh/</link>
+    <description>Recent content in ssh on Vinoo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Sep 2022 20:48:29 +0530</lastBuildDate><atom:link href="http://vinoo.in/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How To Setup SSH Keys For Multiple Hosts</title>
+      <link>http://vinoo.in/blog/how-to-setup-ssh/</link>
+      <pubDate>Fri, 16 Sep 2022 20:48:29 +0530</pubDate>
+      
+      <guid>http://vinoo.in/blog/how-to-setup-ssh/</guid>
+      <description>SSH is a very powerful way to access remote servers. Learn how to easily setup SSH in your system.</description>
+    </item>
+    
+  </channel>
+</rss>

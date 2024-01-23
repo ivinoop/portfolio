@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>What is DOM in JavaScript? | Vinoo</title>
+<meta name="keywords" content="javascript, javascript-series">
+<meta name="description" content="DOM forms the core of everything we see on the web page in a browser. Let&#39;s understand what it is and how it works.">
+<meta name="author" content="">
+<link rel="canonical" href="http://vinoo.in/blog/what-is-dom-in-javascript/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.5b9ae0304f93db6cc493f51846f012428af399c614b4f2fbdb7fa59dd4d5ef5b.js" integrity="sha256-W5rgME&#43;T22zEk/UYRvASQorzmcYUtPL723&#43;lndTV71s="
+    onload="hljs.initHighlightingOnLoad();"></script>
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.1/styles/atom-one-dark.min.css"
+  integrity="sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+
+<meta property="og:title" content="What is DOM in JavaScript?" />
+<meta property="og:description" content="DOM forms the core of everything we see on the web page in a browser. Let&#39;s understand what it is and how it works." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://vinoo.in/blog/what-is-dom-in-javascript/" />
+<meta property="og:image" content="http://vinoo.in/blog/what-is-dom-in-js/1.png" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-08-16T20:57:48&#43;05:30" />
+<meta property="article:modified_time" content="2023-08-16T20:57:48&#43;05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://vinoo.in/blog/what-is-dom-in-js/1.png" />
+<meta name="twitter:title" content="What is DOM in JavaScript?"/>
+<meta name="twitter:description" content="DOM forms the core of everything we see on the web page in a browser. Let&#39;s understand what it is and how it works."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "http://vinoo.in/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "What is DOM in JavaScript?",
+      "item": "http://vinoo.in/blog/what-is-dom-in-javascript/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "What is DOM in JavaScript?",
+  "name": "What is DOM in JavaScript?",
+  "description": "DOM forms the core of everything we see on the web page in a browser. Let's understand what it is and how it works.",
+  "keywords": [
+    "javascript", "javascript-series"
+  ],
+  "articleBody": "Intro DOM - stands for Document Object Model. Think of it as a tree that with multiple branches that fan out to indicate and serve different elements on the web page. Now, each branch can be referred to by its own “name”.\nHow do we give the name? This is done through the HTML document of the web page we just talked about. So essentially, the DOM is a structured representation of these documents, and by using JavaScript and its various built-in methods, we can access these documents to manipulate them.\nNow, that’s a strong word. What exactly do we “manipulate” here? Simply put, we can access, modify, and control the behaviour, look, and feel of all the elements on a web page represented by the DOM tree. This includes changing text, HTML attributes, CSS styles, and more. Yay!\nWhere is DOM located? But where does the DOM come from? The DOM is automatically created by the browser as soon as our web loads, and is then stored in a tree structure somewhat visually imagined as below -\nThe “document” - essentially the entire web page once it is loaded by the browser - is an object that we can access, in JavaScript. Think of it as the entry point into the DOM. There are various methods (functions) available in the document object, querySelector being the most common one. Hierarchically, the html element is the first “child” element of the document object. It serves as the root element for all other elements on the page.\nFrom there, it’s a complete tree of elements with all the sibling and child elements nested according to their semantic value.\n💡 Note that the document object and its inherent functions are NOT equivalent to the language JavaScript itself. JavaScript is a \"dialect\" of the larger ECMAScript ecosystem. The DOM and its functions \u0026 properties actually come from Web APIs which are libraries available through the browser, and which can be accessed by JavaScript. There is an official DOM specification that browsers implement which is why DOM manipulation works the same across all browsers.\nHow to perform DOM operations? Now that we a basic understanding what the DOM is, let us see how we can work with the DOM and apply various methods to make our web page interactive.\nAs mentioned before, the DOM comes with a collections of functions and properties which we can invoke in any ECMAScript dialect. Which means, JavaScript as a language, is able to call these functions just like any other method.\nDOM Properties and Methods A few of the most common document methods are -\nquerySelector - enables us to query the DOM and select a particular element with its class name. It can either be a single element with a unique class name or multiple elements with the same class name. In case there are multiple elements with the same class name, then they are all queried with querySelectorAll and stored in something called a Nodelist - which is an array of all the items/elements we have queried. Suppose we have a div HTML element with the class name main-content, we query it like below - // Query the element and assign it to variable const mainContent = document.querySelector('.main-content') /** NOTE - we can see that there is a \".\" (dot) before the class name in the query method. This is mandatory to be applied to query all class names */ getElementById - this is similar to querySelector but as the method name suggests, it is used to the query the element by its unique id name. id names are unique since no two elements can have the same id. If our div element above had an id of #main-content, then we query it by - const mainContentID = document.getElementById('main-content') /** NOTE - there is no need to have a \".\" or a \"#\" to specify the id name since getElementById does the work for us */ addEventListener - all interactivity that we would need for our web application, is going to be defined in and handled by this method. Think of this as the one major method that we can use to keep track of various interactions - touch, single click, double click, triple click (we can even customise the number of clicks! 😁) mouse hover/movements, etc. There are a huge number of properties that this method has to offer and we will possible dive deeper into it in the future articles. Example - const btnElement = document.querySelector('.main-btn') btn.addEventListener('click', function() { // define interaction/function here } As can be seen here, we attach the addEventListener method to the element with which we want to interact and then define the action we want performed once the “event” (click, touch, etc) happens. We can even add, remove, and toggle classes dynamically after an event/action happens. Few of the methods are -\nclassList.add() and classList.remove() - as the name suggests, classList is a property that returns the CSS classes for the element. We can then use methods like add() and remove() to manipulate the same. A very abstract random example - const mainDiv = document.querySelector('.main-div') if (isLoggedIn) { mainDiv.classList.add('login-bg') } else { mainDiv.classList.remove('header-bg') } classList.toggle() - this is an interesting one, and very useful too. This helps us check if the class we want for an element is already added, and if not, adds it - and vice-versa. Removes a class if it already exists. A simple example to switch players when a certain condition is met - const playerOne = document.querySelector('.player-one') const playerTwo = document.querySelector('.player-two') document.getElementById(`current--${activePlayer}`).textContent = 0 activePlayer = activePlayer === 0 ? 1 : 0 player0El.classList.toggle('player--active') player1El.classList.toggle('player--active') createElement() - we don’t always have to have an HTML structure defined beforehand modifying it via DOM. The createElement() method helps us create new elements and then add them to the DOM by using other methods (discussed in the next point). Example - const paragraphSection = document .createElement('section') .classList.add('my-section') const paragraphWrapper = document.createElement('div').classList.add('my-div') const paragraph = document.createElement('p').classList.add('my-paragraph') appendChild() - once we have created an element from the above method, we then add or “append” it to the DOM using the appendChild() method. This adds the new element as the last child of the parent element. If the element we are adding already exists, somewhere higher up in the tree, then using this method will remove it from its existing position and add it to the bottom. Continuing the previous example - mainEle.appendChild(paragraphSection) paragraphSection.appendChild(paragraphWrapper) paragraphWrapper.appendChild(paragraph) This would create the below structure in the DOM - (notice in the earlier example that we added class names to each element using the classList property) ",
+  "wordCount" : "1247",
+  "inLanguage": "en",
+  "image":"http://vinoo.in/blog/what-is-dom-in-js/1.png","datePublished": "2023-08-16T20:57:48+05:30",
+  "dateModified": "2023-08-16T20:57:48+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://vinoo.in/blog/what-is-dom-in-javascript/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vinoo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://vinoo.in/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://vinoo.in/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
+    <h1 class="post-title">
+      What is DOM in JavaScript?
+    </h1>
+    <time style="font-size: 12px;">
+      Aug 16, 2023
+    </time>
+    <div class="post-description">
+      DOM forms the core of everything we see on the web page in a browser. Let&#39;s understand what it is and how it works.
+    </div>
+    <div class="post-meta">
+
+
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/what-is-dom-in-js/1.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#intro" aria-label="Intro">Intro</a></li>
+                <li>
+                    <a href="#where-is-dom-located" aria-label="Where is DOM located?">Where is DOM located?</a></li>
+                <li>
+                    <a href="#how-to-perform-dom-operations" aria-label="How to perform DOM operations?">How to perform DOM operations?</a><ul>
+                        
+                <li>
+                    <a href="#dom-properties-and-methods" aria-label="DOM Properties and Methods">DOM Properties and Methods</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="intro">Intro<a hidden class="anchor" aria-hidden="true" href="#intro">#</a></h2>
+<p>DOM - stands for Document Object Model. Think of it as a tree that with multiple branches that fan out to indicate and serve different elements on the web page. Now, each branch can be referred to by its own &ldquo;name&rdquo;.</p>
+<p>How do we give the name? This is done through the HTML document of the web page we just talked about. So essentially, the DOM is a structured representation of these documents, and by using JavaScript and its various built-in methods, we can access these documents to manipulate them.</p>
+<p>Now, that&rsquo;s a strong word. What exactly do we &ldquo;manipulate&rdquo; here? Simply put, we can access, modify, and control the behaviour, look, and feel of all the elements on a web page represented by the DOM tree. This includes changing text, HTML attributes, CSS styles, and more. Yay!</p>
+<h2 id="where-is-dom-located">Where is DOM located?<a hidden class="anchor" aria-hidden="true" href="#where-is-dom-located">#</a></h2>
+<p>But where does the DOM come from? The DOM is automatically created by the browser as soon as our web loads, and is then stored in a tree structure somewhat visually imagined as below -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1691504302433/0e25ea02-c2b5-4a26-918a-2fd03d740a1b.png" alt=""  />
+</p>
+<p>The &ldquo;document&rdquo; - essentially the entire web page once it is loaded by the browser - is an object that we can access, in JavaScript. Think of it as the entry point into the DOM. There are various methods (functions) available in the document object, <code>querySelector</code> being the most common one. Hierarchically, the <code>html</code> element is the first &ldquo;child&rdquo; element of the document object. It serves as the root element for all other elements on the page.</p>
+<p>From there, it&rsquo;s a complete tree of elements with all the sibling and child elements nested according to their semantic value.</p>
+<div data-node-type="callout">
+<div data-node-type="callout-emoji">💡</div>
+<div data-node-type="callout-text">Note that the <code>document</code> object and its inherent functions are NOT equivalent to the language JavaScript itself. JavaScript is a "dialect" of the larger <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.ecma-international.org/publications-and-standards/standards/ecma-262/" style="pointer-events: none">ECMAScript</a> ecosystem. The DOM and its functions &amp; properties actually come from <code>Web APIs</code> which are libraries available through the browser, and which can be accessed by JavaScript.</div>
+</div>
+<p>There is an official DOM specification that browsers implement which is why DOM manipulation works the same across all browsers.</p>
+<h2 id="how-to-perform-dom-operations">How to perform DOM operations?<a hidden class="anchor" aria-hidden="true" href="#how-to-perform-dom-operations">#</a></h2>
+<p>Now that we a basic understanding what the DOM is, let us see how we can work with the DOM and apply various methods to make our web page interactive.</p>
+<p>As mentioned before, the DOM comes with a collections of functions and properties which we can invoke in any ECMAScript dialect. Which means, JavaScript as a language, is able to call these functions just like any other method.</p>
+<h3 id="dom-properties-and-methods">DOM Properties and Methods<a hidden class="anchor" aria-hidden="true" href="#dom-properties-and-methods">#</a></h3>
+<p>A few of the most common <code>document</code> methods are -</p>
+<ul>
+<li><code>querySelector</code> - enables us to query the DOM and select a particular element with its class name. It can either be a single element with a unique class name or multiple elements with the same class name. In case there are multiple elements with the same class name, then they are all queried with <code>querySelectorAll</code> and stored in something called a <code>Nodelist</code> - which is an array of all the items/elements we have queried.
+Suppose we have a <code>div</code> HTML element with the class name <code>main-content</code>, we query it like below -
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Query the element and assign it to variable
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mainContent</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.main-content&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/** NOTE - we can see that there is a &#34;.&#34; (dot) before the class name 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">in the query method. This is mandatory to be applied to query 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">all class names
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span></code></pre></div></li>
+<li><code>getElementById</code> - this is similar to <code>querySelector</code> but as the method name suggests, it is used to the query the element by its unique <code>id</code> name. <code>id</code> names are unique since no two elements can have the same <code>id</code>. If our <code>div</code> element above had an <code>id</code> of <code>#main-content</code>, then we query it by -
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mainContentID</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;main-content&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/** NOTE - there is no need to have a &#34;.&#34; or a &#34;#&#34; to specify
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">the id name since getElementById does the work for us 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span></code></pre></div></li>
+<li><code>addEventListener</code> - all interactivity that we would need for our web application, is going to be defined in and handled by this method. Think of this as the one major method that we can use to keep track of various interactions - touch, single click, double click, triple click (we can even customise the number of clicks! 😁) mouse hover/movements, etc. There are a huge number of properties that this method has to offer and we will possible dive deeper into it in the future articles. Example -
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">btnElement</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.main-btn&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">btn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// define interaction/function here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div>As can be seen here, we attach the <code>addEventListener</code> method to the element with which we want to interact and then define the action we want performed once the &ldquo;event&rdquo; (click, touch, etc) happens.</li>
+</ul>
+<p>We can even add, remove, and toggle classes dynamically after an event/action happens. Few of the methods are -</p>
+<ul>
+<li><code>classList.add()</code> and <code>classList.remove()</code> - as the name suggests, <code>classList</code> is a property that returns the CSS classes for the element. We can then use methods like <code>add()</code> and <code>remove()</code> to manipulate the same. A very abstract random example -
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mainDiv</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.main-div&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isLoggedIn</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mainDiv</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;login-bg&#39;</span>)
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mainDiv</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#e6db74">&#39;header-bg&#39;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li><code>classList.toggle()</code> - this is an interesting one, and very useful too. This helps us check if the class we want for an element is already added, and if not, adds it - and vice-versa. Removes a class if it already exists. A simple example to switch players when a certain condition is met -
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">playerOne</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.player-one&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">playerTwo</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.player-two&#39;</span>)
+</span></span><span style="display:flex;"><span>document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">`current--</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">activePlayer</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>).<span style="color:#a6e22e">textContent</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">activePlayer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">activePlayer</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">player0El</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">toggle</span>(<span style="color:#e6db74">&#39;player--active&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">player1El</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">toggle</span>(<span style="color:#e6db74">&#39;player--active&#39;</span>)
+</span></span></code></pre></div></li>
+<li><code>createElement()</code> - we don&rsquo;t always have to have an HTML structure defined beforehand modifying it via DOM. The <code>createElement()</code> method helps us create new elements and then add them to the DOM by using other methods (discussed in the next point). Example -
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">paragraphSection</span> <span style="color:#f92672">=</span> document
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;section&#39;</span>)
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;my-section&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">paragraphWrapper</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;div&#39;</span>).<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;my-div&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">paragraph</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;p&#39;</span>).<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;my-paragraph&#39;</span>)
+</span></span></code></pre></div></li>
+<li><code>appendChild()</code> - once we have created an element from the above method, we then add or &ldquo;append&rdquo; it to the DOM using the <code>appendChild()</code> method. This adds the new element as the last child of the parent element. If the element we are adding already exists, somewhere higher up in the tree, then using this method will remove it from its existing position and add it to the bottom. Continuing the previous example -
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">mainEle</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">paragraphSection</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">paragraphSection</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">paragraphWrapper</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">paragraphWrapper</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">paragraph</span>)
+</span></span></code></pre></div>This would create the below structure in the DOM - (notice in the earlier example that we added class names to each element using the <code>classList</code> property)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;main&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;section</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#39;my-section&#39;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;div</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#39;my-div&#39;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;p</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#39;my-paragraph&#39;</span><span style="color:#f92672">&gt;&lt;/p&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/div&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;/section&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/main&gt;</span>
+</span></span></code></pre></div></li>
+<li><code>removeChild()</code> - as the name makes it clear, it simple removes the specified element from the DOM. More specifically, the parent HTML element calls this method with the child element&rsquo;s name specified, which then removes the child element from the tree.</li>
+</ul>
+<p>There are a lot more properties and methods that the <code>document</code> object has to offer - a thorough explanation and references can be found at MDN documentation. This post has covered the basics of DOM and how to get started with making simple modifications in DOM tree to add any kind of interactivity we need for our application.</p>
+<blockquote>
+<p>This is the first post in <a href="https://vinoo.in/tags/javascript-series/">The Complete JavaScript Series</a>. Stay tuned for more!</p>
+</blockquote>
+<p>In the upcoming posts, we will dive deeper into the workings of JavaScript and explore a few rarely encountered concepts.</p>
+<p>Keep shipping 🚀</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
+      <li><a href="http://vinoo.in/tags/javascript-series/">javascript-series</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

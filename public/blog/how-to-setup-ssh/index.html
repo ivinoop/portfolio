@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>How To Setup SSH Keys For Multiple Hosts | Vinoo</title>
+<meta name="keywords" content="ssh, git, github">
+<meta name="description" content="SSH is a very powerful way to access remote servers. Learn how to easily setup SSH in your system.">
+<meta name="author" content="">
+<link rel="canonical" href="http://vinoo.in/blog/how-to-setup-ssh/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.5b9ae0304f93db6cc493f51846f012428af399c614b4f2fbdb7fa59dd4d5ef5b.js" integrity="sha256-W5rgME&#43;T22zEk/UYRvASQorzmcYUtPL723&#43;lndTV71s="
+    onload="hljs.initHighlightingOnLoad();"></script>
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.1/styles/atom-one-dark.min.css"
+  integrity="sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+
+<meta property="og:title" content="How To Setup SSH Keys For Multiple Hosts" />
+<meta property="og:description" content="SSH is a very powerful way to access remote servers. Learn how to easily setup SSH in your system." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://vinoo.in/blog/how-to-setup-ssh/" />
+<meta property="og:image" content="http://vinoo.in/blog/how-to-setup-ssh/how-to-setup-ssh.png" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2022-09-16T20:48:29&#43;05:30" />
+<meta property="article:modified_time" content="2022-09-16T20:48:29&#43;05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://vinoo.in/blog/how-to-setup-ssh/how-to-setup-ssh.png" />
+<meta name="twitter:title" content="How To Setup SSH Keys For Multiple Hosts"/>
+<meta name="twitter:description" content="SSH is a very powerful way to access remote servers. Learn how to easily setup SSH in your system."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "http://vinoo.in/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "How To Setup SSH Keys For Multiple Hosts",
+      "item": "http://vinoo.in/blog/how-to-setup-ssh/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How To Setup SSH Keys For Multiple Hosts",
+  "name": "How To Setup SSH Keys For Multiple Hosts",
+  "description": "SSH is a very powerful way to access remote servers. Learn how to easily setup SSH in your system.",
+  "keywords": [
+    "ssh", "git", "github"
+  ],
+  "articleBody": "There are probably hundreds, even thousands of articles on this topic. And that’s precisely the reason why it can also get daunting, confusing, and borderline nauseating to understand how to setup, much less use SSH as a beginner.\nThis post is aimed to be a no-nonsense, no-fluff guide to creating multiple SSH keys for difference Git based accounts like GitHub or BitBucket, and manage all of them easily, simultaneously.\nDisclaimer: This is not an expert guide, and the steps here are simplified to ensure all levels of developers can follow. In case of any discrepancy or incorrect steps, please let me know in the comments and I would be happy to correct.\nIt is recommended to complete the below steps from beginning to end for one key and then repeat the process for all keys thereafter.\nStep 1 - Check for existing keys Use the command below to check if there are existing SSH keys -\nls -al ~/.ssh\nIf you need a clean slate and start setting up everything afresh, delete the existing entries with this command -\nssh-add -D\nNote that this will only delete the manual entries previously done by you and not the ones automatically added by other agents/tools. To ensure that the .ssh folder is empty, simply delete the contents of the folder like you normally would.\nFiles beginning with a dot ‘.’ are irrelevant in this context. SSH key names look like this -\nStep 2 - Generate new SSH key Type in this command to generate a new SSH key -\nssh-keygen -t ed25519 -C \"your@email.com\"\nMeaning of different flags in the above command -\n-t : defines the type of algorithm that generates the key; RSA, ed25519, etc. ed25519 is a more encrypted, more secure algorithm -C : used to define any comment to identify the particular entity who generates the key. Optional, but always recommended Once entered, the above command generates the SSH key. Make sure you enter a unique name within the path, else the file name will default to id_rsa. Your screen should resemble like so -\nHit Enter through the next steps (paraphrase, et al), and your keys will be generated; Two files - a private key and public key will be generated.\nStep 3 - Create a known_hosts file Nothing fancy; simply go inside the .ssh folder with cd .ssh and create a file named known_hosts_yourkeyname. This helps you easily diagnose issues should they occur in future. Use the command below to create it -\ntouch known_hosts_yourkeyname\nLeave it untouched after this.\nStep 4 - Create/Edit the config file The config file is used to define and set options for each key and its corresponding host. Open the .ssh folder in your preferred editor and create a new file named config (without any extensions) and paste the following lines into it -\nHere is a brief breakdown of what each line means -\nHost : This is used to identify each key amidst the different ones in your system. Keep it simple with the URL of the host as above. HostName: This is where your remote repository exists. This is what is used to match with your repo’s base URL. For a default SSH key which is usually a personal one, keep the HostName entry the same as the Host. For work SSH keys, you can modify the HostName like so -\nUser : For git based hosts/servers, the entry will be git. If it is a Digital Ocean Droplet or AWS instance, it may vary accordingly. AddKeysToAgent : In a further step, we will add the SSH keys to the ssh-agent in the system - which is a program that keeps track of identities and passwords, so that you do not have to enter your credentials each time you perform git read/write operations. In this line, we are prompting the private key to be authenticated by the ssh-agent. IdentityFile : This is the path of the SSH key UserKnownHostsFile : This is used to store all connections to hosts that your key connects to. Specify the name of the known_hosts file you created earlier using the touch command. IdentitiesOnly : This entry is used to ensure that only the specified keys are used to connect to a host, and no other. NOTE: Once you generate more keys, you will need to simply add the same set of lines as above for those new keys. We will see an example of this at the end of the article.\nStep 5 - Add the keys to ssh-agent Enter the command below -\neval \"$(ssh-agent -s)\"\nA unique Agent PID will be displayed which means that the ssh-agent is now running.\nNext, add the keys to it -\nssh-add --apple-use-keychain ~/.ssh/your_keyname\nIf you are not on a Mac, do not use the --aple-use-keychain flag. This is for the newer keychain access management in MacOS versions after Monterey. If you are using an older version or are on Linux, replace it with this -\nssh-add -K ~/.ssh/your_keyname\nYou will get a line confirming the key was added.\nStep 6 - Add the key to your host Make sure you’re inside the .ssh folder. Then, copy the contents of your public key like so -\ncat your_keyname.pub | pbcopy\ncat is to display the contents of the public key, and simultaneously, with the pipeline operator, we use pbcopy to copy the contents to the system’s clipboard.\nNext, add this to your host. If you are on GitHub, go to your account Settings\u003eSSH and GPG Keys and add the key.\nStep 7 - Verify and start SSHing The last step is to verify that your configuration is up and running. Enter this command -\nssh -T git@github.com\nSuppose you have repeated the process up until Step 6 for two other keys and you now have two keys, with the second key supposedly on GitHub again, and the third key on BitBucket, then your config file should look similar to this -\nAs you can see, there are multiple hosts with multiple corresponding keys and all of them are pattern matched by the ssh-agent to connect only as specified. Notice how the Host entry for GitHub work account and BitBucket account are unique.\nYou can now verify the configuration for all of them -\nssh -T git@github.com\nssh -T git@github-work\nssh -T git@bitbucket.org\nYou should get a success message for each of them indicating that authentication was successful -\nHi some_user! You've successfully authenticated, but GitHub does not provide shell access.\nVoila! 🎉 You are now all set to clone your repos from the hosts you have setup.\nAn important thing to notice here is that in our example above, we have 2 GitHub hosts where the HostName entry points to github.com but the Host entry is kept different in order for the ssh-agent to uniquely identify each of them.\nTherefore, when you are cloning a repo from the Default Personal account, you can simply type in -\ngit clone git@github.com:your_username/your_repo_name.git\nHowever, when you want to clone a repo from the Work GitHub account, you would have to change the base URL of the repo after the part git@, with your corresponding Host entry, like so -\ngit clone git@github-work:your_username/your_repo_name.git\nIf it is a different host altogether like the Bitbucket one, then you can simply use the clone command like usual.\nThis brings us to the end of this rather long, but detailed article on how to setup multiple SSH keys for multiple hosts in your system.\nHave fun setting up, and do let me know in the comments, if you have any suggestions. Until next time 🖖\n",
+  "wordCount" : "1275",
+  "inLanguage": "en",
+  "image":"http://vinoo.in/blog/how-to-setup-ssh/how-to-setup-ssh.png","datePublished": "2022-09-16T20:48:29+05:30",
+  "dateModified": "2022-09-16T20:48:29+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://vinoo.in/blog/how-to-setup-ssh/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vinoo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://vinoo.in/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://vinoo.in/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
+    <h1 class="post-title">
+      How To Setup SSH Keys For Multiple Hosts
+    </h1>
+    <time style="font-size: 12px;">
+      Sep 16, 2022
+    </time>
+    <div class="post-description">
+      SSH is a very powerful way to access remote servers. Learn how to easily setup SSH in your system.
+    </div>
+    <div class="post-meta">
+
+
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/how-to-setup-ssh/how-to-setup-ssh.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#step-1---check-for-existing-keys" aria-label="Step 1 - Check for existing keys">Step 1 - Check for existing keys</a></li>
+                <li>
+                    <a href="#step-2---generate-new-ssh-key" aria-label="Step 2 - Generate new SSH key">Step 2 - Generate new SSH key</a></li>
+                <li>
+                    <a href="#step-3---create-a-known_hosts-file" aria-label="Step 3 - Create a known_hosts file">Step 3 - Create a <code>known_hosts</code> file</a></li>
+                <li>
+                    <a href="#step-4---createedit-the-config-file" aria-label="Step 4 - Create/Edit the config file">Step 4 - Create/Edit the config file</a></li>
+                <li>
+                    <a href="#step-5---add-the-keys-to-ssh-agent" aria-label="Step 5 - Add the keys to ssh-agent">Step 5 - Add the keys to <code>ssh-agent</code></a></li>
+                <li>
+                    <a href="#step-6---add-the-key-to-your-host" aria-label="Step 6 - Add the key to your host">Step 6 - Add the key to your host</a></li>
+                <li>
+                    <a href="#step-7---verify-and-start-sshing" aria-label="Step 7 - Verify and start SSHing">Step 7 - Verify and start SSHing</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>There are probably hundreds, even thousands of articles on this topic. And that&rsquo;s precisely the reason why it can also get daunting, confusing, and borderline nauseating to understand how to setup, much less use SSH as a beginner.</p>
+<p>This post is aimed to be a no-nonsense, no-fluff guide to creating multiple SSH keys for difference Git based accounts like GitHub or BitBucket, and manage all of them easily, simultaneously.</p>
+<blockquote>
+<p>Disclaimer: This is not an expert guide, and the steps here are simplified to ensure all levels of developers can follow. In case of any discrepancy or incorrect steps, please let me know in the comments and I would be happy to correct.</p>
+</blockquote>
+<p>It is recommended to complete the below steps from beginning to end for one key and then repeat the process for all keys thereafter.</p>
+<h3 id="step-1---check-for-existing-keys">Step 1 - Check for existing keys<a hidden class="anchor" aria-hidden="true" href="#step-1---check-for-existing-keys">#</a></h3>
+<p>Use the command below to check if there are existing SSH keys -</p>
+<p><code>ls -al ~/.ssh</code></p>
+<p>If you need a clean slate and start setting up everything afresh, delete the existing entries with this command -</p>
+<p><code>ssh-add -D</code></p>
+<blockquote>
+<p>Note that this will only delete the manual entries previously done by you and not the ones automatically added by other agents/tools. To ensure that the <code>.ssh</code> folder is empty, simply delete the contents of the folder like you normally would.</p>
+</blockquote>
+<p>Files beginning with a dot &lsquo;.&rsquo; are irrelevant in this context. SSH key names look like this -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1663261370173/ZrF70qS4U.png" alt="List existing SSH keys"  />
+</p>
+<h3 id="step-2---generate-new-ssh-key">Step 2 - Generate new SSH key<a hidden class="anchor" aria-hidden="true" href="#step-2---generate-new-ssh-key">#</a></h3>
+<p>Type in this command to generate a new SSH key -</p>
+<p><code>ssh-keygen -t ed25519 -C &quot;your@email.com&quot;</code></p>
+<p>Meaning of different flags in the above command -</p>
+<ul>
+<li>-t : defines the type of algorithm that generates the key; RSA, ed25519, etc. ed25519 is a more encrypted, more secure algorithm</li>
+<li>-C : used to define any comment to identify the particular entity who generates the key. Optional, but always recommended</li>
+</ul>
+<p>Once entered, the above command generates the SSH key. Make sure you enter a unique name within the path, else the file name will default to <code>id_rsa</code>. Your screen should resemble like so -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1663262419952/xvOVFldj9.png" alt="Generate SSH Key"  />
+</p>
+<p>Hit Enter through the next steps (paraphrase, et al), and your keys will be generated; Two files - a private key and public key will be generated.</p>
+<h3 id="step-3---create-a-known_hosts-file">Step 3 - Create a <code>known_hosts</code> file<a hidden class="anchor" aria-hidden="true" href="#step-3---create-a-known_hosts-file">#</a></h3>
+<p>Nothing fancy; simply go inside the <code>.ssh</code> folder with <code>cd .ssh</code> and create a file named <code>known_hosts_yourkeyname</code>. This helps you easily diagnose issues should they occur in future. Use the command below to create it -</p>
+<p><code>touch known_hosts_yourkeyname</code></p>
+<p>Leave it untouched after this.</p>
+<h3 id="step-4---createedit-the-config-file">Step 4 - Create/Edit the config file<a hidden class="anchor" aria-hidden="true" href="#step-4---createedit-the-config-file">#</a></h3>
+<p>The <code>config</code> file is used to define and set options for each key and its corresponding host. Open the <code>.ssh</code> folder in your preferred editor and create a new file named <code>config</code> (without any extensions) and paste the following lines into it -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1663264369575/zWNnahRKe.png" alt="Config File"  />
+</p>
+<p>Here is a brief breakdown of what each line means -</p>
+<ul>
+<li>Host : This is used to identify each key amidst the different ones in your system. Keep it simple with the URL of the host as above.</li>
+<li>HostName: This is where your remote repository exists. This is what is used to match with your repo&rsquo;s base URL.</li>
+</ul>
+<blockquote>
+<p>For a default SSH key which is usually a personal one, keep the HostName  entry the same as the Host. For work SSH keys, you can modify the HostName like so -</p>
+</blockquote>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1663265117838/jB6bq2kLI.png" alt="ssh-3.png"  />
+</p>
+<ul>
+<li>User : For git based hosts/servers, the entry will be <code>git</code>. If it is a Digital Ocean Droplet or AWS instance, it may vary accordingly.</li>
+<li>AddKeysToAgent : In a further step, we will add the SSH keys to the <code>ssh-agent</code> in the system - which is a program that keeps track of identities and passwords, so that you do not have to enter your credentials each time you perform git read/write operations. In this line, we are prompting the private key to be authenticated by the <code>ssh-agent</code>.</li>
+<li>IdentityFile : This is the path of the SSH key</li>
+<li>UserKnownHostsFile : This is used to store all connections to hosts that your key connects to. Specify the name of the <code>known_hosts</code> file you created earlier using the <code>touch</code> command.</li>
+<li>IdentitiesOnly : This entry is used to ensure that only the specified keys are used to connect to a host, and no other.</li>
+</ul>
+<blockquote>
+<p>NOTE: Once you generate more keys, you will need to simply add the same set of lines as above for those new keys. We will see an example of this at the end of the article.</p>
+</blockquote>
+<h3 id="step-5---add-the-keys-to-ssh-agent">Step 5 - Add the keys to <code>ssh-agent</code><a hidden class="anchor" aria-hidden="true" href="#step-5---add-the-keys-to-ssh-agent">#</a></h3>
+<p>Enter the command below -</p>
+<p><code>eval &quot;$(ssh-agent -s)&quot;</code></p>
+<p>A unique Agent PID will be displayed which means that the ssh-agent is now running.</p>
+<p>Next, add the keys to it -</p>
+<p><code>ssh-add --apple-use-keychain ~/.ssh/your_keyname</code></p>
+<p>If you are not on a Mac, do not use the <code>--aple-use-keychain</code> flag. This is for the newer keychain access management in MacOS versions after Monterey. If you are using an older version or are on Linux, replace it with this -</p>
+<p><code>ssh-add -K ~/.ssh/your_keyname</code></p>
+<p>You will get a line confirming the key was added.</p>
+<h3 id="step-6---add-the-key-to-your-host">Step 6 - Add the key to your host<a hidden class="anchor" aria-hidden="true" href="#step-6---add-the-key-to-your-host">#</a></h3>
+<p>Make sure you&rsquo;re inside the <code>.ssh</code> folder. Then, copy the contents of your public key like so -</p>
+<p><code>cat your_keyname.pub | pbcopy</code></p>
+<blockquote>
+<p><code>cat</code> is to display the contents of the public key, and simultaneously, with the pipeline operator, we use <code>pbcopy</code> to copy the contents to the system&rsquo;s clipboard.</p>
+</blockquote>
+<p>Next, add this to your host. If you are on GitHub, go to your account Settings&gt;SSH and GPG Keys and add the key.</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1663266483663/TWDYB1jyG.jpeg" alt="Add SSH Key to Host"  />
+</p>
+<h3 id="step-7---verify-and-start-sshing">Step 7 - Verify and start SSHing<a hidden class="anchor" aria-hidden="true" href="#step-7---verify-and-start-sshing">#</a></h3>
+<p>The last step is to verify that your configuration is up and running. Enter this command -</p>
+<p><code>ssh -T git@github.com</code></p>
+<p>Suppose you have repeated the process up until Step 6 for two other keys and you now have two keys, with the second key supposedly on GitHub again, and the third key on BitBucket, then your config file should look similar to this -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1663268864930/2X2LE6YXH.png" alt="Multiple Hosts Config"  />
+</p>
+<p>As you can see, there are multiple hosts with multiple corresponding keys and all of them are pattern matched by the <code>ssh-agent</code> to connect only as specified. Notice how the <code>Host</code> entry for GitHub work account and BitBucket account are unique.</p>
+<p>You can now verify the configuration for all of them -</p>
+<p><code>ssh -T git@github.com</code></p>
+<p><code>ssh -T git@github-work</code></p>
+<p><code>ssh -T git@bitbucket.org</code></p>
+<p>You should get a success message for each of them indicating that authentication was successful -</p>
+<p><code>Hi some_user! You've successfully authenticated, but GitHub does not provide shell access.</code></p>
+<p>Voila! 🎉 You are now all set to clone your repos from the hosts you have setup.</p>
+<p>An important thing to notice here is that in our example above, we have 2 GitHub hosts where the <code>HostName</code> entry points to <code>github.com</code> but the <code>Host</code> entry is kept different in order for the ssh-agent to uniquely identify each of them.</p>
+<p>Therefore, when you are cloning a repo from the Default Personal account, you can simply type in -</p>
+<p><code>git clone git@github.com:your_username/your_repo_name.git</code></p>
+<p>However, when you want to clone a repo from the Work GitHub account, you would have to change the base URL of the repo after the part <code>git@</code>, with your corresponding <code>Host</code> entry, like so -</p>
+<p><code>git clone git@github-work:your_username/your_repo_name.git</code></p>
+<p>If it is a different host altogether like the Bitbucket one, then you can simply use the clone command like usual.</p>
+<p>This brings us to the end of this rather long, but detailed article on how to setup multiple SSH keys for multiple hosts in your system.</p>
+<p>Have fun setting up, and do let me know in the comments, if you have any suggestions. Until next time 🖖</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://vinoo.in/tags/ssh/">ssh</a></li>
+      <li><a href="http://vinoo.in/tags/git/">git</a></li>
+      <li><a href="http://vinoo.in/tags/github/">github</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

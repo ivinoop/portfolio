@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Javascript Under the Hood | Vinoo</title>
+<meta name="keywords" content="javascript, javascript-series">
+<meta name="description" content="It is fun and interesting to learn about what makes up JavaScript&#39;s building blocks as a language.">
+<meta name="author" content="">
+<link rel="canonical" href="http://vinoo.in/blog/javascript-under-the-hood/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.5b9ae0304f93db6cc493f51846f012428af399c614b4f2fbdb7fa59dd4d5ef5b.js" integrity="sha256-W5rgME&#43;T22zEk/UYRvASQorzmcYUtPL723&#43;lndTV71s="
+    onload="hljs.initHighlightingOnLoad();"></script>
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.1/styles/atom-one-dark.min.css"
+  integrity="sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+
+<meta property="og:title" content="Javascript Under the Hood" />
+<meta property="og:description" content="It is fun and interesting to learn about what makes up JavaScript&#39;s building blocks as a language." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://vinoo.in/blog/javascript-under-the-hood/" />
+<meta property="og:image" content="http://vinoo.in/blog/javascript-under-the-hood/2.png" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-08-17T21:04:55&#43;05:30" />
+<meta property="article:modified_time" content="2023-08-17T21:04:55&#43;05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://vinoo.in/blog/javascript-under-the-hood/2.png" />
+<meta name="twitter:title" content="Javascript Under the Hood"/>
+<meta name="twitter:description" content="It is fun and interesting to learn about what makes up JavaScript&#39;s building blocks as a language."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "http://vinoo.in/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Javascript Under the Hood",
+      "item": "http://vinoo.in/blog/javascript-under-the-hood/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Javascript Under the Hood",
+  "name": "Javascript Under the Hood",
+  "description": "It is fun and interesting to learn about what makes up JavaScript's building blocks as a language.",
+  "keywords": [
+    "javascript", "javascript-series"
+  ],
+  "articleBody": " This is the 2nd post in The Complete JavaScript Series.\nLet’s take a breather from the code editor today - in the next immediate post, we would be reading concepts along with code examples, but for this post, let’s make some time to simply read through some interesting things about JavaScript as a language. Let’s go 👇\nWhat Actually IS JavaScript? High Up There JavaScript is one of the “high level” languages in the programming ecosystem. The reason is that it abstracts away a lot of system level configuration that we would need to do in C language - creating and storing variables, hardware resource allocation, memory management etc.\nLanguages like Python and JS are designed in such a way that we do not need to manage any of these. While this is the upside, the downside is that we compromise on performance, efficiency, and speed.\nOne of these abstractions is “Garbage Collection” that is present in the JS engine. It automatically removes old, unused objects from the memory.\nInterpreting It Right Computers only understand binary and in order for us to write machine code that is both understandable to the computer and readable by humans, programming languages are designed to accommodate this. And JavaScript, is no different. Its abstraction layers in the JS engine convert our readable code into machine code.\nThis makes JS an “interpreted” language.\nOOP(s?) How do arrays get all their methods (push, shift, splice, etc) ready to use as soon as we define them? We never defined the “properties” of an array, let alone instruct what functions/methods that can be called upon it.\nWell - to highly abstract it to the point of intellectual danger, here is an explanation - this is possible due to ALMOST everything being an object in JS (stress on the word “almost”!).\nExcept for primitive values like numbers and strings, entities like arrays are treated as objects too. Arrays are created from the “prototype” in JS - a blueprint/template that contains all the methods defined in it. The arrays that we create then “inherit” these methods.\nWe will cover a lot more in detail about objects and their workings in a later post where this abstraction - and confusion - will be replaced with the actual insight into how objects and methods work.\nFunctional First In addition, functions in JS are known as “first-class functions” - a term used when functions are treated as variables. This is what gives a programming language like JS the ability to pass functions into other functions (callbacks, references, etc), return functions from functions, etc. More commonly, this is known as functional programming.\nType Free? One other important feature (or a bug?) is that JavaScript is a dynamically typed language. Now, not to spark debates - but there are pros and cons to it, and with JS having a strong hold over all kinds of applications (seriously - JS is almost everywhere in every major app now 🥲), the need for “strongly” typed languages is very much the case.\nWe do not explicitly assign data types to variables. We just declare variables with the necessary scope, but the type is assigned when the JS engine executes our code.\nQuirky fact - a let x = 23 can look like it’s a number, but when we use typeof to console x while playing around with the DOM - surprise, it’s a string.\nWe can reassign the type of variables when we reassign values to those variables. This is what a dynamically typed language looks and works like.\nThis is a major reason why scalability takes a hit when apps use pure JS. And also why TypeScript is fast gaining popularity and in fact, becoming a de facto choice for apps across the developer ecosystem.\nStill - not to worry - we will still be studying everything about JS, building secure, fully functioning apps with JavaScript like everyone has been for the last 2 decades 📈, and JS will still continue to be awesome for many years to come.\nVery soon, I will be creating a complete TypeScript series as well, so watch out for it 🤓\nThread-ing Lightly In Operating System terminology, a thread is like a set of instructions that is executed in the CPU. The thread is where our code is executed in a machine’s processor.\nNow, JavaScript is a single threaded language. This means at any given time, only one single task (or one set of tasks) can be executed. This is obviously a huge pitfall - what if there is a thread that fetches data from an API and the response takes a very long time? This would block the processor from running any other tasks.\nThis is where the concurrency model comes into play. A concurrency model defines how multiple tasks should be handled by a programming language. In the case of JS, we need a non-blocking behaviour which can be achieved by using an “event loop”.\nThe event loop takes complex/long running tasks, executes them in the background, and then puts them back in the main thread once they are done.\nAgain, this is simply an oversimplification and we will definitely dive deeper in the next post.\nWell, that was fun (I hope!). Studying a programming language’s core fundamentals is very essential since it helps us “think” in that language in the long run. The next post will be up soon and it will cover concepts like the JS Engine, Runtime, Execution Context, the Call Stack, Scoping, Hoisting, and much more.\nKeep shipping 🚀\n",
+  "wordCount" : "924",
+  "inLanguage": "en",
+  "image":"http://vinoo.in/blog/javascript-under-the-hood/2.png","datePublished": "2023-08-17T21:04:55+05:30",
+  "dateModified": "2023-08-17T21:04:55+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://vinoo.in/blog/javascript-under-the-hood/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vinoo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://vinoo.in/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://vinoo.in/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
+    <h1 class="post-title">
+      Javascript Under the Hood
+    </h1>
+    <time style="font-size: 12px;">
+      Aug 17, 2023
+    </time>
+    <div class="post-description">
+      It is fun and interesting to learn about what makes up JavaScript&#39;s building blocks as a language.
+    </div>
+    <div class="post-meta">
+
+
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/javascript-under-the-hood/2.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#what-actually-is-javascript" aria-label="What Actually IS JavaScript?">What Actually IS JavaScript?</a><ul>
+                        
+                <li>
+                    <a href="#high-up-there" aria-label="High Up There">High Up There</a></li>
+                <li>
+                    <a href="#interpreting-it-right" aria-label="Interpreting It Right">Interpreting It Right</a></li>
+                <li>
+                    <a href="#oops" aria-label="OOP(s?)">OOP(s?)</a></li>
+                <li>
+                    <a href="#functional-first" aria-label="Functional First">Functional First</a></li>
+                <li>
+                    <a href="#type-free" aria-label="Type Free?">Type Free?</a></li>
+                <li>
+                    <a href="#thread-ing-lightly" aria-label="Thread-ing Lightly">Thread-ing Lightly</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><blockquote>
+<p>This is the 2nd post in <a href="https://vinoo.in/tags/javascript-series/">The Complete JavaScript Series</a>.</p>
+</blockquote>
+<p>Let&rsquo;s take a breather from the code editor today - in the next immediate post, we would be reading concepts along with code examples, but for this post, let&rsquo;s make some time to simply read through some interesting things about JavaScript as a language. Let&rsquo;s go 👇</p>
+<h2 id="what-actually-is-javascript">What Actually IS JavaScript?<a hidden class="anchor" aria-hidden="true" href="#what-actually-is-javascript">#</a></h2>
+<h3 id="high-up-there">High Up There<a hidden class="anchor" aria-hidden="true" href="#high-up-there">#</a></h3>
+<p>JavaScript is one of the &ldquo;high level&rdquo; languages in the programming ecosystem. The reason is that it abstracts away a lot of system level configuration that we would need to do in C language - creating and storing variables, hardware resource allocation, memory management etc.</p>
+<p>Languages like Python and JS are designed in such a way that we do not need to manage any of these. While this is the upside, the downside is that we compromise on performance, efficiency, and speed.</p>
+<p>One of these abstractions is &ldquo;Garbage Collection&rdquo; that is present in the JS engine. It automatically removes old, unused objects from the memory.</p>
+<h3 id="interpreting-it-right">Interpreting It Right<a hidden class="anchor" aria-hidden="true" href="#interpreting-it-right">#</a></h3>
+<p>Computers only understand binary and in order for us to write machine code that is both understandable to the computer and readable by humans, programming languages are designed to accommodate this. And JavaScript, is no different. Its abstraction layers in the JS engine convert our readable code into machine code.</p>
+<p>This makes JS an &ldquo;interpreted&rdquo; language.</p>
+<h3 id="oops">OOP(s?)<a hidden class="anchor" aria-hidden="true" href="#oops">#</a></h3>
+<p>How do arrays get all their methods (push, shift, splice, etc) ready to use as soon as we define them? We never defined the &ldquo;properties&rdquo; of an array, let alone instruct what functions/methods that can be called upon it.</p>
+<p>Well - to highly abstract it to the point of intellectual danger, here is an explanation - this is possible due to ALMOST everything being an object in JS (stress on the word &ldquo;almost&rdquo;!).</p>
+<p>Except for primitive values like numbers and strings, entities like arrays are treated as objects too. Arrays are created from the &ldquo;prototype&rdquo; in JS - a blueprint/template that contains all the methods defined in it. The arrays that we create then &ldquo;inherit&rdquo; these methods.</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1692294741492/d875f852-1a15-4897-a32c-037d5df2e49a.gif" alt=""  />
+</p>
+<p>We will cover a lot more in detail about objects and their workings in a later post where this abstraction - and confusion - will be replaced with the actual insight into how objects and methods work.</p>
+<h3 id="functional-first">Functional First<a hidden class="anchor" aria-hidden="true" href="#functional-first">#</a></h3>
+<p>In addition, functions in JS are known as &ldquo;first-class functions&rdquo; - a term used when functions are treated as variables. This is what gives a programming language like JS the ability to pass functions into other functions (callbacks, references, etc), return functions from functions, etc. More commonly, this is known as <code>functional programming</code>.</p>
+<h3 id="type-free">Type Free?<a hidden class="anchor" aria-hidden="true" href="#type-free">#</a></h3>
+<p>One other important feature (or a bug?) is that JavaScript is a dynamically typed language. Now, not to spark debates - but there are pros and cons to it, and with JS having a strong hold over all kinds of applications (seriously - JS is almost everywhere in every major app now 🥲), the need for &ldquo;strongly&rdquo; typed languages is very much the case.</p>
+<p>We do not explicitly assign data types to variables. We just declare variables with the necessary scope, but the type is assigned when the JS engine executes our code.</p>
+<p>Quirky fact - a <code>let x = 23</code> can look like it&rsquo;s a number, but when we use <code>typeof</code> to console <code>x</code> while playing around with the DOM - surprise, it&rsquo;s a string.</p>
+<p>We can reassign the type of variables when we reassign values to those variables. This is what a dynamically typed language looks and works like.</p>
+<p>This is a major reason why scalability takes a hit when apps use pure JS. And also why TypeScript is fast gaining popularity and in fact, becoming a de facto choice for apps across the developer ecosystem.</p>
+<p>Still - not to worry - we will still be studying everything about JS, building secure, fully functioning apps with JavaScript like everyone has been for the last 2 decades 📈, and JS will still continue to be awesome for many years to come.</p>
+<blockquote>
+<p>Very soon, I will be creating a complete TypeScript series as well, so watch out for it 🤓</p>
+</blockquote>
+<h3 id="thread-ing-lightly">Thread-ing Lightly<a hidden class="anchor" aria-hidden="true" href="#thread-ing-lightly">#</a></h3>
+<p>In Operating System terminology, a thread is like a set of instructions that is executed in the CPU. The thread is where our code is executed in a machine&rsquo;s processor.</p>
+<p>Now, JavaScript is a single threaded language. This means at any given time, only one single task (or one set of tasks) can be executed. This is obviously a huge pitfall - what if there is a thread that fetches data from an API and the response takes a very long time? This would block the processor from running any other tasks.</p>
+<p>This is where the concurrency model comes into play. A concurrency model defines how multiple tasks should be handled by a programming language. In the case of JS, we need a non-blocking behaviour which can be achieved by using an &ldquo;event loop&rdquo;.</p>
+<p>The <code>event loop</code> takes complex/long running tasks, executes them in the background, and then puts them back in the main thread once they are done.</p>
+<p>Again, this is simply an oversimplification and we will definitely dive deeper in the next post.</p>
+<hr>
+<p>Well, that was fun (I hope!). Studying a programming language&rsquo;s core fundamentals is very essential since it helps us &ldquo;think&rdquo; in that language in the long run. The next post will be up soon and it will cover concepts like the JS Engine, Runtime, Execution Context, the Call Stack, Scoping, Hoisting, and much more.</p>
+<p>Keep shipping 🚀</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1692295179658/d48d278b-a926-4cee-a16e-14b93c46693f.gif" alt=""  />
+</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
+      <li><a href="http://vinoo.in/tags/javascript-series/">javascript-series</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

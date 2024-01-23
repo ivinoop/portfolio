@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Javascript in Snippets: Intro and Fundamentals | Vinoo</title>
+<meta name="keywords" content="javascript">
+<meta name="description" content="There are cults. There are followers. And then, there is an entire world embroiled in JavaScript.">
+<meta name="author" content="">
+<link rel="canonical" href="http://vinoo.in/blog/javascript-in-snippets-intro-fundamentals/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.5b9ae0304f93db6cc493f51846f012428af399c614b4f2fbdb7fa59dd4d5ef5b.js" integrity="sha256-W5rgME&#43;T22zEk/UYRvASQorzmcYUtPL723&#43;lndTV71s="
+    onload="hljs.initHighlightingOnLoad();"></script>
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.1/styles/atom-one-dark.min.css"
+  integrity="sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+
+<meta property="og:title" content="Javascript in Snippets: Intro and Fundamentals" />
+<meta property="og:description" content="There are cults. There are followers. And then, there is an entire world embroiled in JavaScript." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://vinoo.in/blog/javascript-in-snippets-intro-fundamentals/" />
+<meta property="og:image" content="http://vinoo.in/blog/javascript-in-snippets/javascript-in-snippets.png" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-03-05T19:59:22&#43;05:30" />
+<meta property="article:modified_time" content="2021-03-05T19:59:22&#43;05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://vinoo.in/blog/javascript-in-snippets/javascript-in-snippets.png" />
+<meta name="twitter:title" content="Javascript in Snippets: Intro and Fundamentals"/>
+<meta name="twitter:description" content="There are cults. There are followers. And then, there is an entire world embroiled in JavaScript."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "http://vinoo.in/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Javascript in Snippets: Intro and Fundamentals",
+      "item": "http://vinoo.in/blog/javascript-in-snippets-intro-fundamentals/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Javascript in Snippets: Intro and Fundamentals",
+  "name": "Javascript in Snippets: Intro and Fundamentals",
+  "description": "There are cults. There are followers. And then, there is an entire world embroiled in JavaScript.",
+  "keywords": [
+    "javascript"
+  ],
+  "articleBody": "The History There are cults. There are followers. And then, there is an entire world embroiled in JavaScript. A world full of engineers, developers, and designers - all ardently worshipping a language that has taken the web world by storm. Again and again.\nJS was introduced to the world 26 years ago. I was introduced to it 9 years ago in a college classroom, and I felt.. nothing. It was taught as just another programming language, with almost the same syntax as the couple of other languages I knew, and to perform the familiar operations of “finding prime numbers”, “generating Fibonacci sequence”, etc. I learned the “how” but never the “what” or “why” of JS. I admit, rather embarrassingly, that back then I did not even know that JS was a language that was developed for the web. Ignorance is NOT bliss 😐.\nIt was originally created for a browser called Netscape Navigator which was competing with Internet Explorer in 1995-1996 to take over the browser domain. Eventually, Internet Explorer won the battle and became the dominant browser at large (back then). I know right? IE, of all browsers. Yikes!\nJS slowly evolved to become a higher end programming language that could breathe interactivity to the browser world, and thus began its many avatars to come.\nAs popularity for JS started growing, ECMA (European Computer Manufacturers Association) was handed over the responsibility of overseeing JS’ development, restructuring, and maintenance. The name was changed from JavaScript to ECMAScript, but the former name has remained attached to the language to this day.\nThe Present Undeniably, JS has taken over the world of web as the main language, arguably beating its competitors by a huge factor. Gone are the days when it was only used for just interactivity. Today, we have a plethora of libraries and frameworks that have helped create an entire ecosystem around JS.\nSuch is the capability and demand that the masses and the indie hackers no less than revere this language for the intuitive, sleek, and nearly flawless experience the web provides today. All hail JavaScript.\nThe Learning After years of forgetting the language and its fundamentals, I started my journey into the world of web development, this time with renewed processes. I now understand the fundamentals in a clearer manner. This post will cover a few of the fundamentals, and the next series of posts will document my learning journey as I tackle the web world with JS. Let’s dive in!\nNote: This post is not a comprehensive one, nor explains the underlying concepts. This is, as the title suggests, a collection of snippets to refer to as a documentation in times of “developer peril😶”.\nSay Hello The first order of things while learning a new language (or relearning for that matter), is to say Hello to the World. It’s a time tested tradition for all newbies. However, considering JS is a whole other world (universe?) in itself, let’s greet it instead!\nalert() is a utility function that is essentially used to display a message in the browser. We shall come back to this later.\nAnother nifty little operator that is helpful is typeof(). It is used to identify the data type of a particular expression or variable in use.\nIn the above example, the variable a holds a value of 23. When we test with the typeof() operator, the value is identified as a number.\nValue Types There are 2 types of value types in JS.\nPrimitive Value Types These are types that can collect / hold only one value. There are 5 Primitive types:\nNumber - A number type is any integer or whole number, including decimals. Examples: 44, -67, 41.67844, 3.1417258, 0.56\nString - String type consists of letters and words encased in any of these quotes:\nBoolean - Boolean data type is a function that can have only one of two values. These are binary in nature. Examples: true or false, 0 or 1, ON or OFF\nUndefined - Undefined is a type that indicates that the variable in question is either not assigned a value or is not declared. This is better illustrated below -\nIn the example above, we see that when we declare variable a, the status is undefined since there is no assigned value. When we check for the type of this undefined variable, the value returned is “undefined”, which is the primitive value of undefined.\nNull - Much like undefined, null is also a type that indicates the absence of any value to a variable. However, unlike undefined, null does not have a value “type” to return. When tested for its type in the console, it returns the type as “object” which is what it is treated as while calling objects that are often not relevant. Non-Primitive Value Type object - This is collection of different values of different data types in a single variable. The syntax is as follows - As can be seen above, the values for the variable userDetails are enclosed in curly brackets. The values themselves are stored in what is known as key-value pairs. Here, userName is a key and “Vinoo” its corresponding value. Together, they are a key-value pair. Same goes with the userID value as well. In the image below, we can see that the console shows the result for the typeof value of userDetails as “object” data type.\nThis concludes the JS In Snippets post. Thanks for reading, and stay tuned for more articles on JavaScript. Keep Shipping!\n",
+  "wordCount" : "917",
+  "inLanguage": "en",
+  "image":"http://vinoo.in/blog/javascript-in-snippets/javascript-in-snippets.png","datePublished": "2021-03-05T19:59:22+05:30",
+  "dateModified": "2021-03-05T19:59:22+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://vinoo.in/blog/javascript-in-snippets-intro-fundamentals/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vinoo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://vinoo.in/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://vinoo.in/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
+    <h1 class="post-title">
+      Javascript in Snippets: Intro and Fundamentals
+    </h1>
+    <time style="font-size: 12px;">
+      Mar 5, 2021
+    </time>
+    <div class="post-description">
+      There are cults. There are followers. And then, there is an entire world embroiled in JavaScript.
+    </div>
+    <div class="post-meta">
+
+
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/javascript-in-snippets/javascript-in-snippets.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#the-history" aria-label="The History">The History</a></li>
+                <li>
+                    <a href="#the-present" aria-label="The Present">The Present</a></li>
+                <li>
+                    <a href="#the-learning" aria-label="The Learning">The Learning</a></li>
+                <li>
+                    <a href="#say-hello" aria-label="Say Hello">Say Hello</a></li>
+                <li>
+                    <a href="#value-types" aria-label="Value Types">Value Types</a><ul>
+                        
+                <li>
+                    <a href="#primitive-value-types" aria-label="Primitive Value Types">Primitive Value Types</a></li>
+                <li>
+                    <a href="#non-primitive-value-type" aria-label="Non-Primitive Value Type">Non-Primitive Value Type</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="the-history">The History<a hidden class="anchor" aria-hidden="true" href="#the-history">#</a></h2>
+<p>There are cults. </p>
+<p>There are followers. </p>
+<p>And then, there is an entire world embroiled in JavaScript. A world full of engineers, developers, and designers - all ardently worshipping a language that has taken the web world by storm. Again and again.</p>
+<p>JS was introduced to the world 26 years ago. I was introduced to it 9 years ago in a college classroom, and I felt.. nothing. It was taught as just another programming language, with almost the same syntax as the couple of other languages I knew, and to perform the familiar operations of &ldquo;finding prime numbers&rdquo;, &ldquo;generating Fibonacci sequence&rdquo;, etc. I learned the &ldquo;how&rdquo; but never the &ldquo;what&rdquo; or &ldquo;why&rdquo; of JS. </p>
+<p>I admit, rather embarrassingly, that back then I did not even know that JS was a language that was developed for the web. Ignorance is <strong>NOT</strong> bliss 😐.</p>
+<p>It was originally created for a browser called Netscape Navigator which was competing with Internet Explorer in 1995-1996 to take over the browser domain. Eventually, Internet Explorer won the battle and became the dominant browser at large (back then). </p>
+<p>I know right? <strong>IE</strong>, of all browsers. Yikes!</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1614962260846/H9eOoeqwO.jpeg" alt="confused-nick-young.jpg"  />
+</p>
+<p>JS slowly evolved to become a higher end programming language that could breathe interactivity to the browser world, and thus began its many avatars to come.</p>
+<p>As popularity for JS started growing, ECMA (European Computer Manufacturers Association) was handed over the responsibility of overseeing JS&rsquo; development, restructuring, and maintenance. The name was changed from JavaScript to ECMAScript, but the former name has remained attached to the language to this day.</p>
+<h2 id="the-present">The Present<a hidden class="anchor" aria-hidden="true" href="#the-present">#</a></h2>
+<p>Undeniably, JS has taken over the world of web as the main language, arguably beating its competitors by a huge factor. Gone are the days when it was only used for just interactivity. Today, we have a plethora of libraries and frameworks that have helped create an entire ecosystem around JS.</p>
+<p>Such is the capability and demand that the masses and the indie hackers no less than revere this language for the intuitive, sleek, and nearly flawless experience the web provides today. All hail JavaScript.</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1614962590216/9Deny2RNx.jpeg" alt="spongebob.jpg"  />
+</p>
+<hr>
+<h2 id="the-learning">The Learning<a hidden class="anchor" aria-hidden="true" href="#the-learning">#</a></h2>
+<p>After years of forgetting the language and its fundamentals, I started my journey into the world of web development, this time with renewed processes. I now understand the fundamentals in a clearer manner. This post will cover a few of the fundamentals, and the next series of posts will document my learning journey as I tackle the web world with JS. </p>
+<p>Let&rsquo;s dive in!</p>
+<blockquote>
+<p><strong>Note:</strong> This post is not a comprehensive one, nor explains the underlying concepts. This is, as the title suggests, a collection of snippets to refer to as a documentation in times of &ldquo;developer peril😶&rdquo;.</p>
+</blockquote>
+<h2 id="say-hello">Say Hello<a hidden class="anchor" aria-hidden="true" href="#say-hello">#</a></h2>
+<p>The first order of things while learning a new language (or relearning for that matter), is to say Hello to the World. It&rsquo;s a time tested tradition for all newbies. However, considering JS is a whole other world (universe?) in itself, let&rsquo;s greet it instead!</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1614962786956/t6MIX0plx.png" alt="hellojs.png"  />
+</p>
+<p><strong>alert()</strong> is a utility function that is essentially used to display a message in the browser. We shall come back to this later.</p>
+<p>Another nifty little operator that is helpful is <strong>typeof()</strong>. It is used to identify the data type of a particular expression or variable in use.</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1614962850706/_0KKwvWX6.png" alt="typeof.png"  />
+</p>
+<p>In the above example, the variable <strong>a</strong> holds a value of 23. When we test with the <strong>typeof()</strong> operator, the value is identified as a <strong>number.</strong></p>
+<h2 id="value-types">Value Types<a hidden class="anchor" aria-hidden="true" href="#value-types">#</a></h2>
+<p>There are 2 types of value types in JS.</p>
+<h3 id="primitive-value-types">Primitive Value Types<a hidden class="anchor" aria-hidden="true" href="#primitive-value-types">#</a></h3>
+<p>These are types that can collect /  hold only one value. There are 5 Primitive types:</p>
+<ul>
+<li>
+<p><strong>Number</strong> -  A number type is any integer or whole number, including decimals.
+<em>Examples: 44, -67, 41.67844, 3.1417258, 0.56</em></p>
+</li>
+<li>
+<p><strong>String</strong> - String type consists of letters and words encased in any of these quotes:</p>
+</li>
+</ul>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1614963586301/IT6BG0LUs.png" alt="string.png"  />
+</p>
+<ul>
+<li>
+<p><strong>Boolean</strong> - Boolean data type is a function that can have only one of two values. These are binary in nature. Examples: true or false, 0 or 1, ON or OFF</p>
+</li>
+<li>
+<p><strong>Undefined</strong> - Undefined is a type that indicates that the variable in question is either not assigned a value or is not declared. This is better illustrated below -</p>
+</li>
+</ul>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1614963236717/40B6I3mM1.png" alt="undefined.png"  />
+</p>
+<p>In the example above, we see that when we declare variable <strong>a</strong>, the status is <strong>undefined</strong> since there is no assigned value. When we check for the <strong>type</strong> of this undefined variable, the value returned is <strong>&ldquo;undefined&rdquo;</strong>, which is the primitive value of <code>undefined</code>.</p>
+<ul>
+<li><strong>Null</strong> - Much like undefined, null is also a type that indicates the absence of any value to a variable. However, unlike undefined, null does not have a value &ldquo;type&rdquo; to return. When tested for its type in the console, it returns the type as &ldquo;object&rdquo; which is what it is treated as while calling objects that are often not relevant.</li>
+</ul>
+<h3 id="non-primitive-value-type">Non-Primitive Value Type<a hidden class="anchor" aria-hidden="true" href="#non-primitive-value-type">#</a></h3>
+<ul>
+<li><strong>object</strong> - This is collection of different values of different data types in a single variable. The syntax is as follows -</li>
+</ul>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1614964197800/jK3bvwx-9.png" alt="object.png"  />
+</p>
+<p>As can be seen above, the values for the variable <strong>userDetails</strong> are enclosed in curly brackets. The values themselves are stored in what is known as <strong>key-value</strong> pairs. Here, <strong>userName</strong> is a key and &ldquo;Vinoo&rdquo; its corresponding value. Together, they are a <strong>key-value</strong> pair. Same goes with the <strong>userID</strong> value as well. In the image below, we can see that the console shows the result for the <strong>typeof</strong> value of <strong>userDetails</strong> as &ldquo;object&rdquo; data type.</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1614964415714/08HYNfmIA.png" alt="image.png"  />
+</p>
+<hr>
+<p>This concludes the JS In Snippets post. Thanks for reading, and stay tuned for more articles on JavaScript. Keep Shipping!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

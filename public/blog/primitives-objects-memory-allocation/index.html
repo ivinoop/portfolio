@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Primitives vs Objects: Memory Allocation In JavaScript | Vinoo</title>
+<meta name="keywords" content="javascript, javascript-series">
+<meta name="description" content="What are Primitives and Objects (Reference Types)? How is memory allocated and managed for different data types in JavaScript?">
+<meta name="author" content="">
+<link rel="canonical" href="http://vinoo.in/blog/primitives-objects-memory-allocation/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.5b9ae0304f93db6cc493f51846f012428af399c614b4f2fbdb7fa59dd4d5ef5b.js" integrity="sha256-W5rgME&#43;T22zEk/UYRvASQorzmcYUtPL723&#43;lndTV71s="
+    onload="hljs.initHighlightingOnLoad();"></script>
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.1/styles/atom-one-dark.min.css"
+  integrity="sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+
+<meta property="og:title" content="Primitives vs Objects: Memory Allocation In JavaScript" />
+<meta property="og:description" content="What are Primitives and Objects (Reference Types)? How is memory allocated and managed for different data types in JavaScript?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://vinoo.in/blog/primitives-objects-memory-allocation/" />
+<meta property="og:image" content="http://vinoo.in/blog/primitives-objects-memory-allocation/6.png" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-09-23T21:48:19&#43;05:30" />
+<meta property="article:modified_time" content="2023-09-23T21:48:19&#43;05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://vinoo.in/blog/primitives-objects-memory-allocation/6.png" />
+<meta name="twitter:title" content="Primitives vs Objects: Memory Allocation In JavaScript"/>
+<meta name="twitter:description" content="What are Primitives and Objects (Reference Types)? How is memory allocated and managed for different data types in JavaScript?"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "http://vinoo.in/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Primitives vs Objects: Memory Allocation In JavaScript",
+      "item": "http://vinoo.in/blog/primitives-objects-memory-allocation/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Primitives vs Objects: Memory Allocation In JavaScript",
+  "name": "Primitives vs Objects: Memory Allocation In JavaScript",
+  "description": "What are Primitives and Objects (Reference Types)? How is memory allocated and managed for different data types in JavaScript?",
+  "keywords": [
+    "javascript", "javascript-series"
+  ],
+  "articleBody": " This is the 6th post in The Complete JavaScript Series.\nIntroduction Earlier, when we talked about the JS Engine, we saw there were two important parts that make up the processing engine -\nBoth the Call Stack and Heap are data structures that are used to store different types of variables. We have already seen the working of the Call Stack in our previous post.\nIn this post, let’s discuss the Heap memory and what role it plays in memory allocation for different data types in JavaScript.\nPrimitives vs Reference Types Consider the example below -\nExample 1 -\nHere, we see that the developer variable had the value of ‘Vinoo’ and then we changed it to be ‘Robot’, and that is what is reflected in the console. The newDeveloper value, which was assigned the value of developer retains the original value even after we changed the original one.\nNow consider the below example -\nExample 2 -\nWhat we did here was to create an object emp with a few details, and then created another variable newEmp where we essentially copied (assigned) the values of emp to newEmp. And when we changed the value of the age property in newEmp, its value in the original object also got changed.\nWhy? And how?\nMemory Allocation in JavaScript Primitive types - number, string, boolean, undefined, null, and Reference types - Object literals, Arrays, Functions, etc are called so respectively because of the difference in the way memory is allocated for these types.\nPrimitive Types - Primitive types are, well, primitive in nature in the sense that memory is allocated directly to the variables. The Call Stack data structure is where these Primitive values are stored.\nIn Example 1 above, the variables developer and newDeveloper both get assigned specific addresses in memory, which is why when we change the value of one variable, it does not affect the value of another. Take a look at the illustration below -\nWhen we create the variable developer, it gets allocated a specific address (say 1010) in the memory - the Call Stack - and then the value ‘Vinoo’ will be stored at this address. developer will actually now point to the address and not the value. Next, when we declare newDeveloper to be equal to developer, what happens is that newDeveloper will not be allocated a new address; instead, it will point to the same memory address as developer. And since the address holds the value Vinoo, the same will reflect when we print the value of newDeveloper to the console.\nWhat happened when we change the value of developer to ‘Robot’? The value at the address 1010 certainly does not get changed. Values stored in the Call Stack memory addresses are immutable in nature - so the address and the value remain unchanged. However, when we change the value of the developer, a new address is created with the new value, and the identifier developer will now point to the new address, while the newDeveloper identifier will still point to the earlier address and value. Like so -\nReference Types - In Example 2 above, we saw how changing the value of one property in the new copied object changed the value for the original object’s property as well. This is because Reference Types are stored in the Heap memory data structure and not the Call Stack directly. The below illustration throws some light -\nAs we can see, the properties of the emp object are first allocated an address in the Heap memory. The emp identifier is stored in the Call Stack under an address whose value references the address of the properties stored in Heap memory. So essentially, the value of the address of emp in Call Stack is simply a reference to the Heap memory’s address which in turn contains the actual values.\nNow, when we declare a new variable newEmp to be equal to emp, the new object just points to the address of the original object, and thereby its values. So when we change the value in the new object, it changes the original values too.\nThis behaviour is because the new variable newEmp is not really a new object itself; instead, it just points to the value of the address held by the original object, so technically, mutating one of them will mutate the other one too.\nHow to actually copy objects? There are multiple ways to do that, and it deserves a comprehensive post of its own, but for the scope of this post, we will look at one of the most basic and common methods - the Object.assign() method. Let’s see an example -\nAs we can see here, we used the Object.assign() method to assign the newEmp variable to be an object populated with the values of emp object.\nOnce that was done, we mutated the new object with an additional property yoe - and the original object remained unchanged.\nThis works well for a single level cloning - or shallow clone - of objects; meaning, that the Obejct.assign() method does not work completely on multiple/deeply nested objects. For example -\nAs can be seen, even though we only pushed the new item python to the languages array in the newEmp object, the original emp array also got mutated. This is because the array elements are considered to be deeply nested values and Object.assign() method will not be able to do the so called “deep cloning”.\nClosing Notes We will cover more on shallow clones and deep clones in detail in a later post. But for now, this post has covered enough to understand how memory allocation works in JavaScript.\nConfusing? Well, hang in there 🥲\nSee you in the next one!\nKeep shipping 🚀\n",
+  "wordCount" : "961",
+  "inLanguage": "en",
+  "image":"http://vinoo.in/blog/primitives-objects-memory-allocation/6.png","datePublished": "2023-09-23T21:48:19+05:30",
+  "dateModified": "2023-09-23T21:48:19+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://vinoo.in/blog/primitives-objects-memory-allocation/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vinoo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://vinoo.in/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://vinoo.in/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
+    <h1 class="post-title">
+      Primitives vs Objects: Memory Allocation In JavaScript
+    </h1>
+    <time style="font-size: 12px;">
+      Sep 23, 2023
+    </time>
+    <div class="post-description">
+      What are Primitives and Objects (Reference Types)? How is memory allocated and managed for different data types in JavaScript?
+    </div>
+    <div class="post-meta">
+
+
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/primitives-objects-memory-allocation/6.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#introduction" aria-label="Introduction">Introduction</a></li>
+                <li>
+                    <a href="#primitives-vs-reference-types" aria-label="Primitives vs Reference Types">Primitives vs Reference Types</a></li>
+                <li>
+                    <a href="#memory-allocation-in-javascript" aria-label="Memory Allocation in JavaScript">Memory Allocation in JavaScript</a><ul>
+                        
+                <li>
+                    <a href="#primitive-types--" aria-label="Primitive Types -">Primitive Types -</a></li>
+                <li>
+                    <a href="#reference-types--" aria-label="Reference Types -">Reference Types -</a></li>
+                <li>
+                    <a href="#how-to-actually-copy-objects" aria-label="How to actually copy objects?">How to actually copy objects?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#closing-notes" aria-label="Closing Notes">Closing Notes</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><blockquote>
+<p>This is the 6th post in <a href="https://vinoo.in/tags/javascript-series/">The Complete JavaScript Series</a>.</p>
+</blockquote>
+<h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>Earlier, when we talked about the JS Engine, we saw there were two important parts that make up the processing engine -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1695365698056/4147c0f1-0057-443b-8abf-9016fba0890a.png" alt=""  />
+</p>
+<p>Both the Call Stack and Heap are data structures that are used to store different types of variables. We have already seen the working of the <a href="https://vinoo.hashnode.dev/javascript-engine-and-execution-context">Call Stack in our previous post.</a></p>
+<p>In this post, let&rsquo;s discuss the Heap memory and what role it plays in memory allocation for different data types in JavaScript.</p>
+<h2 id="primitives-vs-reference-types">Primitives vs Reference Types<a hidden class="anchor" aria-hidden="true" href="#primitives-vs-reference-types">#</a></h2>
+<p>Consider the example below -</p>
+<p><em>Example 1 -</em></p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1695371425529/01d03f78-648e-4c95-8f0a-0b3f7e005859.png" alt=""  />
+</p>
+<p>Here, we see that the <code>developer</code> variable had the value of &lsquo;Vinoo&rsquo; and then we changed it to be &lsquo;Robot&rsquo;, and that is what is reflected in the console. The <code>newDeveloper</code> value, which was assigned the value of <code>developer</code> retains the original value even after we changed the original one.</p>
+<p>Now consider the below example -</p>
+<p><em>Example 2 -</em></p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1695370706338/e007b037-fc31-41ef-9df0-6ee02ddcabf7.png" alt=""  />
+</p>
+<p>What we did here was to create an object <code>emp</code> with a few details, and then created another variable <code>newEmp</code> where we essentially copied (assigned) the values of <code>emp</code> to <code>newEmp</code>. And when we changed the value of the <code>age</code> property in <code>newEmp</code>, its value in the original object also got changed.</p>
+<p>Why? And how?</p>
+<h2 id="memory-allocation-in-javascript">Memory Allocation in JavaScript<a hidden class="anchor" aria-hidden="true" href="#memory-allocation-in-javascript">#</a></h2>
+<p>Primitive types - <code>number, string, boolean, undefined, null</code>, and Reference types - <code>Object literals, Arrays, Functions, etc</code> are called so respectively because of the difference in the way memory is allocated for these types.</p>
+<h3 id="primitive-types--">Primitive Types -<a hidden class="anchor" aria-hidden="true" href="#primitive-types--">#</a></h3>
+<p>Primitive types are, well, primitive in nature in the sense that memory is allocated directly to the variables. The Call Stack data structure is where these Primitive values are stored.</p>
+<p>In <em>Example 1</em> above, the variables <code>developer</code> and <code>newDeveloper</code> both get assigned specific addresses in memory, which is why when we change the value of one variable, it does not affect the value of another. Take a look at the illustration below -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1695371920479/801b521d-8b87-4704-89ac-0f1809d21db0.png" alt=""  />
+</p>
+<p>When we create the variable <code>developer</code>, it gets allocated a specific address (say <code>1010</code>) in the memory - the Call Stack - and then the value &lsquo;Vinoo&rsquo; will be stored at this address. <code>developer</code> will actually now point to the address and not the value. Next, when we declare <code>newDeveloper</code> to be equal to <code>developer</code>, what happens is that <code>newDeveloper</code> will not be allocated a new address; instead, it will point to the same memory address as <code>developer</code>. And since the address holds the value <code>Vinoo</code>, the same will reflect when we print the value of <code>newDeveloper</code> to the console.</p>
+<p>What happened when we change the value of <code>developer</code> to &lsquo;Robot&rsquo;? The value at the address <code>1010</code> certainly does not get changed. Values stored in the Call Stack memory addresses are immutable in nature - so the address and the value remain unchanged. However, when we change the value of the <code>developer</code>, a new address is created with the new value, and the identifier <code>developer</code> will now point to the new address, while the <code>newDeveloper</code> identifier will still point to the earlier address and value. Like so -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1695400000343/8684d9a7-55fa-4768-b7e9-3b7cfcf64fae.png" alt=""  />
+</p>
+<h3 id="reference-types--">Reference Types -<a hidden class="anchor" aria-hidden="true" href="#reference-types--">#</a></h3>
+<p>In <em>Example 2</em> above, we saw how changing the value of one property in the new copied object changed the value for the original object&rsquo;s property as well. This is because Reference Types are stored in the Heap memory data structure and not the Call Stack directly. The below illustration throws some light -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1695399906272/2f65c34f-dc99-4715-87af-aeb0bf82d869.png" alt=""  />
+</p>
+<p>As we can see, the properties of the <code>emp</code> object are first allocated an address in the Heap memory. The <code>emp</code> identifier is stored in the Call Stack under an address whose value <em>references</em> the address of the properties stored in Heap memory. So essentially, the value of the address of <code>emp</code> in Call Stack is simply a reference to the Heap memory&rsquo;s address which in turn contains the actual values.</p>
+<p>Now, when we declare a new variable <code>newEmp</code> to be equal to <code>emp</code>, the new object just points to the address of the original object, and thereby its values. So when we change the value in the new object, it changes the original values too.</p>
+<p>This behaviour is because the new variable <code>newEmp</code> is not really a new object itself; instead, it just points to the value of the address held by the original object, so technically, mutating one of them will mutate the other one too.</p>
+<h3 id="how-to-actually-copy-objects">How to actually copy objects?<a hidden class="anchor" aria-hidden="true" href="#how-to-actually-copy-objects">#</a></h3>
+<p>There are multiple ways to do that, and it deserves a comprehensive post of its own, but for the scope of this post, we will look at one of the most basic and common methods - the <code>Object.assign()</code> method. Let&rsquo;s see an example -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1695405169184/199a079b-86b4-4f74-903b-98156e67aa6d.png" alt=""  />
+</p>
+<p>As we can see here, we used the <code>Object.assign()</code> method to assign the <code>newEmp</code> variable to be an object populated with the values of <code>emp</code> object.</p>
+<p>Once that was done, we mutated the new object with an additional property <code>yoe</code> - and the original object remained unchanged.</p>
+<p>This works well for a single level cloning - or shallow clone - of objects; meaning, that the <code>Obejct.assign()</code> method does not work completely on multiple/deeply nested objects. For example -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1695405895880/ea6405a2-21f0-47cf-8380-eed478e18b31.png" alt=""  />
+</p>
+<p>As can be seen, even though we only pushed the new item <code>python</code> to the <code>languages</code> array in the <code>newEmp</code> object, the original <code>emp</code> array also got mutated. This is because the array elements are considered to be deeply nested values and <code>Object.assign()</code> method will not be able to do the so called &ldquo;deep cloning&rdquo;.</p>
+<hr>
+<h2 id="closing-notes">Closing Notes<a hidden class="anchor" aria-hidden="true" href="#closing-notes">#</a></h2>
+<p>We will cover more on shallow clones and deep clones in detail in a later post. But for now, this post has covered enough to understand how memory allocation works in JavaScript.</p>
+<p>Confusing? Well, hang in there 🥲</p>
+<p><img loading="lazy" src="https://media1.giphy.com/media/3o7qDXzmWyT3BgcyGc/giphy.gif?cid=ecf05e47poqp3cl5qi4kgptu16tc5vn0jjmn0mw5wrt245uc&amp;ep=v1_gifs_search&amp;rid=giphy.gif&amp;ct=g" alt="thomas middleditch richard hendricks GIF by Silicon Valley"  />
+</p>
+<p>See you in the next one!</p>
+<p>Keep shipping 🚀</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
+      <li><a href="http://vinoo.in/tags/javascript-series/">javascript-series</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

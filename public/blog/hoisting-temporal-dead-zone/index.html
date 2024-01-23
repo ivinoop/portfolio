@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Hoisting and Temporal Dead Zone In JavaScript | Vinoo</title>
+<meta name="keywords" content="javascript, javascript-series">
+<meta name="description" content="What is Hoisting? How are we able to invoke certain variables an functions before they are even declared? Where do other variables go?">
+<meta name="author" content="">
+<link rel="canonical" href="http://vinoo.in/blog/hoisting-temporal-dead-zone/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.60efccaabb6ae7d9d0c837286ec93213e1a4e3fed4509057a5921544521d2332.css" integrity="sha256-YO/Mqrtq59nQyDcobskyE&#43;Gk4/7UUJBXpZIVRFIdIzI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.5b9ae0304f93db6cc493f51846f012428af399c614b4f2fbdb7fa59dd4d5ef5b.js" integrity="sha256-W5rgME&#43;T22zEk/UYRvASQorzmcYUtPL723&#43;lndTV71s="
+    onload="hljs.initHighlightingOnLoad();"></script>
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.1/styles/atom-one-dark.min.css"
+  integrity="sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+
+<meta property="og:title" content="Hoisting and Temporal Dead Zone In JavaScript" />
+<meta property="og:description" content="What is Hoisting? How are we able to invoke certain variables an functions before they are even declared? Where do other variables go?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://vinoo.in/blog/hoisting-temporal-dead-zone/" />
+<meta property="og:image" content="http://vinoo.in/blog/hoisting-temporal-dead-zone/5.png" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-09-17T21:45:31&#43;05:30" />
+<meta property="article:modified_time" content="2023-09-17T21:45:31&#43;05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://vinoo.in/blog/hoisting-temporal-dead-zone/5.png" />
+<meta name="twitter:title" content="Hoisting and Temporal Dead Zone In JavaScript"/>
+<meta name="twitter:description" content="What is Hoisting? How are we able to invoke certain variables an functions before they are even declared? Where do other variables go?"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "http://vinoo.in/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Hoisting and Temporal Dead Zone In JavaScript",
+      "item": "http://vinoo.in/blog/hoisting-temporal-dead-zone/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Hoisting and Temporal Dead Zone In JavaScript",
+  "name": "Hoisting and Temporal Dead Zone In JavaScript",
+  "description": "What is Hoisting? How are we able to invoke certain variables an functions before they are even declared? Where do other variables go?",
+  "keywords": [
+    "javascript", "javascript-series"
+  ],
+  "articleBody": " This is the 5th post in The Complete JavaScript Series.\nBefore we define Hoisting, you should know that we have already seen Hoisting in action in our previous article and code snippets, and you would probably be writing code every day that implements Hoisting without consciously being aware of it! It is a very tricky concept, one that is simple enough in practice but takes some time to wrap our heads around, given the idiosyncrasies of JavaScript 😃\nLet’s do a quick recap by examining the code below -\nAs we know from our previous post on Execution Context, we have two phases of code execution - Declaration Phase and Execution Phase. According to that flow -\nIn line 1 of above code, console.log() is a function call with the variable username - and since it is a function call, it will be skipped, and the Execution Context goes to line 2, where variable sum is assigned the result of the function call add(2,3) . So within the Memory of the Global Execution Context, the variable sum is instantiated, with the initial value being undefined\nNext, we have the function add(numA, numB) - so add is defined in the Memory, but it is not undefined like a variable is. Instead, in the Declaration Phase, variable declaration and function declaration are different in this manner. Variables are initiated with the initial value undefined whereas function variables like add() in the above code, are initiated as functions - the Execution Context knows that function variables need to be initiated as functions.\nMoving on to line 6, username is a variable that gets initiated with undefined again.\nLine 7 again has the console.log() function that calls username variable, so it is skipped for now.\nFinally in line 8, we have a function call add(10,12) that is skipped for the Declaration Phase.\nThe execution flow changes from Declaration to Execution phase, and now the flow is like this -\nSince line 1 is a function call for console.log(), a Function Execution Context is created for console.log(). The value for username is not found in this execution context, so it bubbles out to find it in the parent memory, which is Global EC. Here, the value is found to be undefined and so the console.log() outputs it as such. The Function EC for console.log() is then deleted.\nMoving on, now the variable sum looks for its value - which is the return value of the function add(2, 3). As usual, a function execution context (EC) gets created for add(). How? Because earlier, we saw that function variables are initiated as functions in the declaration phase, unlike normal variables which get initiated as undefined. Now in the Declaration phase for this particular EC for add(2,3), it immediately knows that add() is a function. And they have the variables numA and numB - both of which get initiated as undefined. Now that declaration phase is over, execution phase begins, and both numA and numB get the values 2 and 3 respectively - since those are what the arguments are during the function call. It performs that return statement which 2 + 3 - the result 5 is finally stored as the value for the variable sum in the GEC’s memory and this FEC gets deleted immediately.\nNext, in line 6, the variable username is assigned the value ‘bifrost’, so its previous value of undefined changes to bifrost now.\nIn line 7, the console.log(username) function has the value for username, so it logs bifrost to the console.\nFinally in line 8, add(10,12) will return the relevant value since the function has already been declared before, and only the variable values are changed now - previously they were 2 and 3, now they are 10 and 12.\nObserve something very crucial here - in line numbers 1 and 2, we are calling a variable and a function that have not even been declared yet. And still, we do not run into errors. How? This is possible due to Hoisting.\nWhat is Hoisting? As the word suggests, it is a concept where variables and functions are “hoisted” up in the flow of execution so that they can be called/invoked even before they are actually declared. And as mentioned earlier, it is not a new concept again, but an existing one which we have already defined and seen in practice - the Declaration Phase in Execution Context.\nBecause of this Declaration Phase where variables and functions are initiated with their respective values (variables as undefined and function variables as functions), the JavaScript engine knows that these values already exist, and hence does not throw any error.\nThat is it. That is all Hoisting is.\nProof? Here you go -\nIn the snippet below, notice how, the console.log() for line number 1 already logs a statement with the value undefined.\nBy the time the flow is deeper into the code, and we arrive at line number 8, username now has the value assigned as bifrost and hence displays the same instead of undefined.\nNotice how for the variable assignment sum - which is a function call of add() - it does not throw an error that the variable/function is not defined. Instead, since EC already knows that sum is a function variable, it waits for the function declaration also to happen later on, and then returns the value to be assigned to sum and then logs it to the console.\nIn practice, this is how the variables are hoisted by the JS Engine -\nLines 13 - 17 represent declaration phase and lines 19 - 22 represent execution phase.\nBut.. we aren’t done yet Notice how the variable username was declared with var throughout our previous article and this one too - and it was intentional, because there is a subtle difference in how var, let, and const create variables.\nThe entire premise of using modern ES6 syntax to write our web applications, is to remove inconsistencies and weed out possible bugs/errors during development phase. How so?\nAs we saw above, functions with the keyword function and variables with var can be called before declaring them. This is because in both these cases, the functions/variables are initialised either with undefined (for variables), or as functions for function variables - and hence can be accessed later on. This can seem beneficial for haphazard coding, but in the real world (production), this can lead to huge unintended errors.\nTake this small example -\nAs we can see, cartItems is declared with var in line 5 - but it is already being accessed in line 1. Still, there are no errors, and as usual, it would be initiated with undefined - making it possible to be accessed before it is declared.\nWe have an if block that checks for the truthy or falsy state of cartItems and then, only if found to be falsy, we want the deleteCart() function to be invoked.\nNow the problem arises - in line 5, we declare cartItems as 10 but still, the deleteCart() function is invoked and the damage, so to speak, is done. The cart items are deleted.\nOnly in line 10, do we see that finally when the execution context has moved out of the declaration phase, and into the execution phase, the value of cart items is updated from undefined to 10.\nWhy does the above scenario happen? Hoisting.\nFunction declarations with the keyword function and variables with var are both hoisted and this can and will lead to bad errors in a huge application.\nBut what happens to variables with let and const? Welcome to Temporal Dead Zone.\nTemporal Dead Zone let and const variables are not initialised during Declaration Phase. They do not get an undefined or anything of the sort when they are created. Instead, from the beginning of the flow of execution right until the time of their declaration, let and const variables are said to be in a zone often called the Temporal Dead Zone.\nWell, it may sound ominous and eerie, but it does suit the state and situation of the variables perfectly. A small illustration -\nAs can be seen, the variable job declared with var has been initiated to undefined but the variables numOne and sum declared with let and const respectively, are both empty “boxes”. And when it comes to execution phase, we get the console statement for job but not for the other two variables. In fact, the execution stops as soon as it encounters the second console statement, since it cannot find the initialisation for numOne and hence, it terminates the execution flow with the error message - Error: Cannot access 'numOne' before initialisation -\nThis behavioural difference holds true for Function Declarations vs Function Expressions as well.\nSimply put - Function Declarations are hoisted, while Function Expressions and Arrow Functions are not. Like so -\nHere, add() is a function declared with var so it hoisted and no errors are found. But when it comes to subtract(), it a function expression that is assigned to the variable sub - and even though it is declared with var, it it still an expression, so it does not get hoisted/initialised. The execution stops here with an error message.\nSame is the case with multiply() - with a different error message like so -\nHere, we can clearly see that from the error message, the `multiply` variable declared with let, is a function expression and therefore has not been initialised at all.\nClosing Notes All of this is a solid showcase of why we need best practices, and why we must adhere to it in “strict” mode while writing real world code. To summarise -\nUse let and const everywhere. Using var is outdated, and unnecessary in almost all modern use cases.\nAlways, always declare variables and functions before using/invoking them.\nAgain, use const for all function expressions.\nYou cannot prevent Hoisting from happening, but can certainly control when and where you would need it.\nWe have almost made it through the muddy waters - these behind the scenes functionalities and concepts are building blocks for what’s ahead - but for now, maybe a small celebratory dance is in order?\nOr not 😃\nSee you in the next one! Until then,\nKeep shipping 🚀\n",
+  "wordCount" : "1717",
+  "inLanguage": "en",
+  "image":"http://vinoo.in/blog/hoisting-temporal-dead-zone/5.png","datePublished": "2023-09-17T21:45:31+05:30",
+  "dateModified": "2023-09-17T21:45:31+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://vinoo.in/blog/hoisting-temporal-dead-zone/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vinoo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://vinoo.in/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://vinoo.in/" accesskey="h" title="Vinoo (Alt + H)">Vinoo</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://vinoo.in/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://vinoo.in/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://vinoo.in/">Home</a>&nbsp;»&nbsp;<a href="http://vinoo.in/blog/">Blogs</a></div>
+    <h1 class="post-title">
+      Hoisting and Temporal Dead Zone In JavaScript
+    </h1>
+    <time style="font-size: 12px;">
+      Sep 17, 2023
+    </time>
+    <div class="post-description">
+      What is Hoisting? How are we able to invoke certain variables an functions before they are even declared? Where do other variables go?
+    </div>
+    <div class="post-meta">
+
+
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="http://vinoo.in/blog/hoisting-temporal-dead-zone/5.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#what-is-hoisting" aria-label="What is Hoisting?">What is Hoisting?</a></li>
+                <li>
+                    <a href="#but-we-arent-done-yet" aria-label="But.. we aren&amp;rsquo;t done yet">But.. we aren&rsquo;t done yet</a></li>
+                <li>
+                    <a href="#temporal-dead-zone" aria-label="Temporal Dead Zone">Temporal Dead Zone</a></li>
+                <li>
+                    <a href="#closing-notes" aria-label="Closing Notes">Closing Notes</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><blockquote>
+<p>This is the 5th post in <a href="https://vinoo.in/tags/javascript-series/">The Complete JavaScript Series</a>.</p>
+</blockquote>
+<p>Before we define Hoisting, you should know that we have already seen Hoisting in action in our previous article and code snippets, and you would probably be writing code every day that implements Hoisting without consciously being aware of it! It is a very tricky concept, one that is simple enough in practice but takes some time to wrap our heads around, given the idiosyncrasies of JavaScript 😃</p>
+<p>Let&rsquo;s do a quick recap by examining the code below -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1694929325661/33b06d61-a109-4c97-807c-184f45f98725.png" alt=""  />
+</p>
+<p>As we know from our previous <a href="https://vinoo.hashnode.dev/javascript-under-the-hood-part-2">post on Execution Context</a>, we have two phases of code execution - Declaration Phase and Execution Phase. According to that flow -</p>
+<ul>
+<li>
+<p>In line 1 of above code, <code>console.log()</code> is a function call with the variable <code>username</code> - and since it is a function call, it will be skipped, and the Execution Context goes to line 2, where variable <code>sum</code> is assigned the result of the function call <code>add(2,3)</code> . So within the Memory of the Global Execution Context, the variable <code>sum</code> is instantiated, with the initial value being <code>undefined</code></p>
+</li>
+<li>
+<p>Next, we have the function <code>add(numA, numB)</code> - so <code>add</code> is defined in the Memory, but it is not <code>undefined</code> like a variable is. Instead, in the Declaration Phase, variable declaration and function declaration are different in this manner. Variables are initiated with the initial value <code>undefined</code> whereas function variables like <code>add()</code> in the above code, are initiated as functions - the Execution Context knows that function variables need to be initiated as functions.</p>
+</li>
+<li>
+<p>Moving on to line 6, <code>username</code> is a variable that gets initiated with <code>undefined</code> again.</p>
+</li>
+<li>
+<p>Line 7 again has the <code>console.log()</code> function that calls <code>username</code> variable, so it is skipped for now.</p>
+</li>
+<li>
+<p>Finally in line 8, we have a function call <code>add(10,12)</code> that is skipped for the Declaration Phase.</p>
+</li>
+</ul>
+<p>The execution flow changes from Declaration to Execution phase, and now the flow is like this -</p>
+<ul>
+<li>
+<p>Since line 1 is a function call for <code>console.log()</code>, a Function Execution Context is created for <code>console.log()</code>. The value for username is not found in this execution context, so it bubbles out to find it in the parent memory, which is Global EC. Here, the value is found to be <code>undefined</code> and so the <code>console.log()</code> outputs it as such. The Function EC for <code>console.log()</code> is then deleted.</p>
+</li>
+<li>
+<p>Moving on, now the variable <code>sum</code> looks for its value - which is the return value of the function <code>add(2, 3)</code>. As usual, a function execution context (EC) gets created for <code>add()</code>. How? Because earlier, we saw that function variables are initiated as functions in the declaration phase, unlike normal variables which get initiated as <code>undefined</code>. Now in the Declaration phase for this particular EC for <code>add(2,3)</code>, it immediately knows that <code>add()</code> is a function. And they have the variables <code>numA</code> and <code>numB</code> - both of which get initiated as <code>undefined</code>. Now that declaration phase is over, execution phase begins, and both <code>numA</code> and <code>numB</code> get the values 2 and 3 respectively - since those are what the arguments are during the function call. It performs that return statement which 2 + 3 - the result 5 is finally stored as the value for the variable <code>sum</code> in the GEC&rsquo;s memory and this FEC gets deleted immediately.</p>
+</li>
+<li>
+<p>Next, in line 6, the variable <code>username</code> is assigned the value &lsquo;bifrost&rsquo;, so its previous value of <code>undefined</code> changes to <code>bifrost</code> now.</p>
+</li>
+<li>
+<p>In line 7, the <code>console.log(username)</code> function has the value for <code>username</code>, so it logs <code>bifrost</code> to the console.</p>
+</li>
+<li>
+<p>Finally in line 8, <code>add(10,12)</code> will return the relevant value since the function has already been declared before, and only the variable values are changed now - previously they were 2 and 3, now they are 10 and 12.</p>
+</li>
+</ul>
+<p><mark>Observe something very crucial here</mark> - in line numbers 1 and 2, we are calling a variable and a function that have not even been declared yet. And still, we do not run into errors. How? This is possible due to Hoisting.</p>
+<h2 id="what-is-hoisting">What is Hoisting?<a hidden class="anchor" aria-hidden="true" href="#what-is-hoisting">#</a></h2>
+<p>As the word suggests, it is a concept where variables and functions are &ldquo;hoisted&rdquo; up in the flow of execution so that they can be called/invoked even before they are actually declared. And as mentioned earlier, it is not a new concept again, but an existing one which we have already defined and seen in practice - the Declaration Phase in Execution Context.</p>
+<p>Because of this Declaration Phase where variables and functions are initiated with their respective values (variables as <code>undefined</code> and function variables as functions), the JavaScript engine knows that these values already exist, and hence does not throw any error.</p>
+<p>That is it. That is all Hoisting is.</p>
+<p>Proof? Here you go -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1694941604304/43a7f336-3f5b-49f9-b3b9-9c66da7cf499.png" alt=""  />
+</p>
+<p>In the snippet below, notice how, the <code>console.log()</code> for line number 1 already logs a statement with the value <code>undefined</code>.</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1695439598484/ce0278e3-b369-40f7-a45a-096fbe2ea7e1.png" alt=""  />
+</p>
+<p>By the time the flow is deeper into the code, and we arrive at line number 8, <code>username</code> now has the value assigned as <code>bifrost</code> and hence displays the same instead of <code>undefined</code>.</p>
+<p>Notice how for the variable assignment <code>sum</code> - which is a function call of <code>add()</code> - it does not throw an error that the variable/function is not defined. Instead, since EC already knows that <code>sum</code> is a function variable, it waits for the function declaration also to happen later on, and then returns the value to be assigned to <code>sum</code> and then logs it to the console.</p>
+<p>In practice, this is how the variables are hoisted by the JS Engine -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1694944592265/68c0f549-dd1b-4ca1-b36a-2a75399d244b.png" alt=""  />
+</p>
+<p>Lines 13 - 17 represent declaration phase and lines 19 - 22 represent execution phase.</p>
+<h2 id="but-we-arent-done-yet">But.. we aren&rsquo;t done yet<a hidden class="anchor" aria-hidden="true" href="#but-we-arent-done-yet">#</a></h2>
+<p>Notice how the variable <code>username</code> was declared with <code>var</code> throughout our previous article and this one too - and it was intentional, because there is a subtle difference in how <code>var</code>, <code>let</code>, and <code>const</code> create variables.</p>
+<p>The entire premise of using modern ES6 syntax to write our web applications, is to remove inconsistencies and weed out possible bugs/errors during development phase. How so?</p>
+<p>As we saw above, functions with the keyword <code>function</code> and variables with <code>var</code> can be called before declaring them. This is because in both these cases, the functions/variables are <em>initialised</em> either with <code>undefined</code> (for variables), or as functions for function variables - and hence can be accessed later on. This can seem beneficial for haphazard coding, but in the real world (production), this can lead to huge unintended errors.</p>
+<p>Take this small example -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1694955611564/99779885-3059-416d-8885-8b1814b26e2b.png" alt=""  />
+</p>
+<ul>
+<li>
+<p>As we can see, <code>cartItems</code> is declared with <code>var</code> in line 5 - but it is already being accessed in line 1. Still, there are no errors, and as usual, it would be initiated with <code>undefined</code> - making it possible to be accessed before it is declared.</p>
+</li>
+<li>
+<p>We have an <code>if</code> block that checks for the <code>truthy</code> or <code>falsy</code> state of <code>cartItems</code> and then, only if found to be <code>falsy</code>, we want the <code>deleteCart()</code> function to be invoked.</p>
+</li>
+<li>
+<p>Now the problem arises - in line 5, we declare <code>cartItems</code> as 10 but still, the <code>deleteCart()</code> function is invoked and the damage, so to speak, is done. The cart items are deleted.</p>
+</li>
+<li>
+<p>Only in line 10, do we see that finally when the execution context has moved out of the declaration phase, and into the execution phase, the value of cart items is updated from <code>undefined</code> to 10.</p>
+</li>
+</ul>
+<p>Why does the above scenario happen? Hoisting.</p>
+<p>Function declarations with the keyword <code>function</code> and variables with <code>var</code> are both hoisted and this can and will lead to bad errors in a huge application.</p>
+<p>But what happens to variables with <code>let</code> and <code>const</code>? Welcome to Temporal Dead Zone.</p>
+<h2 id="temporal-dead-zone">Temporal Dead Zone<a hidden class="anchor" aria-hidden="true" href="#temporal-dead-zone">#</a></h2>
+<p><code>let</code> and <code>const</code> variables are not initialised during Declaration Phase. They do not get an <code>undefined</code> or anything of the sort when they are created. Instead, from the beginning of the flow of execution right until the time of their declaration, <code>let</code> and <code>const</code> variables are said to be in a zone often called the <strong>Temporal Dead Zone.</strong></p>
+<p>Well, it may sound ominous and eerie, but it does suit the state and situation of the variables perfectly. A small illustration -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1694962880258/7de9352b-4b6e-4942-ae23-f88860f119d8.png" alt=""  />
+</p>
+<p>As can be seen, the variable <code>job</code> declared with <code>var</code> has been initiated to <code>undefined</code> but the variables <code>numOne</code> and <code>sum</code> declared with <code>let</code> and <code>const</code> respectively, are both empty &ldquo;boxes&rdquo;. And when it comes to execution phase, we get the console statement for <code>job</code> but not for the other two variables. In fact, the execution stops as soon as it encounters the second console statement, since it cannot find the initialisation for <code>numOne</code> and hence, it terminates the execution flow with the error message - <code>Error: Cannot access 'numOne' before initialisation</code> -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1694963754820/e9efd0ea-3a9e-4f68-b74b-46bfe289cdc9.png" alt=""  />
+</p>
+<p>This behavioural difference holds true for Function Declarations vs Function Expressions as well.</p>
+<p>Simply put - Function Declarations are hoisted, while Function Expressions and Arrow Functions are not. Like so -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1694964060113/8c8e6428-1f2c-4d6a-86bf-fb68a292c16b.png" alt=""  />
+</p>
+<p>Here, <code>add()</code> is a function declared with <code>var</code> so it hoisted and no errors are found. But when it comes to <code>subtract()</code>, it a function expression that is assigned to the variable <code>sub</code> - and even though it is declared with <code>var</code>, it it still an expression, so it does not get hoisted/initialised. The execution stops here with an error message.</p>
+<p>Same is the case with <code>multiply()</code> - with a different error message like so -</p>
+<p><img loading="lazy" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1694964237839/fad47de7-b046-4a7b-b5b7-6e83f540a93d.png" alt=""  />
+</p>
+<p>Here, we can clearly see that from the error message, the <code>`multiply`</code> variable declared with <code>let</code>, is a function expression and therefore has not been initialised at all.</p>
+<h2 id="closing-notes">Closing Notes<a hidden class="anchor" aria-hidden="true" href="#closing-notes">#</a></h2>
+<p>All of this is a solid showcase of why we need best practices, and why we must adhere to it in &ldquo;strict&rdquo; mode while writing real world code. To summarise -</p>
+<ul>
+<li>
+<p>Use <code>let</code> and <code>const</code> everywhere. Using <code>var</code> is outdated, and unnecessary in almost all modern use cases.</p>
+</li>
+<li>
+<p>Always, always declare variables and functions before using/invoking them.</p>
+</li>
+<li>
+<p>Again, use <code>const</code> for all function expressions.</p>
+</li>
+<li>
+<p>You cannot prevent Hoisting from happening, but can certainly control when and where you would need it.</p>
+</li>
+</ul>
+<hr>
+<p>We have almost made it through the muddy waters - these behind the scenes functionalities and concepts are building blocks for what&rsquo;s ahead - but for now, maybe a small celebratory dance is in order?</p>
+<p><img loading="lazy" src="https://media.tenor.com/ZtCb2TdGS0EAAAAC/appu-appurajosh.gif" alt="Appu Appurajosh GIF - Appu Appurajosh GIFs"  />
+</p>
+<p>Or not 😃</p>
+<p>See you in the next one! Until then,</p>
+<p>Keep shipping 🚀</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://vinoo.in/tags/javascript/">javascript</a></li>
+      <li><a href="http://vinoo.in/tags/javascript-series/">javascript-series</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="http://vinoo.in/">Vinoo</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
