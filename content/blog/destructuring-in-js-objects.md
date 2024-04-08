@@ -1,11 +1,11 @@
 ---
 title: "Destructuring in JavaScript: Part 2 - Objects"
-date: 2024-01-15T21:54:05+05:30
-draft: false
+date: 2024-04-08T11:57:05+05:30
+draft: true
 description: "What is destructuring in JavaScript? How do we extract values from arrays and objects?"
 tags: ["javascript", "arrays", "javascript-series"]
 cover:
-    image: "/blog/destructuring-in-js-arrays/8.png"
+    image: "/blog/destructuring-in-js-objects/destructuring-in-js-objects.png"
 ---
 
 > ***This is the 8th post in*** [***The Complete JavaScript Series***](https://vinoo.in/tags/javascript-series/)
