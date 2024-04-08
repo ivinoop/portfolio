@@ -17,15 +17,6 @@
     </item>
     
     <item>
-      <title>Destructuring in JavaScript: Part 2 - Objects</title>
-      <link>http://vinoo.in/blog/destructuring-in-js-objects/</link>
-      <pubDate>Mon, 15 Jan 2024 21:54:05 +0530</pubDate>
-      
-      <guid>http://vinoo.in/blog/destructuring-in-js-objects/</guid>
-      <description>What is destructuring in JavaScript? How do we extract values from arrays and objects?</description>
-    </item>
-    
-    <item>
       <title>this In Javascript - Simplified</title>
       <link>http://vinoo.in/blog/this-in-javascript/</link>
       <pubDate>Tue, 17 Oct 2023 21:51:23 +0530</pubDate>
