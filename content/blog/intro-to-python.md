@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Python"
-date: 2024-01-22T17:49:37+05:30
+date: 2024-01-22T17:50:38+05:30
 draft: true
 description: ""
 tags: ["python", "programming"]

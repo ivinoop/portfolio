@@ -1,6 +1,6 @@
 ---
 title: "Destructuring in JavaScript: Part 2 - Objects"
-date: 2024-04-08T11:57:05+05:30
+date: 2024-01-22T17:50:37+05:30
 draft: true
 description: "What is destructuring in JavaScript? How do we extract values from arrays and objects?"
 tags: ["javascript", "arrays", "javascript-series"]
