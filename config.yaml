@@ -35,7 +35,7 @@ menu:
     #   weight: 70
 
 params:
-  # theme
+  # theme 
   showToc: true
   TocOpen: false
   ShowBreadCrumbs: true
@@ -52,7 +52,7 @@ params:
   profileMode:
     enabled: true
     title: 'Vinoo'
-    subtitle: Hello there 👋 I'm Vinoo, a software developer and programmer.
+    subtitle: Hi 👋 I'm Vinoo, a software developer and programmer.
     imageUrl: 'home/me.jpeg'
     imageWidth: 220
     imageHeight: 220
