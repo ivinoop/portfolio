@@ -51,7 +51,7 @@ params:
   # Home Page
   profileMode:
     enabled: true
-    title: 'Vinoo'
+    title: '$whoami'
     subtitle: Hi 👋 I'm Vinoo, a software developer and programmer.
     imageUrl: 'home/me.jpeg'
     imageWidth: 220
@@ -71,12 +71,12 @@ params:
     hiddenInSingle: false # hide on single page
 
   socialIcons:
-    - name: 'linkedin'
-      url: 'https://www.linkedin.com/in/ivinoop'
+    # - name: 'linkedin'
+    #   url: 'https://www.linkedin.com/in/ivinoop'
     - name: 'github'
       url: 'https://github.com/ivinoop'
-    - name: 'twitter'
-      url: 'https://twitter.com/ivinoop'
+    # - name: 'twitter'
+    #   url: 'https://twitter.com/ivinoop'
 
   # text search
   fuseOpts:
