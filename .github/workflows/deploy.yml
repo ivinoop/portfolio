@@ -29,6 +29,9 @@ jobs:
         run: ${RUNNER_TEMP}/hugo
 
       - name: Deploy
+        uses: actions/checkout@v3
+        with:
+          token: ${{ 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 }}
         if: github.ref == 'refs/heads/main'
         run: |
           cp -R public/* ${GITHUB_WORKSPACE}/built-site/
