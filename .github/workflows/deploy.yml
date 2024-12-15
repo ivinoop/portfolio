@@ -31,7 +31,9 @@ jobs:
       - name: Deploy
         uses: actions/checkout@v3
         with:
-          token: ${{ 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 }}
+          personal_token: ${{ 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 }}
+          external_repository: ivinoop/site
+          publish_dir: ./public
         if: github.ref == 'refs/heads/main'
         run: |
           cp -R public/* ${GITHUB_WORKSPACE}/built-site/
