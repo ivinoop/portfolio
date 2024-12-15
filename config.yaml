@@ -31,7 +31,7 @@ menu:
       weight: 60
     - identifier: notes
       name: Notes
-      url:
+      url:/notes
       weight: 70
 
 params:
@@ -53,7 +53,7 @@ params:
     enabled: true
     title: '$whoami'
     subtitle: Hi 👋 I'm Vinoo, a software developer and programmer.
-    imageUrl: 'home/me.jpeg'
+    # imageUrl: ''
     imageWidth: 220
     imageHeight: 220
     buttons:
