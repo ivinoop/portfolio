@@ -21,18 +21,18 @@ menu:
     #   name: Experience
     #   url: /experience
     #   weight: 40
-    - identifier: search
-      name: Search
-      url: /search
-      weight: 50
+    # - identifier: search
+    #   name: Search
+    #   url: /search
+    #   weight: 50
     - identifier: tags
       name: Tags
       url: /tags
-      weight: 60
-    - identifier: notes
-      name: Notes
-      url: /notes
-      weight: 70
+      weight: 40
+    # - identifier: notes
+    #   name: Notes
+    #   url: /notes
+    #   weight: 70
 
 params:
   # theme 
@@ -41,6 +41,18 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   hideMeta: false
+
+  homeInfoParams:
+    Title: Developer. Writer. Learner. 
+    Content: Documenting learnings. Occasionally penning thoughts.   
+  
+  socialIcons:
+    - name: 'github'
+      url: 'https://github.com/ivinoop'
+    - name: 'twitter'
+      url: 'https://twitter.com/rootzer0'
+    - name: 'linkedin'
+      url: 'https://www.linkedin.com/in/ivinoop'
 
   # Date
   dateFormat: "Jan 2, 2006"
@@ -70,13 +82,13 @@ params:
     hiddenInList: true # hide on list pages and home
     hiddenInSingle: false # hide on single page
 
-  socialIcons:
-    # - name: 'linkedin'
-    #   url: 'https://www.linkedin.com/in/ivinoop'
-    - name: 'github'
-      url: 'https://github.com/ivinoop'
-    # - name: 'twitter'
-    #   url: 'https://twitter.com/ivinoop'
+  # socialIcons:
+  #   - name: 'github'
+  #     url: 'https://github.com/ivinoop'
+  #   - name: 'twitter'
+  #     url: 'https://twitter.com/ivinoop'
+  #   - name: 'linkedin'
+  #     url: 'https://www.linkedin.com/in/ivinoop'
 
   # text search
   fuseOpts:
