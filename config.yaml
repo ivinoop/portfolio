@@ -31,7 +31,7 @@ menu:
       weight: 60
     - identifier: notes
       name: Notes
-      url:/notes
+      url: /notes
       weight: 70
 
 params:
