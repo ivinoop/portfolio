@@ -8,9 +8,7 @@ cover:
     image: "/blog/javascript-under-the-hood/2.png"
 ---
 
-> This is the 2nd post in [The Complete JavaScript Series](https://vinoo.in/tags/javascript-series/).
-
-Let's take a breather from the code editor today - in the next immediate post, we would be reading concepts along with code examples, but for this post, let's make some time to simply read through some interesting things about JavaScript as a language. Let's go 👇
+Let's take a breather from the code editor today - in the next immediate post, we would be reading concepts along with code examples, but for this now, let's make some time to simply read through some interesting things about JavaScript as a language. Let's go 👇
 
 ## What Actually IS JavaScript?
 

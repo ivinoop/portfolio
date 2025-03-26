@@ -1,5 +1,5 @@
 ---
-title: "Destructuring in JavaScript: Part 1 - Arrays"
+title: "Destructuring in JavaScript: Arrays"
 date: 2024-01-15T21:54:05+05:30
 draft: false
 description: "What is destructuring in JavaScript? How do we extract values from arrays and objects?"
@@ -7,8 +7,6 @@ tags: ["javascript", "arrays", "javascript-series"]
 cover:
     image: "/blog/destructuring-in-js-arrays/8.png"
 ---
-
-> ***This is the 8th post in*** [***The Complete JavaScript Series***](https://vinoo.in/tags/javascript-series/)
 
 In simple terms, Destructuring is an ES6 feature that helps us unpack values from an array or object into separate variables.
 

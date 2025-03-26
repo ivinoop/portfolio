@@ -8,8 +8,6 @@ cover:
     image: "/blog/primitives-objects-memory-allocation/6.png"
 ---
 
-> This is the 6th post in [The Complete JavaScript Series](https://vinoo.in/tags/javascript-series/).
-
 ## Introduction
 
 Earlier, when we talked about the JS Engine, we saw there were two important parts that make up the processing engine -

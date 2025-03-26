@@ -8,8 +8,6 @@ cover:
     image: "/blog/hoisting-temporal-dead-zone/5.png"
 ---
 
-> This is the 5th post in [The Complete JavaScript Series](https://vinoo.in/tags/javascript-series/).
-
 Before we define Hoisting, you should know that we have already seen Hoisting in action in our previous article and code snippets, and you would probably be writing code every day that implements Hoisting without consciously being aware of it! It is a very tricky concept, one that is simple enough in practice but takes some time to wrap our heads around, given the idiosyncrasies of JavaScript 😃
 
 Let's do a quick recap by examining the code below -

@@ -8,8 +8,6 @@ cover:
     image: "/blog/scope-in-js/4.png"
 ---
 
-> This is the 4th post in [The Complete JavaScript Series](https://vinoo.in/tags/javascript-series/).
-
 # What is Scoping?
 
 Scoping is a way to organise and access variables. In JavaScript, there is a concept called Lexical Scoping - which is a way of controlling Scope of variables by the placement of functions and blocks in the code.

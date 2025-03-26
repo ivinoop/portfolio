@@ -8,7 +8,7 @@ cover:
     image: "/blog/function-prototype/function-prototype.png"
 ---
 
-In the [previous article](https://vinoo.hashnode.dev/oops-in-javascript-what-is-dunder-proto) , we saw how objects behave and what Dunder Proto means. In this post, let us discuss why Dunder Proto is used and how it can help us write better, optimised code. 
+In the [previous post](https://vinoo.hashnode.dev/oops-in-javascript-what-is-dunder-proto) , we saw how objects behave and what Dunder Proto means. In this post, let us discuss why Dunder Proto is used and how it can help us write better, optimised code. 
 
 Dunder Proto is mainly used for two cases - 
 

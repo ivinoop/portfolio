@@ -8,8 +8,6 @@ cover:
   image: '/blog/javascript-engine-execution-context/3.png'
 ---
 
-> This is the 3rd post in [The Complete JavaScript Series](https://vinoo.in/tags/javascript-series/).
-
 ## JavaScript Engine
 
 A JavaScript engine is simply put - a program that executes JavaScript code. Each browser has its own JS engine. Firefox has SpiderMonkey, Microsoft Edge has Chakra, Opera has Caraken, etc. These are all customised JavaScript and WebAssembly implementations depending on the browser's architecture. The most widely used is of course, Google Chrome browser and its engine is called V8.

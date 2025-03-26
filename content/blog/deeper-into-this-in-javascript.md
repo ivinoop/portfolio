@@ -8,9 +8,9 @@ cover:
     image: "/blog/deeper-into-this-in-js/deeper-into-this.png"
 ---
 
-> This article was originally published [here](https://dev.to/vinoo/deeper-into-this-in-javascript-4lil).
+> This post was originally published [here](https://dev.to/vinoo/deeper-into-this-in-javascript-4lil).
 
-In a [previous article](https://vinoo.hashnode.dev/oops-in-javascript-creating-objects-and-this-keyword), we saw how to use `this` keyword with objects. In this post, we shall dive deeper into different bindings of `this` that we will encounter when dealing with it in functions. Bindings mean the different ways `this` behaves in different contexts in a function. 
+In a [previous post](https://vinoo.hashnode.dev/oops-in-javascript-creating-objects-and-this-keyword), we saw how to use `this` keyword with objects. In this post, we shall dive deeper into different bindings of `this` that we will encounter when dealing with it in functions. Bindings mean the different ways `this` behaves in different contexts in a function. 
 
 ### 1. Default Binding
 

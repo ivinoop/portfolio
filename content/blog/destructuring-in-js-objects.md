@@ -8,8 +8,6 @@ cover:
     image: "/blog/destructuring-in-js-objects/destructuring-in-js-objects.png"
 ---
 
-> ***This is the 8th post in*** [***The Complete JavaScript Series***](https://vinoo.in/tags/javascript-series/)
-
 In simple terms, Destructuring is an ES6 feature that helps us unpack values from an array or object into separate variables.
 
 We use destructuring to break a complex data structure down into a smaller data structure like a single dimensional array or a variable.

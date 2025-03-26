@@ -8,8 +8,6 @@ cover:
     image: "/blog/this-in-javascript/7.png"
 ---
 
-> This is the 7th post in [The Complete JavaScript Series.](https://vinoo.in/tags/javascript-series/)
-
 ## Intro
 
 Simply put, `this` is a special variable that is created for every Execution Context.
