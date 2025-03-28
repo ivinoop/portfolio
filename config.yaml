@@ -1,4 +1,6 @@
 baseURL: 'http://vinoo.in/'
+# Analytics
+googleAnalytics: G-KSYS2SPBZ9
 languageCode: en-us
 title: Vinoo
 theme: PaperMod
@@ -35,7 +37,7 @@ menu:
     #   weight: 70
 
 params:
-  # theme 
+  # theme
   showToc: true
   TocOpen: false
   ShowBreadCrumbs: true
@@ -43,9 +45,9 @@ params:
   hideMeta: false
 
   homeInfoParams:
-    Title: Developer. Writer. Learner. 
-    Content: Documenting learnings. Occasionally penning thoughts.   
-  
+    Title: Developer. Writer. Learner.
+    Content: Documenting learnings. Occasionally penning thoughts.
+
   socialIcons:
     - name: 'github'
       url: 'https://github.com/ivinoop'
@@ -55,7 +57,7 @@ params:
       url: 'https://www.linkedin.com/in/ivinoop'
 
   # Date
-  dateFormat: "Jan 2, 2006"
+  dateFormat: 'Jan 2, 2006'
 
   # for enchanced SEO
   env: production
@@ -70,9 +72,9 @@ params:
     imageHeight: 220
     buttons:
       - name: Projects
-        url: "/projects/"
+        url: '/projects/'
       - name: Blog
-        url: "/blog/"
+        url: '/blog/'
 
   # List View
   hideDescriptionInList: false
@@ -112,6 +114,3 @@ markup:
   goldmark:
     renderer:
       unsafe: true
-
-# Analytics
-googleAnalytics: G-KSYS2SPBZ9
