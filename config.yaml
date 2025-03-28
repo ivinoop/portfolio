@@ -112,3 +112,6 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+
+# Analytics
+googleAnalytics: G-KSYS2SPBZ9
