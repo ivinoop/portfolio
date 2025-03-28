@@ -129,6 +129,18 @@ if (!doNotTrack) {
 </head>
 
 <body class="list" id="top">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSYS2SPBZ9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-KSYS2SPBZ9', { 'anonymize_ip': false });
+}
+</script>
+
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
