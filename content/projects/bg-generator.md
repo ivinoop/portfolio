@@ -1,7 +1,7 @@
 ---
 title: 'Background Generator'
 date: 2021-05-27T09:05:42+05:30
-draft: false
+draft: true
 description: "built with - javascript, html, css"
 # showToc: false
 tags: ['project', 'javascript', 'html', 'css']

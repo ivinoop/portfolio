@@ -49,12 +49,12 @@ params:
     Content: Documenting learnings. Occasionally penning thoughts.
 
   socialIcons:
-    - name: 'github'
-      url: 'https://github.com/ivinoop'
+  #   - name: 'github'
+  #     url: 'https://github.com/ivinoop'
     - name: 'twitter'
       url: 'https://twitter.com/rootzer0'
-    - name: 'linkedin'
-      url: 'https://www.linkedin.com/in/ivinoop'
+  #   - name: 'linkedin'
+  #     url: 'https://www.linkedin.com/in/ivinoop'
 
   # Date
   dateFormat: 'Jan 2, 2006'
