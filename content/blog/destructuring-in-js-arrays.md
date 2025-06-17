@@ -137,6 +137,4 @@ As mentioned, destructuring in no way changes the original array; instead it sim
 
 ![Trick Experiment GIF by Discovery Europe](https://media4.giphy.com/media/RdJIM4Uesg37eN1ZNL/giphy.gif?cid=ecf05e47a8jtcr9z33k3j8q4fuel6goa7ii31vodt08ygxih&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 
-In the next post, we will look at destructuring for Objects, the most used data structure in JavaScript.
-
 Keep shipping 🚀
